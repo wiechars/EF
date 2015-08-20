@@ -137,6 +137,8 @@
         var ONE_HANDLE_PRICE = 4;
         var ONE_HINGE_PRICE = 5;
         var FINISH_PRICE_PER_SQ_INCH = 20.0 / 2588;
+        var EDGE_PRICE_PER_SQ_INCH = 0.007
+        var GLUE_FASTENERS_SCREWS = 0.002
 
         $(document).ready(function () {
 
@@ -166,9 +168,11 @@
             var panelPrice = materialUsed * PANEL_PRICE_PER_SQ_INCH;
             var drawerPrice = ONE_DRAWER_PRICE * numDrawers;
             var handlePrice = ONE_HANDLE_PRICE * numHandles;
-            var edgePrice = 10;
+            var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
             var hingePrice = ONE_HINGE_PRICE * numDoors;
-            var price = (panelPrice + drawerPrice + handlePrice + edgePrice + hingePrice) * 2;
+            var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
+            var otherPrice = GLUE_FASTENERS_SCREWS * area;
+            var price = (panelPrice + drawerPrice + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
 
 
             $('#MainContent_price').text("$" + price.toFixed(2));
