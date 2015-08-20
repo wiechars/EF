@@ -58,15 +58,6 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tiles_small;
         
         /// <summary>
-        /// comp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl comp;
-        
-        /// <summary>
         /// styleHeader2 control.
         /// </summary>
         /// <remarks>
@@ -137,6 +128,15 @@ namespace Elinic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tiles_small5;
+        
+        /// <summary>
+        /// comp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl comp;
         
         /// <summary>
         /// orderForm control.

@@ -34,35 +34,35 @@
         <h4>
             <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
-    <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label>
+    <h4><asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
     <div id="main">
         <ul runat="server" id="tiles" class = "tiles">
         </ul>
         <ul runat="server" id="tiles_small" class="tiles_small">
         </ul>
     </div>
-    <div id="selectedComponent" class="span4">
-        <ul runat="server" id="comp">
-        </ul>
-    </div>
-      <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label>
+    <h4><asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
     <div id="main2">
         <ul runat="server" id="tiles_small2" class="tiles_small">
         </ul>
     </div>
-    <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label>
+    <h4><asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
     <div id="main3">
         <ul runat="server" id="tiles_small3" class="tiles_small">
         </ul>
     </div>
-    <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label>
+    <h4><asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
     <div id="main4">
         <ul runat="server" id="tiles_small4" class="tiles_small">
         </ul>
     </div>
-    <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label>
+    <h4><asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
     <div id="main5">
         <ul runat="server" id="tiles_small5" class="tiles_small">
+        </ul>
+    </div>
+        <div id="selectedComponent" class="span4">
+        <ul runat="server" id="comp">
         </ul>
     </div>
     <div id="orderForm" class="span5" runat="server">
@@ -235,55 +235,99 @@
     </script>
 
     <!-- Once the page is loaded, initalize the plug-in. -->
-    <script type="text/javascript">
-        (function ($) {
+ <script type="text/javascript">
+     (function ($) {
 
-            var loadedImages = 0, // Counter for loaded images
-                handler = $('#MainContent_tiles li, #MainContent_tiles_small li, #MainContent_component li'); // Get a reference to your grid items.
-            // Prepare layout options.
-            var options = {
-                autoResize: true, // This will auto-update the layout when the browser window is resized.
-                container: $('#main'), // Optional, used for some extra CSS styling
-                offset: 5//, // Optional, the distance between grid items
-                // outerOffset: 10, // Optional, the distance to the containers border
-                //  itemWidth: 400 // Optional, the width of a grid item
-            };
+         var loadedImages = 0, // Counter for loaded images
+             handler = $('#MainContent_tiles li, #MainContent_tiles_small li, #MainContent_component li'); // Get a reference to your grid items.
+         handler2 = $('#MainContent_tiles_small2 li'); // Get a reference to your grid items.
+         handler3 = $('#MainContent_tiles_small3 li'); // Get a reference to your grid items.
+         handler4 = $('#MainContent_tiles_small4 li'); // Get a reference to your grid items.
+         handler5 = $('#MainContent_tiles_small5 li'); // Get a reference to your grid items.
 
-            $('#MainContent_tiles, #MainContent_tiles_small').imagesLoaded(function () {
-                // Call the layout function.
-                handler.wookmark(options);
+         /**************************************************/
+         /******   Style 1 ********************************/
+         /*************************************************/
+         $('#MainContent_tiles, #MainContent_tiles_small').imagesLoaded(function () {
+             // Prepare layout options.
+             var options = {
+                 autoResize: true, // This will auto-update the layout when the browser window is resized.
+                 container: $('#main'), // Optional, used for some extra CSS styling
+                 offset: 5//, // Optional, the distance between grid items
+             };
+             // Call the layout function.
+             handler.wookmark(options);
 
-                // Capture clicks on grid items.
-                handler.click(function () {
+         });
 
-                    // Randomize the height of the clicked item.
-                    //var newHeight = $('img', this).height() + Math.round(Math.random() * 300 + 30);
-                    //$(this).css('height', newHeight + 'px');
+         /**************************************************/
+         /******   Style 2 ********************************/
+         /*************************************************/
+         $('#MainContent_tiles_small2').imagesLoaded(function () {
+             var options2 = {
+                 autoResize: true, // This will auto-update the layout when the browser window is resized.
+                 container: $('#main2'), // Optional, used for some extra CSS styling
+                 offset: 5//, // Optional, the distance between grid items
 
-                    // Update the layout.
-                    handler.wookmark();
-                });
-            }).progress(function (instance, image) {
-                // Update progress bar after each image load
-                loadedImages++;
-                if (loadedImages == handler.length)
-                    $('.progress-bar').hide();
-                else
-                    $('.progress-bar').width((loadedImages / handler.length * 100) + '%');
-            });
-        })(jQuery);
+             };
+             handler2.wookmark(options2);
+         });
 
-        // Read a page's GET URL variables and return them as an associative array.
-        function getUrlVars() {
-            var vars = [], hash;
-            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for (var i = 0; i < hashes.length; i++) {
-                hash = hashes[i].split('=');
-                vars.push(hash[0]);
-                vars[hash[0]] = hash[1];
-            }
-            return vars;
-        }
+         /**************************************************/
+         /******   Style 3 ********************************/
+         /*************************************************/
+         $('#MainContent_tiles_small3').imagesLoaded(function () {
+             var options3 = {
+                 autoResize: true, // This will auto-update the layout when the browser window is resized.
+                 container: $('#main3'), // Optional, used for some extra CSS styling
+                 offset: 5//, // Optional, the distance between grid items
+
+
+             };
+             // Call the layout function.
+             handler3.wookmark(options3);
+         });
+
+         /**************************************************/
+         /******   Style 4 ********************************/
+         /*************************************************/
+         $('#MainContent_tiles_small4').imagesLoaded(function () {
+             var options4 = {
+                 autoResize: true, // This will auto-update the layout when the browser window is resized.
+                 container: $('#main4'), // Optional, used for some extra CSS styling
+                 offset: 5//, // Optional, the distance between grid items
+
+             };
+             // Call the layout function.
+             handler4.wookmark(options4);
+         });
+
+         /**************************************************/
+         /******   Style 5 ********************************/
+         /*************************************************/
+         $('#MainContent_tiles_small5').imagesLoaded(function () {
+             var options5 = {
+                 autoResize: true, // This will auto-update the layout when the browser window is resized.
+                 container: $('#main5'), // Optional, used for some extra CSS styling
+                 offset: 5//, // Optional, the distance between grid items
+             };
+             // Call the layout function.
+             handler5.wookmark(options5);
+         });
+
+     })(jQuery);
+
+     // Read a page's GET URL variables and return them as an associative array.
+     function getUrlVars() {
+         var vars = [], hash;
+         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+         for (var i = 0; i < hashes.length; i++) {
+             hash = hashes[i].split('=');
+             vars.push(hash[0]);
+             vars[hash[0]] = hash[1];
+         }
+         return vars;
+     }
     </script>
 </asp:Content>
 
