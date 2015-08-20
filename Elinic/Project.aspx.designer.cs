@@ -22,6 +22,15 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.Button btnHome;
         
         /// <summary>
+        /// lblDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
+        
+        /// <summary>
         /// layoutsDiv control.
         /// </summary>
         /// <remarks>

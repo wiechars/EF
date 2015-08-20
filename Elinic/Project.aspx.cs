@@ -19,45 +19,46 @@ namespace Elinic
 
         protected void Page_Load(object sender, EventArgs e)
         {
-                //Initialize specific Divs.
-                layoutsDiv.Visible = false;
-                layoutsDivContent.Visible = true;
-                ideasDiv.Visible = false;
-                lblMsg.Visible = false;
+            //Initialize specific Divs.
+            layoutsDiv.Visible = false;
+            layoutsDivContent.Visible = true;
+            ideasDiv.Visible = false;
+            lblMsg.Visible = false;
+            lblDescription.Text = "";
 
+            selectedComponent.Visible = false;
+            notes.Visible = false;
+            if (Request.QueryString["Type"] != null)
+            {
+                Session.Clear();
+                this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
 
-                selectedComponent.Visible = false;
-                notes.Visible = false;
-                if (Request.QueryString["Type"] != null)
+                LoadProjectLayouts(null, null);
+
+            }
+            else if (Request.QueryString["LayoutID"] != null)
+            {
+                values.InnerHtml = "";
+                orderValues.InnerHtml = "";
+                int? ideas = null;
+
+                if (Request.QueryString["Ideas"] != null)
                 {
-                    Session.Clear();
-                    this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
-                    LoadProjectLayouts(null, null);
-
+                    ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
                 }
-                else if (Request.QueryString["LayoutID"] != null)
-                {
-                    values.InnerHtml = "";
-                    orderValues.InnerHtml = "";
-                    int? ideas = null;
+                selectedComponent.Visible = true;
+                notes.Visible = true;
+                LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
+                LoadComponents(ideas);
+                LoadLayout(ideas);
 
-                    if (Request.QueryString["Ideas"] != null)
-                    {
-                        ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
-                    }
-                    selectedComponent.Visible = true;
-                    notes.Visible = true;
-                    LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
-                    LoadComponents(ideas);
-                    LoadLayout(ideas);
+            }
+            else
+            {
+                Session.Clear();
+                LoadProjectTypes();
+            }
 
-                }
-                else
-                {
-                    Session.Clear();
-                    LoadProjectTypes();
-                }
-            
         }
 
         /// <summary>
@@ -103,6 +104,7 @@ namespace Elinic
         /// </summary>
         private void LoadProjectLayouts(int? layoutID, int? ideas)
         {
+            bool hasDescription = false;
             Database obj = new Database();
             try
             {
@@ -119,15 +121,21 @@ namespace Elinic
                 }
                 else
                 {
-                    obj.Query("SELECT * FROM Layouts Where ProjectType = " + Request.QueryString["Type"].ToString() + " ORDER BY LayoutID;");
+                    obj.Query("SELECT * FROM Layouts" + // Projects.Description FROM Layouts " +
+                            " INNER JOIN Projects ON (Projects.ProjectType = Layouts.ProjectType)  " +
+                            " Where Layouts.ProjectType = " + Request.QueryString["Type"].ToString() + " ORDER BY LayoutID;");
+                    hasDescription = true;
                 }
 
                 if (obj.rdr.HasRows == true)
                 {
-
                     while (obj.rdr.Read())
                     {
-                        if (layoutID != null &&  ideas == null)
+                        if (hasDescription)
+                        {
+                            lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
+                        }
+                        if (layoutID != null && ideas == null)
                         {
                             HtmlGenericControl li = new HtmlGenericControl("li");
                             layout.Controls.Add(li);
@@ -191,21 +199,23 @@ namespace Elinic
         /// </summary>
         private void LoadProjectIdeas(Database obj)
         {
-           
+
             try
             {
-                obj.Query("SELECT * FROM Ideas Where ProjectType = " + Request.QueryString["Type"].ToString() + " ORDER BY IdeaID;");
+                obj.Query("SELECT * FROM Ideas INNER JOIN Projects ON Projects.ProjectType = Ideas.ProjectType Where Ideas.ProjectType = " + Request.QueryString["Type"].ToString() + " ORDER BY IdeaID;");
 
                 if (obj.rdr.HasRows == true)
                 {
                     ideasDiv.Visible = true;
                     while (obj.rdr.Read())
                     {
+                        lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
+
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         tiles_ideas.Controls.Add(li);
 
                         HtmlGenericControl anchor = new HtmlGenericControl("a");
-                        anchor.Attributes.Add("href", "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["IdeaID"].ToString())+"&Ideas=1");
+                        anchor.Attributes.Add("href", "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "&Ideas=1");
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "</p><img src=\"../Images/LayoutThumbs/"
                             + Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()) + "\">";
                         li.Controls.Add(anchor);
@@ -325,7 +335,7 @@ namespace Elinic
         /// </summary>
         private void LoadComponents(int? ideas)
         {
-            double  price = 0;
+            double price = 0;
             int i = 1;
             Database obj = new Database();
             try
@@ -343,11 +353,11 @@ namespace Elinic
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         comp_small.Controls.Add(li);
                         values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\" id=\"Comp" + i + "\"><b>" + i + ". Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-                       if (Session["Comp" + i] != null)                                
+                        if (Session["Comp" + i] != null)
                         {
                             price = price + Convert.ToDouble(Session["Comp" + i + "Price"].ToString());
-                           values.InnerHtml = values.InnerHtml + Session["Comp" + i].ToString() + "</div>";
-                          // lblOrderSummary.InnerHtml = lblOrderSummary.InnerHtml + Session["Comp" + i + "OrderSummary"].ToString();
+                            values.InnerHtml = values.InnerHtml + Session["Comp" + i].ToString() + "</div>";
+                            // lblOrderSummary.InnerHtml = lblOrderSummary.InnerHtml + Session["Comp" + i + "OrderSummary"].ToString();
                         }
                         else
                         {
@@ -360,7 +370,7 @@ namespace Elinic
                         }
                         else
                         {
-                            anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + i + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]) );
+                            anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + i + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]));
                         }
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                             + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\">";
@@ -370,7 +380,7 @@ namespace Elinic
                     }
                     lblTotalPrice.Text = "$" + price.ToString();
                     lblOrderPrice.Text = "$" + price.ToString();
-                    orderValues.InnerHtml = values.InnerHtml;      
+                    orderValues.InnerHtml = values.InnerHtml;
 
 
 
@@ -409,14 +419,15 @@ namespace Elinic
             {
                 if (Session["Comp" + i] != null)
                 {
-                    orderHTML = orderHTML + "ITEM #"+i+": " + Session["Comp" + i].ToString() + " ";
+                    orderHTML = orderHTML + "ITEM #" + i + ": " + Session["Comp" + i].ToString() + " ";
                     i++;
-                }else
+                }
+                else
                 {
                     i = -1;
                 }
             }
-            
+
             string price = lblOrderPrice.Text;
             string notes = orderNotes.InnerText;
             string orderNoHTML = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
@@ -445,7 +456,7 @@ namespace Elinic
                 lblMsg.ForeColor = Color.Red;
             lblMsg.Text = message;
         }
-        
-        
+
+
     }
 }

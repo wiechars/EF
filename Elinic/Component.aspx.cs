@@ -21,7 +21,7 @@ namespace Elinic
         protected void Page_Load(object sender, EventArgs e)
         {
             lblMsg.Visible = false;
-
+            lblDescription.Text = "";
             if (Request.QueryString["Ideas"] != null)
             {
                 ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
@@ -107,7 +107,7 @@ namespace Elinic
                 obj.Connect();
                 if (compID != null)
                 {
-                    obj.Query("SELECT Components.CompID,Components.CompThumbImage,ComponentTypes.CompTypeName, ComponentTypes.CompTypeName, Components.CompID  FROM Components " +
+                    obj.Query("SELECT Components.Description, Components.CompID,Components.CompThumbImage,ComponentTypes.CompTypeName, ComponentTypes.CompTypeName, Components.CompID  FROM Components " +
                                 "INNER JOIN ComponentTypes ON (componentTypes.CompTypeID = Components.CompType)" +
                                 "WHERE CompId =" + Request.QueryString["CompId"].ToString() + " ORDER BY Components.CompID;");
                 }
@@ -120,6 +120,7 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
+                        lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         if (compID != null)
                         {

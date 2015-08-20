@@ -33,7 +33,7 @@
         <h1><%: Title %></h1>
         <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
         <hr />
-
+        <h4> <asp:Label id ="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
 
     <div id="main">
