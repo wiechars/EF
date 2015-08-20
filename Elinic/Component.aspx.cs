@@ -387,7 +387,7 @@ namespace Elinic
             {
                 obj.Connect();
 
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes) VALUES('" + orderDetails + "','" + price + "','" + notes + "');");
+                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate) VALUES('" + orderDetails + "','" + price + "','" + notes + "', '" + DateTime.Now +"');");
                 obj.Close();
             }
             catch (Exception ex)
