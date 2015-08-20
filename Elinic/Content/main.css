@@ -247,12 +247,12 @@ header p
 /**
  * Grid items
  */
+.tiles_small li,
 #MainContent_layout li,
 #MainContent_comp li,
 #MainContent_comp_small li,
-#MainContent_tiles_small li,
 #MainContent_tiles_ideas li,
-#MainContent_tiles li
+.tiles li
 {
     vertical-align: middle !important;
     text-align: center;
@@ -272,7 +272,7 @@ header p
 @media all and (min-width: 900px)
 {
     #MainContent_layout li,
-    #MainContent_tiles li
+    .tiles li
     {
         width: 300px;
         height: 300px;
@@ -291,9 +291,8 @@ header p
         width: 120px;
         height: 120px;
     }
-
-    #MainContent_tiles_ideas li,
-    #MainContent_tiles_small li
+    .tiles_small li,
+    #MainContent_tiles_ideas li
     {
         width: 180px;
         height: 180px;
@@ -304,7 +303,7 @@ header p
 {
     #MainContent_layout li,
     /*#MainContent_comp li,*/
-    #MainContent_tiles li
+    .tiles li
     {
         width: 200px;
         height: 200px;
@@ -317,9 +316,8 @@ header p
         height: 80px;
     }
 }
-
-#MainContent_tiles_ideas li,
-#MainContent_tiles_small li
+.tiles_small li,
+#MainContent_tiles_ideas li
 {
     width: 140px;
     height: 140px;
@@ -333,7 +331,7 @@ header p
     #MainContent_comp_small li,
     #MainContent_layout li,
     /*#MainContent_comp li,*/
-    #MainContent_tiles li
+    .tiles li
     {
         display: inline-block;
         width: 40px;
@@ -350,15 +348,14 @@ header p
     }
 
     #MainContent_comp_small li,
-    #MainContent_tiles li
+    .tiles li
     {
         display: inline-block;
         width: 80px;
         height: 80px;
     }
-
-    #MainContent_tiles_ideas li,
-    #MainContent_tiles_small li
+    .tiles_small li,
+    #MainContent_tiles_ideas li
     {
         width: 55px;
         height: 55px;
@@ -373,37 +370,34 @@ header p
         max-height: 60%;
     }
 }
-
+.tiles_small li.inactive,
 #MainContent_tiles_ideas li.inactive,
-#MainContent_tiles_small li.inactive,
-#MainContent_tiles li.inactive
+.tiles li.inactive
 {
     visibility: hidden;
     opacity: 0;
 }
-
+.tiles_small li a,
 #MainContent_tiles_ideas li a,
-#MainContent_tiles_small li a,
-#MainContent_tiles li a
+.tiles li a
 {
     height: 100%;
 }
 
-
+.tiles_small li a,
 #MainContent_comp_small li a,
 #MainContent_tiles_ideas li a,
-#MainContent_tiles_small li a,
-#MainContent_tiles li a
+.tiles li a
 {
     line-height: 100%;
     display: block;
     text-align: center;
     vertical-align: middle;
 }
-
+    
+    .tiles_small li a img,
     #MainContent_tiles_ideas li a img,
-    #MainContent_tiles_small li a img,
-    #MainContent_tiles li a img
+    .tiles li a img
     {
         vertical-align: middle!important;
     }
@@ -411,20 +405,19 @@ header p
 
 @media all and (min-width: 800px)
 {
+    .tiles_small li img,
     #MainContent_tiles_ideas li img,
-    #MainContent_tiles_small li img,
-    #MainContent_tiles li img
+    .tiles li img
     {
         display: inline-block;
         max-width: 85%;
         max-height: 85%;
         vertical-align: middle;
     }
-
+    .tiles_small li h2,
     #MainContent_comp li h2,
     #MainContent_tiles_ideas li h2,
-    #MainContent_tiles_small li h2,
-    #MainContent_tiles li h2
+    .tiles li h2
     {
         position: absolute;
         top: 5%;
@@ -440,20 +433,18 @@ header p
 
 @media all and (max-width: 768px)
 {
+    .tiles_small li img,
     #MainContent_tiles_ideas li img,
-    #MainContent_tiles_small li img,
-    #MainContent_tiles li img
+    .tiles li img
     {
         display: inline-block;
         max-width: 80%;
         max-height: 80%;
         vertical-align: middle;
     }
-
+    .tiles_small li h2,
     #MainContent_comp li h2,
-    #MainContent_tiles_ideas li h2,
-    #MainContent_tiles_small li h2,
-    #MainContent_tiles li h2
+    .tiles li h2
     {
         position: absolute;
         top: 5%;
@@ -474,11 +465,10 @@ header p
  */
 @media all and (min-width: 800px)
 {
+    .tiles_small li p,
     #MainContent_comp li p,
     #MainContent_layout li p,
-    #MainContent_tiles_ideas li p,
-    #MainContent_tiles_small li p,
-    #MainContent_tiles li p
+    .tiles li p
     {
 
         margin-bottom: 2px!important;
@@ -502,11 +492,10 @@ header p
 
 @media all and (max-width: 768px)
 {
+    .tiles_small li p,
     #MainContent_comp li p,
     #MainContent_layout li p,
-    #MainContent_tiles_ideas li p,
-    #MainContent_tiles_small li p,
-    #MainContent_tiles li p
+    .tiles li p
     {
         margin-bottom: 2px!important;
         color: #666;

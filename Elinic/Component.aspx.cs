@@ -102,6 +102,8 @@ namespace Elinic
         {
             String queryString = "";
             Database obj = new Database();
+            int currentStyle = 0;
+            string prevStyle = "";
             try
             {
                 obj.Connect();
@@ -109,19 +111,21 @@ namespace Elinic
                 {
                     obj.Query("SELECT Components.Description, Components.CompID,Components.CompThumbImage,ComponentTypes.CompTypeName, ComponentTypes.CompTypeName, Components.CompID  FROM Components " +
                                 "INNER JOIN ComponentTypes ON (componentTypes.CompTypeID = Components.CompType)" +
-                                "WHERE CompId =" + Request.QueryString["CompId"].ToString() + " ORDER BY Components.CompID;");
+                                "WHERE CompId =" + Request.QueryString["CompId"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
                 }
                 else
                 {
-                    obj.Query("SELECT * FROM Components Where CompType = " + Request.QueryString["Type"].ToString() + " ORDER BY Components.CompID;");
+                    obj.Query("SELECT * FROM Components Where CompType = " + Request.QueryString["Type"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
                 }
 
                 if (obj.rdr.HasRows == true)
                 {
+                   
                     while (obj.rdr.Read())
                     {
                         lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
                         HtmlGenericControl li = new HtmlGenericControl("li");
+
                         if (compID != null)
                         {
                             comp.Controls.Add(li);
@@ -145,7 +149,46 @@ namespace Elinic
                             {
                                 queryString = queryString + "&Ideas=1";
                             }
-                            tiles_small.Controls.Add(li);
+
+                            //Find the Style and sort it into the right div.  Currently allow for 5.
+
+                            string style = Convert.ToString(obj.rdr["CompStyle"]);
+
+                            if ((currentStyle == 0 && String.IsNullOrEmpty(prevStyle)) || (currentStyle == 1 && prevStyle == style))
+                            {
+                                styleHeader.Text = "Style " + style;
+                                tiles_small.Controls.Add(li);
+                                prevStyle = style;
+                                currentStyle = 1;
+                            }
+                            else if ((currentStyle == 1 && prevStyle != style) || (currentStyle == 2 && prevStyle == style))
+                            {
+                                styleHeader2.Text = "Style " + style;
+                                tiles_small2.Controls.Add(li);
+                                prevStyle = style;
+                                currentStyle = 2;
+                            }
+                            else if ((currentStyle == 2 && prevStyle != style) || (currentStyle == 3 && prevStyle == style))
+                            {
+                                styleHeader3.Text = "Style " + style;
+                                tiles_small3.Controls.Add(li);
+                                prevStyle = style;
+                                currentStyle = 3;
+                            }
+                            else if ((currentStyle == 3 && prevStyle != style) || (currentStyle == 4 && prevStyle == style))
+                            {
+                                styleHeader4.Text = "Style " + style;
+                                tiles_small4.Controls.Add(li);
+                                prevStyle = style;
+                                currentStyle = 4;
+                            }
+                            else if ((currentStyle == 4 && prevStyle != style) || (currentStyle == 5 && prevStyle == style))
+                            {
+                                styleHeader5.Text = "Style " + style;
+                                tiles_small5.Controls.Add(li);
+                                prevStyle = style;
+                                currentStyle = 5;
+                            }
                             HtmlGenericControl anchor = new HtmlGenericControl("a");
                             anchor.Attributes.Add("href", queryString);
                             anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompID"].ToString())

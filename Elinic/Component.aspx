@@ -6,15 +6,13 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent">
     <style type="text/css">
-        .modalBackground
-        {
+        .modalBackground {
             background-color: Black;
             filter: alpha(opacity=90);
             opacity: 0.8;
         }
 
-        .modalPopup
-        {
+        .modalPopup {
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -33,17 +31,38 @@
         <h1><%: Title %></h1>
         <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
         <hr />
-        <h4> <asp:Label id ="lblDescription" runat="server" Text=""></asp:Label></h4>
+        <h4>
+            <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
-
+    <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label>
     <div id="main">
-        <ul runat="server" id="tiles">
+        <ul runat="server" id="tiles" class = "tiles">
         </ul>
-        <ul runat="server" id="tiles_small">
+        <ul runat="server" id="tiles_small" class="tiles_small">
         </ul>
     </div>
     <div id="selectedComponent" class="span4">
         <ul runat="server" id="comp">
+        </ul>
+    </div>
+      <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label>
+    <div id="main2">
+        <ul runat="server" id="tiles_small2" class="tiles_small">
+        </ul>
+    </div>
+    <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label>
+    <div id="main3">
+        <ul runat="server" id="tiles_small3" class="tiles_small">
+        </ul>
+    </div>
+    <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label>
+    <div id="main4">
+        <ul runat="server" id="tiles_small4" class="tiles_small">
+        </ul>
+    </div>
+    <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label>
+    <div id="main5">
+        <ul runat="server" id="tiles_small5" class="tiles_small">
         </ul>
     </div>
     <div id="orderForm" class="span5" runat="server">
@@ -56,7 +75,7 @@
         <div class="row-fluid input-form">
             Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="row-fluid input-form" id ="divDoors" runat="server">
+        <div class="row-fluid input-form" id="divDoors" runat="server">
             Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
         <div class="row-fluid input-form">
@@ -186,11 +205,11 @@
                 doors = $('#MainContent_compDoors').val();
             }
 
-            $('#MainContent_orderValues').html("<b>Component ID :</b>"+compID+"&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
+            $('#MainContent_orderValues').html("<b>Component ID :</b>" + compID + "&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
                  " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
                  " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterial').val() + "</div>");
 
-            $('#MainContent_hdnOrderValues').Text("<b>Component ID :</b>"+ +" &nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
+            $('#MainContent_hdnOrderValues').Text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
                  " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
                  " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterial').val() + "</div>");
 

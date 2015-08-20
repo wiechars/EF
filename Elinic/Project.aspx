@@ -4,15 +4,13 @@
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent">
     <style type="text/css">
-        .modalBackground
-        {
+        .modalBackground {
             background-color: Black;
             filter: alpha(opacity=90);
             opacity: 0.8;
         }
 
-        .modalPopup
-        {
+        .modalPopup {
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -31,16 +29,17 @@
         <h1><%: Title %></h1>
         <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
         <hr />
-        <h4> <asp:Label id ="lblDescription" runat="server" Text=""></asp:Label></h4>
+        <h4>
+            <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
     <div id="layoutsDiv" runat="server">
         <h2>Standard Layouts</h2>
     </div>
     <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 20px 0px;">
         <div id="main" style="clear: both;">
-            <ul runat="server" id="tiles">
+            <ul runat="server" id="tiles" class="tiles">
             </ul>
-            <ul runat="server" id="tiles_small" style="overflow: auto">
+            <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
             </ul>
         </div>
     </div>
