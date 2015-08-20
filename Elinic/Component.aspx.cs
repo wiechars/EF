@@ -326,11 +326,11 @@ namespace Elinic
                     + "  <b>Doors:</b> " + doors + "  <b>Material:</b> " + compMaterial.SelectedItem.Text + "  <b>Price:</b>" + compPrice.Value;
                 if (ideas != null)
                 {
-                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1");
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);
                 }
                 else
                 {
-                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]));
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
                 }
             }
             catch (Exception ex)
@@ -346,11 +346,11 @@ namespace Elinic
             {
                 if (ideas != null)
                 {
-                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1");
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);
                 }
                 else
                 {
-                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]));
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
                 }
             }
             catch (Exception ex)
