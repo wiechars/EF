@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{186B7D93-AC5C-4958-8FE1-5F77A41EC59D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Elinic</RootNamespace>
+    <AssemblyName>Elinic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Content\contact.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="database.mdb" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\demo-styles.css" />
+    <Content Include="Content\image-picker.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\overview.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\CompRenders\DT5001_1.png" />
+    <Content Include="Images\CompRenders\DT5001_2.png" />
+    <Content Include="Images\CompRenders\DT5002_1.png" />
+    <Content Include="Images\CompRenders\DT5002_2.png" />
+    <Content Include="Images\CompRenders\DT5004_1.png" />
+    <Content Include="Images\CompRenders\DT5004_2.png" />
+    <Content Include="Images\CompRenders\LS3001_1.png" />
+    <Content Include="Images\CompRenders\LS3001_2.png" />
+    <Content Include="Images\CompRenders\LS3002_1.png" />
+    <Content Include="Images\CompRenders\LS3002_2.png" />
+    <Content Include="Images\CompRenders\LS3004_1.png" />
+    <Content Include="Images\CompRenders\LS3004_2.png" />
+    <Content Include="Images\CompRenders\LS3005_1.png" />
+    <Content Include="Images\CompRenders\LS3005_2.png" />
+    <Content Include="Images\CompRenders\LS3006_1.png" />
+    <Content Include="Images\CompRenders\LS3006_2.png" />
+    <Content Include="Images\CompRenders\LS3006_3.png" />
+    <Content Include="Images\CompRenders\LS3007_1.png" />
+    <Content Include="Images\CompRenders\LS3007_2.png" />
+    <Content Include="Images\CompRenders\LS3008_1.png" />
+    <Content Include="Images\CompRenders\LS3008_2.png" />
+    <Content Include="Images\CompRenders\LS3009_1.png" />
+    <Content Include="Images\CompRenders\LS3009_2.png" />
+    <Content Include="Images\CompRenders\LS3010_1.png" />
+    <Content Include="Images\CompRenders\LS3010_2.png" />
+    <Content Include="Images\CompRenders\LS3011_1.png" />
+    <Content Include="Images\CompRenders\LS3011_2.png" />
+    <Content Include="Images\CompRenders\LW6002_1.png" />
+    <Content Include="Images\CompRenders\LW6002_2.png" />
+    <Content Include="Images\CompRenders\LW6007_1.png" />
+    <Content Include="Images\CompRenders\LW6007_2.png" />
+    <Content Include="Images\CompRenders\LW6011_1.png" />
+    <Content Include="Images\CompRenders\LW6011_2.png" />
+    <Content Include="Images\CompRenders\TS1001_1.png" />
+    <Content Include="Images\CompRenders\TS1001_2.png" />
+    <Content Include="Images\CompRenders\TS1002_1.png" />
+    <Content Include="Images\CompRenders\TS1002_2.png" />
+    <Content Include="Images\CompRenders\TS1004_1.png" />
+    <Content Include="Images\CompRenders\TS1004_2.png" />
+    <Content Include="Images\CompRenders\TS1005_1.png" />
+    <Content Include="Images\CompRenders\TS1005_2.png" />
+    <Content Include="Images\CompRenders\TS1006_1.png" />
+    <Content Include="Images\CompRenders\TS1006_2.png" />
+    <Content Include="Images\CompRenders\TS1007_1.png" />
+    <Content Include="Images\CompRenders\TS1007_2.png" />
+    <Content Include="Images\CompRenders\TS1008_1.png" />
+    <Content Include="Images\CompRenders\TS1008_2.png" />
+    <Content Include="Images\CompRenders\TS1008_4.png" />
+    <Content Include="Images\CompRenders\TS1009_1.png" />
+    <Content Include="Images\CompRenders\TS1009_2.png" />
+    <Content Include="Images\CompRenders\TS1010_1.png" />
+    <Content Include="Images\CompRenders\TS1010_2.png" />
+    <Content Include="Images\CompRenders\TS1011_1.png" />
+    <Content Include="Images\CompRenders\TS1011_2.png" />
+    <Content Include="Images\CompRenders\TS1012_1.png" />
+    <Content Include="Images\CompRenders\TS1012_2.png" />
+    <Content Include="Images\CompRenders\TS1013_1.png" />
+    <Content Include="Images\CompRenders\TS1013_2.png" />
+    <Content Include="Images\CompRenders\TW2001_1.jpg" />
+    <Content Include="Images\CompRenders\TW2001_2.jpg" />
+    <Content Include="Images\CompRenders\TW2002_1.jpg" />
+    <Content Include="Images\CompRenders\TW2002_2.jpg" />
+    <Content Include="Images\CompRenders\TW2004_1.jpg" />
+    <Content Include="Images\CompRenders\TW2004_2.png" />
+    <Content Include="Images\CompRenders\TW2006_1.jpg" />
+    <Content Include="Images\CompRenders\TW2006_2.png" />
+    <Content Include="Images\CompRenders\TW2007_1.jpg" />
+    <Content Include="Images\CompRenders\TW2007_2.jpg" />
+    <Content Include="Images\CompRenders\TW2008_1.jpg" />
+    <Content Include="Images\CompRenders\TW2008_2.jpg" />
+    <Content Include="Images\CompRenders\TW2009_1.png" />
+    <Content Include="Images\CompRenders\TW2009_2.png" />
+    <Content Include="Images\CompRenders\TW2010_1.png" />
+    <Content Include="Images\CompRenders\TW2010_2.png" />
+    <Content Include="Images\CompRenders\TW2011_1.png" />
+    <Content Include="Images\CompRenders\TW2011_2.png" />
+    <Content Include="Images\CompRenders\TW2012_1.png" />
+    <Content Include="Images\CompRenders\TW2012_2.png" />
+    <Content Include="Images\CompRenders\TW2013_1.png" />
+    <Content Include="Images\CompRenders\TW2013_2.png" />
+    <Content Include="Images\CompRenders\WU4001_1.png" />
+    <Content Include="Images\CompRenders\WU4001_2 .png" />
+    <Content Include="Images\CompRenders\WU4002_1 .png" />
+    <Content Include="Images\CompRenders\WU4002_2.png" />
+    <Content Include="Images\CompRenders\WU4005_1.png" />
+    <Content Include="Images\CompRenders\WU4005_2.png" />
+    <Content Include="Images\CompRenders\WU4006_1.png" />
+    <Content Include="Images\CompRenders\WU4006_2.png" />
+    <Content Include="Images\CompRenders\WU4007_1.png" />
+    <Content Include="Images\CompRenders\WU4007_2.png" />
+    <Content Include="Images\CompRenders\WU4008_1.png" />
+    <Content Include="Images\CompRenders\WU4008_2.png" />
+    <Content Include="Images\CompRenders\WU4009_1.png" />
+    <Content Include="Images\CompRenders\WU4009_2.png" />
+    <Content Include="Images\CompRenders\WU4010_1.png" />
+    <Content Include="Images\CompRenders\WU4010_2.png" />
+    <Content Include="Images\CompRenders\WU4011_1.png" />
+    <Content Include="Images\CompRenders\WU4011_2.png" />
+    <Content Include="Images\CompRenders\WU4012_1.png" />
+    <Content Include="Images\CompRenders\WU4012_2.png" />
+    <Content Include="Images\CompRenders\WU4013_1.png" />
+    <Content Include="Images\CompRenders\WU4013_2.png" />
+    <Content Include="Images\CompRenders\WU4013_3.png" />
+    <Content Include="Images\CompRenders\WU4014_1.png" />
+    <Content Include="Images\CompRenders\WU4014_2.png" />
+    <Content Include="Images\CompRenders\WU4015_1.png" />
+    <Content Include="Images\CompRenders\WU4015_2.png" />
+    <Content Include="Images\CompRenders\WU4140_1.png" />
+    <Content Include="Images\CompRenders\WU4140_2.png" />
+    <Content Include="Images\CompRenders\WU4160_1.png" />
+    <Content Include="Images\CompRenders\WU4160_2.png" />
+    <Content Include="Images\CompThumbs\DT5000.png" />
+    <Content Include="Images\CompThumbs\DT5001.png" />
+    <Content Include="Images\CompThumbs\DT5002.png" />
+    <Content Include="Images\CompThumbs\DT5003.png" />
+    <Content Include="Images\CompThumbs\DT5004.png" />
+    <Content Include="Images\CompThumbs\DT5005.png" />
+    <Content Include="Images\CompThumbs\LS3001.png" />
+    <Content Include="Images\CompThumbs\LS3002.png" />
+    <Content Include="Images\CompThumbs\LS3004.png" />
+    <Content Include="Images\CompThumbs\LS3005.png" />
+    <Content Include="Images\CompThumbs\LS3006.png" />
+    <Content Include="Images\CompThumbs\LS3008.png" />
+    <Content Include="Images\CompThumbs\LS3009.png" />
+    <Content Include="Images\CompThumbs\LS3010.png" />
+    <Content Include="Images\CompThumbs\LW6001.png" />
+    <Content Include="Images\CompThumbs\LW6002.png" />
+    <Content Include="Images\CompThumbs\LW6003.png" />
+    <Content Include="Images\CompThumbs\LW6007.png" />
+    <Content Include="Images\CompThumbs\LW6011.png" />
+    <Content Include="Images\CompThumbs\TS1001.png" />
+    <Content Include="Images\CompThumbs\TS1002.png" />
+    <Content Include="Images\CompThumbs\TS1004.png" />
+    <Content Include="Images\CompThumbs\TS1005.png" />
+    <Content Include="Images\CompThumbs\TS1006.png" />
+    <Content Include="Images\CompThumbs\TS1007.png" />
+    <Content Include="Images\CompThumbs\TS1008.png" />
+    <Content Include="Images\CompThumbs\TS1009.png" />
+    <Content Include="Images\CompThumbs\TS1010.png" />
+    <Content Include="Images\CompThumbs\TS1011.png" />
+    <Content Include="Images\CompThumbs\TS1012.png" />
+    <Content Include="Images\CompThumbs\TS1013.png" />
+    <Content Include="Images\CompThumbs\TW2001.png" />
+    <Content Include="Images\CompThumbs\TW2002.png" />
+    <Content Include="Images\CompThumbs\TW2004.png" />
+    <Content Include="Images\CompThumbs\TW2006.png" />
+    <Content Include="Images\CompThumbs\TW2007.png" />
+    <Content Include="Images\CompThumbs\TW2008.png" />
+    <Content Include="Images\CompThumbs\TW2009.png" />
+    <Content Include="Images\CompThumbs\TW2010.png" />
+    <Content Include="Images\CompThumbs\TW2011.png" />
+    <Content Include="Images\CompThumbs\TW2012.png" />
+    <Content Include="Images\CompThumbs\TW2013.png" />
+    <Content Include="Images\CompThumbs\WU4001.png" />
+    <Content Include="Images\CompThumbs\WU4002.png" />
+    <Content Include="Images\CompThumbs\WU4005.png" />
+    <Content Include="Images\CompThumbs\WU4006.png" />
+    <Content Include="Images\CompThumbs\WU4007.png" />
+    <Content Include="Images\CompThumbs\WU4008.png" />
+    <Content Include="Images\CompThumbs\WU4009.png" />
+    <Content Include="Images\CompThumbs\WU4010.png" />
+    <Content Include="Images\CompThumbs\WU4011.png" />
+    <Content Include="Images\CompThumbs\WU4012.png" />
+    <Content Include="Images\CompThumbs\WU4013.png" />
+    <Content Include="Images\CompThumbs\WU4014.png" />
+    <Content Include="Images\CompThumbs\WU4015.png" />
+    <Content Include="Images\CompThumbs\WU4120.png" />
+    <Content Include="Images\CompThumbs\WU4130.png" />
+    <Content Include="Images\CompThumbs\WU4140.png" />
+    <Content Include="Images\CompThumbs\WU4160.png" />
+    <Content Include="Images\CompTypeThumbs\DT Thumb.png" />
+    <Content Include="Images\CompTypeThumbs\LS Thumb.png" />
+    <Content Include="Images\CompTypeThumbs\LW Thumb.png" />
+    <Content Include="Images\CompTypeThumbs\TS Thumb.png" />
+    <Content Include="Images\CompTypeThumbs\TW Thumb.png" />
+    <Content Include="Images\CompTypeThumbs\WU Thumb.png" />
+    <Content Include="Images\controls-dark.png" />
+    <Content Include="Images\controls-light.png" />
+    <Content Include="Images\controls-light2.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\LayoutRenders\101_1.png" />
+    <Content Include="Images\LayoutRenders\101_2.png" />
+    <Content Include="Images\LayoutRenders\102_1.png" />
+    <Content Include="Images\LayoutRenders\102_2.png" />
+    <Content Include="Images\LayoutRenders\103_1.png" />
+    <Content Include="Images\LayoutRenders\103_2.png" />
+    <Content Include="Images\LayoutRenders\103_3.png" />
+    <Content Include="Images\LayoutRenders\104_1.png" />
+    <Content Include="Images\LayoutRenders\104_2.png" />
+    <Content Include="Images\LayoutRenders\105_1.png" />
+    <Content Include="Images\LayoutRenders\105_2.png" />
+    <Content Include="Images\LayoutRenders\105_3.png" />
+    <Content Include="Images\LayoutRenders\106_1.png" />
+    <Content Include="Images\LayoutRenders\106_2.png" />
+    <Content Include="Images\LayoutRenders\107_1.png" />
+    <Content Include="Images\LayoutRenders\108_1.png" />
+    <Content Include="Images\LayoutRenders\108_2.png" />
+    <Content Include="Images\LayoutRenders\108_3.png" />
+    <Content Include="Images\LayoutRenders\201_1.png" />
+    <Content Include="Images\LayoutRenders\201_2.png" />
+    <Content Include="Images\LayoutRenders\202_1.png" />
+    <Content Include="Images\LayoutRenders\202_2.png" />
+    <Content Include="Images\LayoutRenders\202_3.png" />
+    <Content Include="Images\LayoutRenders\203_2.png" />
+    <Content Include="Images\LayoutRenders\203_3.png" />
+    <Content Include="Images\LayoutRenders\203_4.png" />
+    <Content Include="Images\LayoutRenders\204_10.png" />
+    <Content Include="Images\LayoutRenders\204_5.png" />
+    <Content Include="Images\LayoutRenders\204_9.png" />
+    <Content Include="Images\LayoutRenders\205_1.png" />
+    <Content Include="Images\LayoutRenders\205_2.png" />
+    <Content Include="Images\LayoutRenders\205_4.png" />
+    <Content Include="Images\LayoutRenders\206_1.png" />
+    <Content Include="Images\LayoutRenders\206_2.png" />
+    <Content Include="Images\LayoutRenders\206_6.png" />
+    <Content Include="Images\LayoutRenders\BR501_1.png" />
+    <Content Include="Images\LayoutRenders\BR501_2.png" />
+    <Content Include="Images\LayoutRenders\BR501_3.png" />
+    <Content Include="Images\LayoutRenders\BR501_4.png" />
+    <Content Include="Images\LayoutRenders\BR501_5.png" />
+    <Content Include="Images\LayoutRenders\BR501_6.png" />
+    <Content Include="Images\LayoutRenders\BR501_7.png" />
+    <Content Include="Images\LayoutRenders\closeup.png" />
+    <Content Include="Images\LayoutRenders\EntCent1%282%29.png" />
+    <Content Include="Images\LayoutRenders\EntCent1.png" />
+    <Content Include="Images\LayoutRenders\EntCent1R1.png" />
+    <Content Include="Images\LayoutRenders\EntCent1R2.png" />
+    <Content Include="Images\LayoutRenders\EntCent1R3.png" />
+    <Content Include="Images\LayoutRenders\EntCent5%281%29.png" />
+    <Content Include="Images\LayoutRenders\EntCent5%282%29.png" />
+    <Content Include="Images\LayoutRenders\EntCent5%283%29.png" />
+    <Content Include="Images\LayoutRenders\EntCent5.png" />
+    <Content Include="Images\LayoutRenders\EntCent5R1.png" />
+    <Content Include="Images\LayoutRenders\EntCent5R2.png" />
+    <Content Include="Images\LayoutRenders\EntCent5R3.png" />
+    <Content Include="Images\LayoutRenders\EntCent5R4.png" />
+    <Content Include="Images\LayoutRenders\HB601_1.png" />
+    <Content Include="Images\LayoutRenders\HB601_2.png" />
+    <Content Include="Images\LayoutRenders\HB602_1.png" />
+    <Content Include="Images\LayoutRenders\HB602_2.png" />
+    <Content Include="Images\LayoutRenders\HB602_3.png" />
+    <Content Include="Images\LayoutRenders\HO109_1.png" />
+    <Content Include="Images\LayoutRenders\HO109_2.png" />
+    <Content Include="Images\LayoutRenders\HO109_3.png" />
+    <Content Include="Images\LayoutRenders\HO109_4.png" />
+    <Content Include="Images\LayoutRenders\LI401_1.png" />
+    <Content Include="Images\LayoutRenders\LI401_2.png" />
+    <Content Include="Images\LayoutRenders\LI401_3.png" />
+    <Content Include="Images\LayoutRenders\LI401_4.png" />
+    <Content Include="Images\LayoutRenders\LI401_5.png" />
+    <Content Include="Images\LayoutRenders\LI401_6.png" />
+    <Content Include="Images\LayoutRenders\LI402_1.png" />
+    <Content Include="Images\LayoutRenders\LI402_2.png" />
+    <Content Include="Images\LayoutRenders\SC301_1.png" />
+    <Content Include="Images\LayoutRenders\SC301_2.png" />
+    <Content Include="Images\LayoutRenders\SC301_3.png" />
+    <Content Include="Images\LayoutRenders\SC301_4.png" />
+    <Content Include="Images\LayoutRenders\SC302_1.png" />
+    <Content Include="Images\LayoutRenders\SC302_2.png" />
+    <Content Include="Images\LayoutRenders\SC302_3.png" />
+    <Content Include="Images\LayoutRenders\SC303P_1.png" />
+    <Content Include="Images\LayoutRenders\SC303p_3.png" />
+    <Content Include="Images\LayoutRenders\SC303_1.png" />
+    <Content Include="Images\LayoutRenders\SC303_2.png" />
+    <Content Include="Images\LayoutRenders\SC303_3.png" />
+    <Content Include="Images\LayoutRenders\SC303_4.png" />
+    <Content Include="Images\LayoutRenders\SC303_5.png" />
+    <Content Include="Images\LayoutRenders\SC304_1.png" />
+    <Content Include="Images\LayoutRenders\SC304_2.png" />
+    <Content Include="Images\LayoutRenders\SC304_3.png" />
+    <Content Include="Images\LayoutRenders\SC305_1.png" />
+    <Content Include="Images\LayoutRenders\SC305_2.png" />
+    <Content Include="Images\LayoutRenders\SC307.png" />
+    <Content Include="Images\LayoutRenders\SC307_1.png" />
+    <Content Include="Images\LayoutRenders\SC307_2.png" />
+    <Content Include="Images\LayoutThumbs\EC201.png" />
+    <Content Include="Images\LayoutThumbs\EC202.png" />
+    <Content Include="Images\LayoutThumbs\EC203.png" />
+    <Content Include="Images\LayoutThumbs\EC204.png" />
+    <Content Include="Images\LayoutThumbs\EC205.png" />
+    <Content Include="Images\LayoutThumbs\EC206.png" />
+    <Content Include="Images\LayoutThumbs\HO101.jpg" />
+    <Content Include="Images\LayoutThumbs\HO102.jpg" />
+    <Content Include="Images\LayoutThumbs\HO103.jpg" />
+    <Content Include="Images\LayoutThumbs\HO104.jpg" />
+    <Content Include="Images\LayoutThumbs\HO105.jpg" />
+    <Content Include="Images\LayoutThumbs\HO106.jpg" />
+    <Content Include="Images\LayoutThumbs\HO107.jpg" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Logo\logo.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\ProjectTypeThumbs\BookcaseShelving.png" />
+    <Content Include="Images\ProjectTypeThumbs\EntCent200.png" />
+    <Content Include="Images\ProjectTypeThumbs\HomeOffice100.png" />
+    <Content Include="Images\ProjectTypeThumbs\LibraryStudy.png" />
+    <Content Include="packages.config" />
+    <Content Include="Component.aspx" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Project.aspx" />
+    <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\image-picker.min.js" />
+    <Content Include="Scripts\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.imagesloaded.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.nailthumb.1.1.min.js" />
+    <Content Include="Scripts\jquery.simplemodal.js" />
+    <Content Include="Scripts\jquery.wookmark.min.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\nailthumb\jquery.nailthumb.1.1.min.js" />
+    <Content Include="Scripts\s-gallery-master\hammer.js" />
+    <Content Include="Scripts\s-gallery-master\plugins.js" />
+    <Content Include="Scripts\s-gallery-master\screenfull.min.js" />
+    <Content Include="Scripts\s-gallery-master\scripts.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Logger.cs" />
+    <Compile Include="Classes\Database.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Project.aspx.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project.aspx.designer.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Component.aspx.cs">
+      <DependentUpon>Component.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Component.aspx.designer.cs">
+      <DependentUpon>Component.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:41798/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

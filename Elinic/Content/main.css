@@ -1,0 +1,614 @@
+
+/*/** General page styling **/
+html
+{
+       font-family: 'Open Sans';
+}
+
+*
+{
+       font-family: 'Open Sans' !important;
+}
+
+#main,
+#main2,
+#main3
+{
+  margin: 5px 0;
+    position: relative; 
+
+   
+
+
+}
+
+
+header h1
+{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 30px 0 10px 0;
+}
+
+header p
+{
+   
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+    font-weight: 200;
+}
+
+@media all and (min-width: 900px)
+{
+    .customized-values
+    {
+        margin-left: 12% !important;
+        margin-top: 5px !important;
+        text-align: left;
+        font-size: 10px!important;
+        color: #666666;
+        margin: 0;
+        font-weight: 200;
+        border: 1px solid #dedede;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 80%;
+    }
+
+    .customize-title
+    {
+        margin-bottom: 2px!important;
+        color: #666;
+        text-align: center;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 200;
+    }
+
+    textarea.input-form
+    {
+        text-align: left !important;
+        font-size: 12px !important;
+        line-height: 16px !important;
+        width: 80% !important;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+
+    input.input-form
+    {
+        display: inline-block;
+        margin-top: 7px;
+        width: 80%;
+    }
+
+    #MainContent_btnOrder
+    {
+        float: right !important;
+        padding: 5x 5px 5px 5px;
+        margin-top: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        background-color: green;
+    }
+
+    .input-form
+    {
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 18px;
+        color: #666666;
+        font-weight: 200;
+        float: right;
+        line-height: 40px;
+    }
+
+    #MainContent_layout,
+    #MainContent_comp
+    {
+        float: left;
+        display: inline-block;
+        max-width: 85%;
+        max-height: 85%;
+        vertical-align: middle;
+    }
+
+        #MainContent_layout img,
+        #MainContent_comp img,
+        #MainContent_comp_small img
+        {
+            margin-top: 10px;
+            max-width: 85%;
+            height: auto;
+            max-height: 85%;
+        }
+
+    #MainContent_comp_small img
+    {
+        margin-top: 2px;
+        max-width: 85%;
+        height: auto;
+        max-height: 85%;
+    }
+}
+
+
+@media all and (max-width: 899px)
+{
+    .customized-values
+    {
+        margin-left: 35px !important;
+        margin-top: 5px !important;
+        text-align: left;
+        font-size: 10px!important;
+        color: #666666;
+        margin: 0;
+        font-weight: 200;
+        border: 1px solid #dedede;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        padding-left: 20px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 90%;
+    }
+
+
+    .customize-title
+    {
+        margin-bottom: 2px!important;
+        color: #666;
+        text-align: center;
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: 200;
+    }
+
+
+
+    input.input-form
+    {
+        margin-top: 7px;
+        width: 70%;
+    }
+
+    .drop-down
+    {
+        margin-top: 7px;
+        width: 70% !important;
+    }
+
+    #MainContent_btnOrder
+    {
+        float: right !important;
+        padding: 5x 5px 5px 5px;
+        margin-top: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        background-color: green;
+    }
+
+    .input-form
+    {
+        text-align: left;
+        font-size: 14px;
+        color: #666666;
+        margin: 0;
+        font-weight: 200;
+        float: right;
+        line-height: 32px;
+    }
+
+    #MainContent_layout,
+    #MainContent_comp
+    {
+        float: left;
+        display: inline-block;
+        max-width: 70%;
+        max-height: 70%;
+        vertical-align: middle;
+    }
+
+        #MainContent_layout img,
+        #MainContent_comp img,
+        #MainContent_comp_small img
+        {
+            margin-top: 10px;
+            max-width: 85%;
+            height: auto;
+            max-height: 85%;
+        }
+
+    #MainContent_comp_small img
+    {
+        margin-top: 2px;
+        max-width: 85%;
+        height: auto;
+        max-height: 85%;
+    }
+}
+
+
+
+/**
+ * Grid items
+ */
+#MainContent_layout li,
+#MainContent_comp li,
+#MainContent_comp_small li,
+#MainContent_tiles_small li,
+#MainContent_tiles_ideas li,
+#MainContent_tiles li
+{
+    vertical-align: middle !important;
+    text-align: center;
+    background-color: #FFFFFF;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    /*display: none; /** Hide items initially to avoid a flicker effect **/ */ cursor: pointer;
+    padding: 4px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+@media all and (min-width: 900px)
+{
+    #MainContent_layout li,
+    #MainContent_tiles li
+    {
+        width: 300px;
+        height: 300px;
+    }
+
+    #MainContent_comp li div
+    {
+        width: 260px;
+        height: 260px;
+    }
+
+    #MainContent_comp_small li
+    {
+        margin-left: 10px;
+        float: left;
+        width: 120px;
+        height: 120px;
+    }
+
+    #MainContent_tiles_ideas li,
+    #MainContent_tiles_small li
+    {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media all and (max-width: 899px)
+{
+    #MainContent_layout li,
+    /*#MainContent_comp li,*/
+    #MainContent_tiles li
+    {
+        width: 200px;
+        height: 200px;
+    }
+
+    #MainContent_comp_small li
+    {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+}
+
+#MainContent_tiles_ideas li,
+#MainContent_tiles_small li
+{
+    width: 140px;
+    height: 140px;
+}
+
+}
+
+@media all and (max-width: 320px)
+{
+    #MainContent_layout li,
+    #MainContent_comp_small li,
+    #MainContent_layout li,
+    /*#MainContent_comp li,*/
+    #MainContent_tiles li
+    {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media all and (max-width: 330px)
+{
+    #MainContent_layout li
+    {
+        width: 160px;
+        height: 160px;
+    }
+
+    #MainContent_comp_small li,
+    #MainContent_tiles li
+    {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+
+    #MainContent_tiles_ideas li,
+    #MainContent_tiles_small li
+    {
+        width: 55px;
+        height: 55px;
+    }
+
+    #MainContent_comp img,
+    #MainContent_comp_small img
+    {
+        margin-top: 2px;
+        max-width: 60%;
+        height: auto;
+        max-height: 60%;
+    }
+}
+
+#MainContent_tiles_ideas li.inactive,
+#MainContent_tiles_small li.inactive,
+#MainContent_tiles li.inactive
+{
+    visibility: hidden;
+    opacity: 0;
+}
+
+#MainContent_tiles_ideas li a,
+#MainContent_tiles_small li a,
+#MainContent_tiles li a
+{
+    height: 100%;
+}
+
+
+#MainContent_comp_small li a,
+#MainContent_tiles_ideas li a,
+#MainContent_tiles_small li a,
+#MainContent_tiles li a
+{
+    line-height: 100%;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+    #MainContent_tiles_ideas li a img,
+    #MainContent_tiles_small li a img,
+    #MainContent_tiles li a img
+    {
+        vertical-align: middle!important;
+    }
+
+
+@media all and (min-width: 800px)
+{
+    #MainContent_tiles_ideas li img,
+    #MainContent_tiles_small li img,
+    #MainContent_tiles li img
+    {
+        display: inline-block;
+        max-width: 85%;
+        max-height: 85%;
+        vertical-align: middle;
+    }
+
+    #MainContent_comp li h2,
+    #MainContent_tiles_ideas li h2,
+    #MainContent_tiles_small li h2,
+    #MainContent_tiles li h2
+    {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        color: white;
+        font-size: 14px;
+        line-height: 20px;
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@media all and (max-width: 768px)
+{
+    #MainContent_tiles_ideas li img,
+    #MainContent_tiles_small li img,
+    #MainContent_tiles li img
+    {
+        display: inline-block;
+        max-width: 80%;
+        max-height: 80%;
+        vertical-align: middle;
+    }
+
+    #MainContent_comp li h2,
+    #MainContent_tiles_ideas li h2,
+    #MainContent_tiles_small li h2,
+    #MainContent_tiles li h2
+    {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        color: white;
+        font-size: 10px;
+        line-height: 12px;
+        background: rgb(0, 0, 0); /* fallback color */
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+
+
+/**
+ * Grid item text
+ */
+@media all and (min-width: 800px)
+{
+    #MainContent_comp li p,
+    #MainContent_layout li p,
+    #MainContent_tiles_ideas li p,
+    #MainContent_tiles_small li p,
+    #MainContent_tiles li p
+    {
+
+        margin-bottom: 2px!important;
+        color: #666;
+        text-align: center;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 200;
+    }
+
+    #MainContent_tiles_ideas li p,
+    #MainContent_comp_small li p
+    {
+        color: #666;
+        text-align: center;
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 200;
+    }
+}
+
+@media all and (max-width: 768px)
+{
+    #MainContent_comp li p,
+    #MainContent_layout li p,
+    #MainContent_tiles_ideas li p,
+    #MainContent_tiles_small li p,
+    #MainContent_tiles li p
+    {
+        margin-bottom: 2px!important;
+        color: #666;
+        text-align: center;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: 200;
+    }
+
+    #MainContent_comp_small li p
+    {
+        color: #666;
+        text-align: center;
+        font-size: 8px;
+        line-height: 12px;
+        font-weight: 200;
+    }
+}
+
+footer
+{
+    text-align: center;
+}
+
+    footer a
+    {
+        color: #435DC5;
+        text-decoration: none;
+    }
+
+/**
+ * Progress bar for imagesLoaded
+ */
+.progress-bar
+{
+    background-color: #0BC20B;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    box-shadow: 0 1px 3px rgba(11, 194, 11, 0.2);
+    -webkit-transition: width 0.3s ease-out;
+    -moz-transition: width 0.3s ease-out;
+    -o-transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out;
+}
+
+/**
+ * Placerholder css
+ */
+.wookmark-placeholder
+{
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-color: #eee;
+    border: 1px solid #dedede;
+    z-index: -1;
+}
+
+.example-tiles
+{
+    position: relative; /** Needed to ensure items are laid out relative to this container **/
+    margin: 0;
+    padding: 0;
+}
+
+    .example-tiles li
+    {
+        display: block;
+        opacity: 1;
+        list-style-type: none;
+        float: left;
+        margin: 5px;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    .example-tiles a,
+    .example-tiles a:hover
+    {
+        color: #555;
+        background-color: #eee;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        width: 200px;
+        height: 200px;
+        font-size: 2em;
+        font-weight: bold;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        padding: 5px 8px;
+        border-radius: 3px;
+    }
+
+        .example-tiles a:hover
+        {
+            background-color: #ddd;
+        }
