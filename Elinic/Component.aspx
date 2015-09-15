@@ -35,7 +35,7 @@
             <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
     <h4><asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
-    <div id="main">
+    <div id="main" style="overflow:auto !important;">
         <ul runat="server" id="tiles" class = "tiles">
         </ul>
         <ul runat="server" id="tiles_small" class="tiles_small">

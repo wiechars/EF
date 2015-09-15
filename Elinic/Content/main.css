@@ -247,6 +247,13 @@ header p
 /**
  * Grid items
  */
+.tiles,
+.tiles_small,
+#MainContent_tiles_ideas {
+    display:inline-block !important;
+    overflow:auto !important;
+}
+
 .tiles_small li,
 #MainContent_layout li,
 #MainContent_comp li,
