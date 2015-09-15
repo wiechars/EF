@@ -125,12 +125,36 @@
             $('#gallery-container').sGallery({
                 fullScreenEnabled: true
             });
+
         });
     </script>
     <script type="text/javascript">
+        var nextId = 1;
 
         $('#gridIcon').click(function () {
             $('#MainContent_gallery_large').hide();
+        });
+
+        //Clone List Item
+        $("[id ^= 'Add']").click(function () {
+            // $("[id ^= 'Add']").hide();
+            var li = $('#li' + this.id);
+            nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
+            var found = false;
+            while (!found) {
+                if (nextId % 5 === 1) {
+                    alert("Cannot add more of this component!");
+                    found = true;
+                } else {
+                    if ($('#liAddComponent' + nextId).is(":visible")) {
+                        nextId++;
+                    } else {
+                        $('#liAddComponent' + nextId).show();
+                        $('#Comp' + nextId).show();
+                        found = true;
+                    }
+                }
+            }
         });
 
         $("li[id^='gallery_small']").click(function () {

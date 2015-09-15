@@ -349,39 +349,63 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
+                        //Add Place Holders for additional (up to 5)
+                        //This was a late requirement to add components
+                        for (int counter = 1 + (5 * (i - 1)); counter < 6 * i; counter++)
+                        {
+                            HtmlGenericControl li = new HtmlGenericControl("li");
+                            comp_small.Controls.Add(li);
+                            li.Attributes.Add("id", "liAddComponent" + counter);
+                            //Hide li Place Holders
+                            if (counter != 1 + (5 * (i - 1)) && Session["Comp" + counter] == null)
+                            {
+                                li.Style.Add("display", "none");
+                            }
 
-                        HtmlGenericControl li = new HtmlGenericControl("li");
-                        comp_small.Controls.Add(li);
-                        values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\" id=\"Comp" + i + "\"><b>" + i + ". Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-                        if (Session["Comp" + i] != null)
-                        {
-                            price = price + Convert.ToDouble(Session["Comp" + i + "Price"].ToString());
-                            values.InnerHtml = values.InnerHtml + Session["Comp" + i].ToString() + "</div>";
-                            // lblOrderSummary.InnerHtml = lblOrderSummary.InnerHtml + Session["Comp" + i + "OrderSummary"].ToString();
+                            if (Session["Comp" + counter] != null)
+                            {
+                                values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                price = price + Convert.ToDouble(Session["Comp" + counter + "Price"].ToString());
+                                values.InnerHtml = values.InnerHtml + Session["Comp" + counter].ToString() + "</div>";
+
+
+                            }
+                            else
+                            {
+                                //Logic to hide additional place holders
+                                if (counter != 1 + (5 * (i - 1)))
+                                {
+                                    values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+
+                                }
+                                else
+                                {
+                                    values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+
+                                }
+                                values.InnerHtml = values.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
+                                //values.InnerHtml.Style.Add("display", "none");
+                            }
+                            HtmlGenericControl anchor = new HtmlGenericControl("a");
+                            if (ideas != null)
+                            {
+                                anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]) + "&Ideas=1");
+                            }
+                            else
+                            {
+                                anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]));
+                            }
+                            anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
+                                + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a><label id=AddComponent" + counter + ">+</label>";
+                            li.Controls.Add(anchor);
+
+
                         }
-                        else
-                        {
-                            values.InnerHtml = values.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                        }
-                        HtmlGenericControl anchor = new HtmlGenericControl("a");
-                        if (ideas != null)
-                        {
-                            anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + i + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]) + "&Ideas=1");
-                        }
-                        else
-                        {
-                            anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + i + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]));
-                        }
-                        anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
-                            + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\">";
-                        li.Controls.Add(anchor);
                         i++;
-
                     }
                     lblTotalPrice.Text = "$" + price.ToString();
                     lblOrderPrice.Text = "$" + price.ToString();
                     orderValues.InnerHtml = values.InnerHtml;
-
 
 
                 }
