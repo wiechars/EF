@@ -386,6 +386,7 @@ namespace Elinic
                                 values.InnerHtml = values.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
                                 //values.InnerHtml.Style.Add("display", "none");
                             }
+                            HtmlGenericControl addDiv = new HtmlGenericControl("div");
                             HtmlGenericControl anchor = new HtmlGenericControl("a");
                             if (ideas != null)
                             {
@@ -396,7 +397,12 @@ namespace Elinic
                                 anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]));
                             }
                             anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
-                                + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a><label id=AddComponent" + counter + ">+</label>";
+                                + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
+                            addDiv.InnerHtml = "<div style=\"background-color: orange;\"id=AddComponent" + counter + ">+</div>";
+                            //AddDiv : The Button that is used to add more components.
+                            //addDiv.Attributes.Add("id","id=AddComponent" + counter);
+                            //addDiv.Attributes.Add("style", "background-color: #b0c4de");
+                            li.Controls.Add(addDiv);
                             li.Controls.Add(anchor);
 
 

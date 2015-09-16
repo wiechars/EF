@@ -129,17 +129,17 @@ header p
         #MainContent_comp_small img
         {
             margin-top: 10px;
-            max-width: 85%;
+            max-width: 80%;
             height: auto;
-            max-height: 85%;
+            max-height: 80%;
         }
 
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 85%;
+        max-width: 80%;
         height: auto;
-        max-height: 85%;
+        max-height: 80%;
     }
 }
 
@@ -228,17 +228,17 @@ header p
         #MainContent_comp_small img
         {
             margin-top: 10px;
-            max-width: 85%;
+            max-width: 68%;
             height: auto;
-            max-height: 85%;
+            max-height: 68%;
         }
 
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 85%;
+        max-width: 68%;
         height: auto;
-        max-height: 85%;
+        max-height: 68%;
     }
 }
 
@@ -372,9 +372,9 @@ header p
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 60%;
+        max-width: 50%;
         height: auto;
-        max-height: 60%;
+        max-height: 50%;
     }
 }
 .tiles_small li.inactive,
