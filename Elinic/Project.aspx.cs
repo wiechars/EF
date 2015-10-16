@@ -38,7 +38,7 @@ namespace Elinic
             }
             else if (Request.QueryString["LayoutID"] != null)
             {
-                values.InnerHtml = "";
+
                 orderValues.InnerHtml = "";
                 int? ideas = null;
 
@@ -353,6 +353,7 @@ namespace Elinic
                         //This was a late requirement to add components
                         for (int counter = 1 + (5 * (i - 1)); counter < 6 * i; counter++)
                         {
+                            string detailsDiv = "";
                             HtmlGenericControl li = new HtmlGenericControl("li");
                             comp_small.Controls.Add(li);
                             li.Attributes.Add("id", "liAddComponent" + counter);
@@ -361,12 +362,28 @@ namespace Elinic
                             {
                                 li.Style.Add("display", "none");
                             }
+                            string link = "";
+                            if (ideas != null)
+                            {
+                                link = "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]) + "&Ideas=1";
+                            }
+                            else
+                            {
+                                link = "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]);
+                            }
 
                             if (Session["Comp" + counter] != null)
                             {
-                                values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                detailsDiv = "<div class=\"customized-values\"  id=\"Comp" + counter
+                                        + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+
+                                orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter
+                                        + "\"><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
                                 price = price + Convert.ToDouble(Session["Comp" + counter + "Price"].ToString());
-                                values.InnerHtml = values.InnerHtml + Session["Comp" + counter].ToString() + "</div>";
+                                orderValues.InnerHtml = orderValues.InnerHtml + Session["Comp" + counter].ToString() + "</div>";
+                                detailsDiv = detailsDiv + Session["Comp" + counter].ToString() + "</div>";
 
 
                             }
@@ -375,35 +392,46 @@ namespace Elinic
                                 //Logic to hide additional place holders
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
-                                    values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    detailsDiv = "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
+                                        + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+
+                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
+                                        + counter + "\"><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                 }
                                 else
                                 {
-                                    values.InnerHtml = values.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter + "\"><b>Component Type:</b> " + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    detailsDiv = "<div class=\"customized-values\" id=\"Comp"
+                                        + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+
+                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  id=\"Comp"
+                                        + counter + "\"><b>Component Type:</b> "
+                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                 }
-                                values.InnerHtml = values.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
+                                detailsDiv = detailsDiv + "&nbsp; <b>ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
+                                orderValues.InnerHtml = orderValues.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
                                 //values.InnerHtml.Style.Add("display", "none");
                             }
-                            HtmlGenericControl addDiv = new HtmlGenericControl("div");
+                            HtmlGenericControl add = new HtmlGenericControl("div");
+                            HtmlGenericControl remove = new HtmlGenericControl("Button");
+                            HtmlGenericControl addDetailsDiv = new HtmlGenericControl("div");
                             HtmlGenericControl anchor = new HtmlGenericControl("a");
-                            if (ideas != null)
-                            {
-                                anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]) + "&Ideas=1");
-                            }
-                            else
-                            {
-                                anchor.Attributes.Add("href", "Component.aspx?Type=" + Convert.ToString(obj.rdr["CompTypeID"]) + "&Comp=Comp" + counter + "&LayoutID=" + Request.QueryString["LayoutID"].ToString() + "&Title=" + Convert.ToString(obj.rdr["CompTypeName"]));
-                            }
+
+                            anchor.Attributes.Add("href", link);
                             anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                                 + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
-                            addDiv.InnerHtml = "<div style=\"background-color: orange;\"id=AddComponent" + counter + ">+</div>";
-                            //AddDiv : The Button that is used to add more components.
-                            //addDiv.Attributes.Add("id","id=AddComponent" + counter);
-                            //addDiv.Attributes.Add("style", "background-color: #b0c4de");
-                            li.Controls.Add(addDiv);
+                             add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
+                            //add.InnerHtml = "<Button style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                            remove.InnerHtml = "<Button class=\"pull-right\" style=\"background-color: orange;width: 25%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            addDetailsDiv.InnerHtml = detailsDiv;
+                            li.Controls.Add(add);
+                            //li.Controls.Add(remove);
                             li.Controls.Add(anchor);
+                            li.Controls.Add(addDetailsDiv);
 
 
                         }
@@ -411,9 +439,6 @@ namespace Elinic
                     }
                     lblTotalPrice.Text = "$" + price.ToString();
                     lblOrderPrice.Text = "$" + price.ToString();
-                    orderValues.InnerHtml = values.InnerHtml;
-
-
                 }
             }
             catch (Exception ex)

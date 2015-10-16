@@ -22,6 +22,25 @@
             overflow-y: auto;
             height: auto;
         }
+
+
+        /* Start of "Micro clearfix" */
+
+        .cf {
+            zoom: 1;
+        }
+
+            .cf:before,
+            .cf:after {
+                content: "";
+                display: table;
+            }
+
+            .cf:after {
+                clear: both;
+            }
+
+        /* End of "Micro clearfix" */
     </style>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
@@ -35,8 +54,8 @@
     <div id="layoutsDiv" runat="server">
         <h2>Standard Layouts</h2>
     </div>
-    <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 20px 0px;">
-        <div id="main" style="clear: both;">
+    <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
+        <div id="main" class="cf" style="clear: both;">
             <ul runat="server" id="tiles" class="tiles">
             </ul>
             <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
@@ -46,39 +65,37 @@
 
     <div id="ideasDiv" runat="server">
         <h2>Ideas</h2>
-        <div id="main2">
+        <div id="main2" class="cf">
             <ul runat="server" id="tiles_ideas">
             </ul>
         </div>
     </div>
 
-
-
-    <div>
-        <div id="selectedLayout" class="span4" style="display: inline-block;">
-            <ul runat="server" id="layout" style="text-align: center">
-            </ul>
-        </div>
-        <div id="selectedComponent" class="span5" runat="server">
-            <div class="customize-title">Customize your components by selecting from below.</div>
-            <ul runat="server" id="comp_small">
-            </ul>
-        </div>
-        <div id="custom_values" class="span5">
-            <label runat="server" id="values"></label>
-            <div id="notes" class="row-fluid input-form" runat="server" style="margin-top: 10px;">
-                <div class="row-fluid input-form">
-                    Total Price:
-            <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
-                </div>
-                <!-- <textarea name="Text1" id="txtNotes" runat="server" rows="4" class="input-form"></textarea>
-                Notes:<br /> -->
-                <asp:Button ID="btnOrder" runat="server" Text="Select" />
-                <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
-
+    <div class="col-sm-12">
+        <div class="col-sm-4">
+            <div id="selectedLayout">
+                <ul runat="server" id="layout" style="text-align: center">
+                </ul>
             </div>
-
         </div>
+        <div class="col-sm-8">
+            <div id="selectedComponent" class="col-sm-12" runat="server">
+                 <label class="customize-title col-sm-12">Customize your components by selecting from below.</label>        
+                <ul runat="server" id="comp_small" class="col-sm-12">
+                </ul>
+            </div>
+           <div id="notes" class="col-sm-12 input-form" runat="server" style="margin-top: 10px;">
+                    <div>
+                        Total Price:
+                        <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
+                    </div>
+                    <asp:Button ID="btnOrder" runat="server" Text="Select" />
+                    <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
+
+     
+            </div>
+        </div>
+
         <!-- ModalPopupExtender -->
         <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
             CancelControlID="btnClose" BackgroundCssClass="modalBackground">
@@ -104,7 +121,7 @@
 
 
     </div>
-    <div class="span8" style="display: inline-block">
+    <div  style="display: inline-block">
         <div id="gallery-container">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
@@ -118,7 +135,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
     <script>
         $(document).ready(function () {
@@ -130,6 +147,8 @@
     </script>
     <script type="text/javascript">
         var nextId = 1;
+
+
 
         $('#gridIcon').click(function () {
             $('#MainContent_gallery_large').hide();
@@ -155,6 +174,14 @@
                     }
                 }
             }
+        });
+
+        $("[id ^= 'Remove']").click(function () {
+            id = this.id.replace(/[^\d.]/g, '');
+
+            $('#liAddComponent' + id).hide();
+            $('#Comp' + id).css('visibility', 'hidden');
+
         });
 
         $("li[id^='gallery_small']").click(function () {

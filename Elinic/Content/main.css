@@ -129,17 +129,17 @@ header p
         #MainContent_comp_small img
         {
             margin-top: 10px;
-            max-width: 80%;
+            max-width: 70%;
             height: auto;
-            max-height: 80%;
+            max-height: 70%;
         }
 
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 80%;
+        max-width: 55%;
         height: auto;
-        max-height: 80%;
+        max-height: 55%;
     }
 }
 
@@ -148,7 +148,7 @@ header p
 {
     .customized-values
     {
-        margin-left: 35px !important;
+        margin-left: 15px !important;
         margin-top: 5px !important;
         text-align: left;
         font-size: 10px!important;
@@ -195,11 +195,11 @@ header p
     #MainContent_btnOrder
     {
         float: right !important;
-        padding: 5x 5px 5px 5px;
-        margin-top: 10px;
-        font-size: 16px;
-        margin-bottom: 10px;
-        background-color: green;
+        padding: 5px 5px 5px 5px !important;
+        margin-top: 10px !important;
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
+        background-color: green !important;
     }
 
     .input-form
@@ -295,8 +295,8 @@ header p
     {
         margin-left: 10px;
         float: left;
-        width: 120px;
-        height: 120px;
+        width: 240px;
+        height: 240px;
     }
     .tiles_small li,
     #MainContent_tiles_ideas li
@@ -319,8 +319,8 @@ header p
     #MainContent_comp_small li
     {
         display: inline-block;
-        width: 80px;
-        height: 80px;
+        width: 200px;
+        height: 200px;
     }
 }
 .tiles_small li,
@@ -484,6 +484,7 @@ header p
         font-size: 18px;
         line-height: 18px;
         font-weight: 200;
+        margin: 0 0 0 0px !important;
     }
 
     #MainContent_tiles_ideas li p,
@@ -494,6 +495,7 @@ header p
         font-size: 12px;
         line-height: 12px;
         font-weight: 200;
+         margin: 0 0 0 0px !important;
     }
 }
 
@@ -510,6 +512,7 @@ header p
         font-size: 10px;
         line-height: 10px;
         font-weight: 200;
+         margin: 0 0 0 0px !important;
     }
 
     #MainContent_comp_small li p
@@ -519,6 +522,7 @@ header p
         font-size: 8px;
         line-height: 12px;
         font-weight: 200;
+         margin: 0 0 0 0px !important;
     }
 }
 

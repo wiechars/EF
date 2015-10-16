@@ -65,20 +65,20 @@
         <ul runat="server" id="comp">
         </ul>
     </div>
-    <div id="orderForm" class="span5" runat="server">
-        <div class="row-fluid input-form">
+    <div id="orderForm" class="col-xs-7" runat="server">
+        <div class="col-xs-12 input-form">
             Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="row-fluid input-form">
+        <div class="col-xs-12 input-form">
             Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="row-fluid input-form">
+        <div class="col-xs-12 input-form">
             Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="row-fluid input-form" id="divDoors" runat="server">
+        <div class="col-xs-12 input-form" id="divDoors" runat="server">
             Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="row-fluid input-form">
+        <div class="col-xs-12 input-form">
             Material:<asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
 
@@ -86,7 +86,7 @@
             Notes:<textarea name="Text1" cols="40" rows="3" class="input-form" style="width: 80%;"></textarea>
         </div> -->
 
-        <div class="row-fluid input-form">
+        <div class="col-xs-12 input-form">
             Total Price : 
             <asp:Label ID="price" runat="server" Style="display: inline-block;">N/A</asp:Label>
             <asp:HiddenField ID="compPrice" runat="server"></asp:HiddenField>
