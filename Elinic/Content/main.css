@@ -298,7 +298,7 @@ header p
 
     #MainContent_comp_small li
     {
-        margin: 5px 5px 5px 5px;
+        margin: 2px 2px 2px 2px;
         float: left;
         width: 200px;
         height: 200px;
@@ -324,7 +324,7 @@ header p
 
     #MainContent_comp_small li
     {
-        margin: 5px 5px 5px 5px;
+        margin: 2px 2px 2px 2px;
         float: left;
         width: 180px;
         height: 180px;
@@ -364,7 +364,7 @@ header p
     #MainContent_comp_small li,
     .tiles li
     {
-        margin: 5px -15px 5px 5px;
+        margin: 2px -15px 2px 2px;
         width: 180px;
         height: 180px;
     }

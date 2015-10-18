@@ -112,15 +112,6 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl comp_small;
         
         /// <summary>
-        /// values control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl values;
-        
-        /// <summary>
         /// notes control.
         /// </summary>
         /// <remarks>
