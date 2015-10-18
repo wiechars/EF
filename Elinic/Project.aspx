@@ -22,26 +22,8 @@
             overflow-y: auto;
             height: auto;
         }
-
-
-        /* Start of "Micro clearfix" */
-
-        .cf {
-            zoom: 1;
-        }
-
-            .cf:before,
-            .cf:after {
-                content: "";
-                display: table;
-            }
-
-            .cf:after {
-                clear: both;
-            }
-
-        /* End of "Micro clearfix" */
     </style>
+
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
@@ -55,7 +37,7 @@
         <h2>Standard Layouts</h2>
     </div>
     <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
-        <div id="main" class="cf" style="clear: both;">
+        <div id="main" style="clear: both;">
             <ul runat="server" id="tiles" class="tiles">
             </ul>
             <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
@@ -65,34 +47,38 @@
 
     <div id="ideasDiv" runat="server">
         <h2>Ideas</h2>
-        <div id="main2" class="cf">
+        <div id="main2">
             <ul runat="server" id="tiles_ideas">
             </ul>
         </div>
     </div>
 
-    <div class="col-sm-12">
-        <div class="col-sm-4">
+    <div class="col-md-12 col-sm-12  ">
+
+        <div class="col-md-2 col-sm-6">
+            &nbsp;&nbsp;
             <div id="selectedLayout">
-                <ul runat="server" id="layout" style="text-align: center">
+                <ul runat="server" id="layout" style="text-align: center; padding-left: 25%!important;">
                 </ul>
             </div>
         </div>
-        <div class="col-sm-8">
-            <div id="selectedComponent" class="col-sm-12" runat="server">
-                 <label class="customize-title col-sm-12">Customize your components by selecting from below.</label>        
-                <ul runat="server" id="comp_small" class="col-sm-12">
+        <div class="col-md-10 col-sm-12">
+            <div id="selectedComponent" class="col-xs-12" runat="server">
+                <div class="col-md-12">
+                    <label class="customize-title col-md-12">Customize your components by selecting from below.</label>
+                </div>
+                <ul runat="server" id="comp_small" class="col-md-12">
                 </ul>
             </div>
-           <div id="notes" class="col-sm-12 input-form" runat="server" style="margin-top: 10px;">
-                    <div>
-                        Total Price:
+            <div id="notes" class="col-md-12 input-form" runat="server">
+                <div>
+                    Total Price:
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
-                    </div>
-                    <asp:Button ID="btnOrder" runat="server" Text="Select" />
-                    <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
+                </div>
+                <asp:Button ID="btnOrder" runat="server" Text="Select" />
+                <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
 
-     
+
             </div>
         </div>
 
@@ -121,7 +107,8 @@
 
 
     </div>
-    <div  style="display: inline-block">
+
+    <div style="display: inline-block">
         <div id="gallery-container">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
@@ -157,22 +144,35 @@
         //Clone List Item
         $("[id ^= 'Add']").click(function () {
             // $("[id ^= 'Add']").hide();
+            id = this.id.replace(/[^\d.]/g, '');
             var li = $('#li' + this.id);
             nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
             var found = false;
-            while (!found) {
-                if (nextId % 5 === 1) {
-                    alert("Cannot add more of this component!");
-                    found = true;
-                } else {
-                    if ($('#liAddComponent' + nextId).is(":visible")) {
-                        nextId++;
-                    } else {
-                        $('#liAddComponent' + nextId).show();
-                        $('#Comp' + nextId).show();
+
+            //Don't allow creating another <li> element
+            //unless the current one is configured
+            if ($('#Comp' + id).hasClass('configured')) {
+                while (!found) {
+                    if (nextId % 5 === 1) {
+                        alert("Cannot add more of this component!");
                         found = true;
+                    } else {
+                        if ($('#liAddComponent' + nextId).is(":visible")) {
+                            if ($('#Comp' + nextId).hasClass('configured')) {
+                                nextId++;
+                            } else {
+                                alert('Please configure all instances of this component before adding additional');
+                                break;
+                            }
+                        } else {
+                            $('#liAddComponent' + nextId).show();
+                            $('#Comp' + nextId).show();
+                            found = true;
+                        }
                     }
                 }
+            } else {
+                alert('Please configure all instances of this component before adding additional');
             }
         });
 

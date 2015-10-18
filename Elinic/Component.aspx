@@ -34,51 +34,56 @@
         <h4>
             <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
     </hgroup>
-    <h4><asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
-    <div id="main" style="overflow:auto !important;">
-        <ul runat="server" id="tiles" class = "tiles">
+    <h4>
+        <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
+    <div id="main">
+        <ul runat="server" id="tiles" class="tiles">
         </ul>
         <ul runat="server" id="tiles_small" class="tiles_small">
         </ul>
     </div>
-    <h4><asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
+    <h4>
+        <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
     <div id="main2">
         <ul runat="server" id="tiles_small2" class="tiles_small">
         </ul>
     </div>
-    <h4><asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
+    <h4>
+        <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
     <div id="main3">
         <ul runat="server" id="tiles_small3" class="tiles_small">
         </ul>
     </div>
-    <h4><asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
+    <h4>
+        <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
     <div id="main4">
         <ul runat="server" id="tiles_small4" class="tiles_small">
         </ul>
     </div>
-    <h4><asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
+    <h4>
+        <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
     <div id="main5">
         <ul runat="server" id="tiles_small5" class="tiles_small">
         </ul>
     </div>
-        <div id="selectedComponent" class="span4">
+    <div id="selectedComponent" class="col-lg-4">
         <ul runat="server" id="comp">
         </ul>
     </div>
-    <div id="orderForm" class="col-xs-7" runat="server">
-        <div class="col-xs-12 input-form">
+    <div id="orderForm" class="col-lg-8 " runat="server">
+        <div class="col-xs-10 input-form">
             Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-12 input-form">
+        <div class="col-xs-10 input-form">
             Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-12 input-form">
+        <div class="col-xs-10 input-form">
             Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-12 input-form" id="divDoors" runat="server">
+        <div class="col-xs-10 input-form" id="divDoors" runat="server">
             Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-12 input-form">
+        <div class="col-xs-10 input-form">
             Material:<asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
         </div>
 
@@ -133,19 +138,20 @@
         </asp:Panel>
         <!-- ModalPopupExtender -->
     </div>
-
-    <div id="gallery-container" style="width: 100%">
-        <ul runat="server" class="items--small" id="gallery">
-        </ul>
-        <ul runat="server" class="items--big" id="gallery_large">
-        </ul>
-        <div class="controls">
-            <span class="control icon-arrow-left" data-direction="previous"></span>
-            <span class="control icon-arrow-right" data-direction="next"></span>
-            <span class="grid icon-grid" id="gridIcon"></span>
-            <%--<span class="fs-toggle icon-fullscreen"></span>--%>
+    <div style="margin-left:20%!important;">
+        <div id="gallery-container" class="col-xs-10 center-block" >
+            <ul runat="server" class="items--small" id="gallery">
+            </ul>
+            <ul runat="server" class="items--big" id="gallery_large">
+            </ul>
+            <div class="controls">
+                <span class="control icon-arrow-left" data-direction="previous"></span>
+                <span class="control icon-arrow-right" data-direction="next"></span>
+                <span class="grid icon-grid" id="gridIcon"></span>
+                <%--<span class="fs-toggle icon-fullscreen"></span>--%>
+            </div>
         </div>
-    </div>
+        </div>
 
 
 
@@ -235,99 +241,99 @@
     </script>
 
     <!-- Once the page is loaded, initalize the plug-in. -->
- <script type="text/javascript">
-     (function ($) {
+    <script type="text/javascript">
+        (function ($) {
 
-         var loadedImages = 0, // Counter for loaded images
-             handler = $('#MainContent_tiles li, #MainContent_tiles_small li, #MainContent_component li'); // Get a reference to your grid items.
-         handler2 = $('#MainContent_tiles_small2 li'); // Get a reference to your grid items.
-         handler3 = $('#MainContent_tiles_small3 li'); // Get a reference to your grid items.
-         handler4 = $('#MainContent_tiles_small4 li'); // Get a reference to your grid items.
-         handler5 = $('#MainContent_tiles_small5 li'); // Get a reference to your grid items.
+            var loadedImages = 0, // Counter for loaded images
+                handler = $('#MainContent_tiles li, #MainContent_tiles_small li, #MainContent_component li'); // Get a reference to your grid items.
+            handler2 = $('#MainContent_tiles_small2 li'); // Get a reference to your grid items.
+            handler3 = $('#MainContent_tiles_small3 li'); // Get a reference to your grid items.
+            handler4 = $('#MainContent_tiles_small4 li'); // Get a reference to your grid items.
+            handler5 = $('#MainContent_tiles_small5 li'); // Get a reference to your grid items.
 
-         /**************************************************/
-         /******   Style 1 ********************************/
-         /*************************************************/
-         $('#MainContent_tiles, #MainContent_tiles_small').imagesLoaded(function () {
-             // Prepare layout options.
-             var options = {
-                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                 container: $('#main'), // Optional, used for some extra CSS styling
-                 offset: 5//, // Optional, the distance between grid items
-             };
-             // Call the layout function.
-             handler.wookmark(options);
+            /**************************************************/
+            /******   Style 1 ********************************/
+            /*************************************************/
+            $('#MainContent_tiles, #MainContent_tiles_small').imagesLoaded(function () {
+                // Prepare layout options.
+                var options = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main'), // Optional, used for some extra CSS styling
+                    offset: 5//, // Optional, the distance between grid items
+                };
+                // Call the layout function.
+                handler.wookmark(options);
 
-         });
+            });
 
-         /**************************************************/
-         /******   Style 2 ********************************/
-         /*************************************************/
-         $('#MainContent_tiles_small2').imagesLoaded(function () {
-             var options2 = {
-                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                 container: $('#main2'), // Optional, used for some extra CSS styling
-                 offset: 5//, // Optional, the distance between grid items
+            /**************************************************/
+            /******   Style 2 ********************************/
+            /*************************************************/
+            $('#MainContent_tiles_small2').imagesLoaded(function () {
+                var options2 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main2'), // Optional, used for some extra CSS styling
+                    offset: 5//, // Optional, the distance between grid items
 
-             };
-             handler2.wookmark(options2);
-         });
+                };
+                handler2.wookmark(options2);
+            });
 
-         /**************************************************/
-         /******   Style 3 ********************************/
-         /*************************************************/
-         $('#MainContent_tiles_small3').imagesLoaded(function () {
-             var options3 = {
-                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                 container: $('#main3'), // Optional, used for some extra CSS styling
-                 offset: 5//, // Optional, the distance between grid items
+            /**************************************************/
+            /******   Style 3 ********************************/
+            /*************************************************/
+            $('#MainContent_tiles_small3').imagesLoaded(function () {
+                var options3 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main3'), // Optional, used for some extra CSS styling
+                    offset: 5//, // Optional, the distance between grid items
 
 
-             };
-             // Call the layout function.
-             handler3.wookmark(options3);
-         });
+                };
+                // Call the layout function.
+                handler3.wookmark(options3);
+            });
 
-         /**************************************************/
-         /******   Style 4 ********************************/
-         /*************************************************/
-         $('#MainContent_tiles_small4').imagesLoaded(function () {
-             var options4 = {
-                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                 container: $('#main4'), // Optional, used for some extra CSS styling
-                 offset: 5//, // Optional, the distance between grid items
+            /**************************************************/
+            /******   Style 4 ********************************/
+            /*************************************************/
+            $('#MainContent_tiles_small4').imagesLoaded(function () {
+                var options4 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main4'), // Optional, used for some extra CSS styling
+                    offset: 5//, // Optional, the distance between grid items
 
-             };
-             // Call the layout function.
-             handler4.wookmark(options4);
-         });
+                };
+                // Call the layout function.
+                handler4.wookmark(options4);
+            });
 
-         /**************************************************/
-         /******   Style 5 ********************************/
-         /*************************************************/
-         $('#MainContent_tiles_small5').imagesLoaded(function () {
-             var options5 = {
-                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                 container: $('#main5'), // Optional, used for some extra CSS styling
-                 offset: 5//, // Optional, the distance between grid items
-             };
-             // Call the layout function.
-             handler5.wookmark(options5);
-         });
+            /**************************************************/
+            /******   Style 5 ********************************/
+            /*************************************************/
+            $('#MainContent_tiles_small5').imagesLoaded(function () {
+                var options5 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main5'), // Optional, used for some extra CSS styling
+                    offset: 5//, // Optional, the distance between grid items
+                };
+                // Call the layout function.
+                handler5.wookmark(options5);
+            });
 
-     })(jQuery);
+        })(jQuery);
 
-     // Read a page's GET URL variables and return them as an associative array.
-     function getUrlVars() {
-         var vars = [], hash;
-         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-         for (var i = 0; i < hashes.length; i++) {
-             hash = hashes[i].split('=');
-             vars.push(hash[0]);
-             vars[hash[0]] = hash[1];
-         }
-         return vars;
-     }
+        // Read a page's GET URL variables and return them as an associative array.
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
     </script>
 </asp:Content>
 

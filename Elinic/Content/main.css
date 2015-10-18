@@ -41,14 +41,18 @@ header p
     font-weight: 200;
 }
 
+.configured {
+    background-color: lightgreen;
+}
+
 @media all and (min-width: 900px)
 {
     .customized-values
     {
-        margin-left: 12% !important;
-        margin-top: 5px !important;
+        margin-left: 1% !important;
+        margin-top: 2px !important;
         text-align: left;
-        font-size: 10px!important;
+        font-size: 9px!important;
         color: #666666;
         margin: 0;
         font-weight: 200;
@@ -56,14 +60,14 @@ header p
         border-radius: 2px;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        width: 80%;
+        width: 98%;
     }
 
     .customize-title
@@ -151,7 +155,7 @@ header p
         margin-left: 15px !important;
         margin-top: 5px !important;
         text-align: left;
-        font-size: 10px!important;
+        font-size: 8px!important;
         color: #666666;
         margin: 0;
         font-weight: 200;
@@ -236,9 +240,9 @@ header p
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 68%;
+        max-width: 50%;
         height: auto;
-        max-height: 68%;
+        max-height: 50%;
     }
 }
 
@@ -281,28 +285,29 @@ header p
     #MainContent_layout li,
     .tiles li
     {
-        width: 300px;
-        height: 300px;
+         margin: 0px 5px 5px 5px;
+        width: 200px;
+        height: 200px;
     }
 
     #MainContent_comp li div
     {
-        width: 260px;
-        height: 260px;
+        width: 200px;
+        height: 200px;
     }
 
     #MainContent_comp_small li
     {
-        margin-left: 10px;
+        margin: 5px 5px 5px 5px;
         float: left;
-        width: 240px;
-        height: 240px;
+        width: 200px;
+        height: 200px;
     }
     .tiles_small li,
     #MainContent_tiles_ideas li
     {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -312,15 +317,17 @@ header p
     /*#MainContent_comp li,*/
     .tiles li
     {
+         margin: 0px 5px 5px 5px;
         width: 200px;
         height: 200px;
     }
 
     #MainContent_comp_small li
     {
-        display: inline-block;
-        width: 200px;
-        height: 200px;
+        margin: 5px 5px 5px 5px;
+        float: left;
+        width: 180px;
+        height: 180px;
     }
 }
 .tiles_small li,
@@ -330,7 +337,7 @@ header p
     height: 140px;
 }
 
-}
+
 
 @media all and (max-width: 320px)
 {
@@ -350,22 +357,22 @@ header p
 {
     #MainContent_layout li
     {
-        width: 160px;
-        height: 160px;
+        width: 120px;
+        height: 120px;
     }
 
     #MainContent_comp_small li,
     .tiles li
     {
-        display: inline-block;
-        width: 80px;
-        height: 80px;
+        margin: 5px -15px 5px 5px;
+        width: 180px;
+        height: 180px;
     }
     .tiles_small li,
     #MainContent_tiles_ideas li
     {
-        width: 55px;
-        height: 55px;
+        width: 120px;
+        height: 120px;
     }
 
     #MainContent_comp img,

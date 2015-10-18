@@ -374,7 +374,8 @@ namespace Elinic
 
                             if (Session["Comp" + counter] != null)
                             {
-                                detailsDiv = "<div class=\"customized-values\"  id=\"Comp" + counter
+                                detailsDiv = "<div class=\"customized-values configured\"  id=\"Comp" 
+                                        + counter
                                         + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
@@ -424,8 +425,8 @@ namespace Elinic
                             anchor.Attributes.Add("href", link);
                             anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                                 + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
-                             add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
-                            //add.InnerHtml = "<Button style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                            // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
+                            add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
                             remove.InnerHtml = "<Button class=\"pull-right\" style=\"background-color: orange;width: 25%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
