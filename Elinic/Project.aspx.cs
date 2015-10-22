@@ -351,7 +351,7 @@ namespace Elinic
                     {
                         //Add Place Holders for additional (up to 5)
                         //This was a late requirement to add components
-                        for (int counter = 1 + (5 * (i - 1)); counter < 6 * i; counter++)
+                        for (int counter = 1 + (5 * (i - 1)); counter <= 5 * i; counter++)
                         {
                             string detailsDiv = "";
                             HtmlGenericControl li = new HtmlGenericControl("li");
