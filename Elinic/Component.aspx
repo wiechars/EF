@@ -92,8 +92,9 @@
         </div> -->
 
         <div class="col-xs-12 input-form">
-            Total Price : 
-            <asp:Label ID="price" runat="server" Style="display: inline-block;">N/A</asp:Label>
+            <div class="pull-right">Total Price :
+            <asp:Label ID="price" runat="server" class="pull-right" Style="display: inline-block;">N/A</asp:Label>
+            </div>
             <asp:HiddenField ID="compPrice" runat="server"></asp:HiddenField>
             <asp:HiddenField ID="compWidthVal" runat="server"></asp:HiddenField>
             <asp:HiddenField ID="compHeightVal" runat="server"></asp:HiddenField>
@@ -143,8 +144,8 @@
         </asp:Panel>
         <!-- ModalPopupExtender -->
     </div>
-    <div style="margin-left:20%!important;">
-        <div id="gallery-container" class="col-xs-10 center-block" >
+    <div style="margin:25%!important;">
+        <div id="gallery-container" class="col-xs-10 center-block"  >
             <ul runat="server" class="items--small" id="gallery">
             </ul>
             <ul runat="server" class="items--big" id="gallery_large">
