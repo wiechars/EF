@@ -71,7 +71,7 @@
                 </ul>
             </div>
             <div id="notes" class="col-md-12 input-form" runat="server">
-                <div class="col-md-12 ">
+                 <div class="col-md-12 ">
                     <div class="pull-right ">
                         Total Price :
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
@@ -84,6 +84,7 @@
 
             </div>
         </div>
+
         <!-- ModalPopupExtender -->
         <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
             CancelControlID="btnClose" BackgroundCssClass="modalBackground">
@@ -110,29 +111,30 @@
 
     </div>
 
-    <div style="margin-left: 22%!important;">
-            <div id="gallery-container" class="col-xs-10 center-block" style="height:500px!important;">
-                <ul runat="server" class="items--small" id="gallery">
-                </ul>
-                <ul runat="server" class="items--big" id="gallery_large" >
-                </ul>
-                <div class="controls">
-                    <span class="control icon-arrow-left" data-direction="previous"></span>
-                    <span class="control icon-arrow-right" data-direction="next"></span>
-                    <span class="grid icon-grid" id="gridIcon"></span>
-                    <%--<span class="fs-toggle icon-fullscreen"></span>--%>
-                </div>
+     <div style="margin-left: 22%!important;">
+        <div id="gallery-container">
+            <ul runat="server" class="items--small" id="gallery">
+            </ul>
+            <ul runat="server" class="items--big" id="gallery_large">
+            </ul>
+            <div class="controls">
+                <span class="control icon-arrow-left" data-direction="previous"></span>
+                <span class="control icon-arrow-right" data-direction="next"></span>
+                <span class="grid icon-grid" id="gridIcon"></span>
+                <%--<span class="fs-toggle icon-fullscreen"></span>--%>
             </div>
         </div>
+    </div>
 
-        <script>
-            $(document).ready(function () {
-                $('#gallery-container').sGallery({
-                    fullScreenEnabled: true
-                });
 
+    <script>
+        $(document).ready(function () {
+            $('#gallery-container').sGallery({
+                fullScreenEnabled: true
             });
-        </script>
+
+        });
+    </script>
     <script type="text/javascript">
         var nextId = 1;
 
