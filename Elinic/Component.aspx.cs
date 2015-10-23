@@ -359,15 +359,15 @@ namespace Elinic
         {
             try
             {
-                string doors = compDoors.SelectedIndex == -1 ? "N/A" : compDoors.SelectedItem.Text;  
+                string doors = String.IsNullOrEmpty(compDoorsVal.Value.ToString())?"N/A":compDoorsVal.Value.ToString();  
 
                 Session[Request.QueryString["Comp"].ToString() + "Price"] = compPrice.Value.Substring(1, compPrice.Value.Length - 1);
                 Session[Request.QueryString["Comp"].ToString() + "OrderSummary"] = "<b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
-                    + " </br><b>W:</b> " + compWidth.SelectedItem.Text + " </br><b>D:</b> " + compDepth.SelectedItem.Text + " </br><b>H:</b> " + compHeight.SelectedItem.Text
-                    + " </br><b>Doors:</b> " + doors + " </br><b>Material:</b> " + compMaterial.SelectedItem.Text + " </br><b>Price:</b>" + compPrice.Value + "<hr/>";
+                    + " </br><b>W:</b> " + compWidthVal.Value.ToString() + " </br><b>D:</b> " + compDepthVal.Value.ToString() + " </br><b>H:</b> " + compHeightVal.Value.ToString()
+                    + " </br><b>Doors:</b> " + doors + " </br><b>Material:</b> " + compMaterialVal.Value.ToString() + " </br><b>Price:</b>" + compPrice.Value + "<hr/>";
                 Session[Request.QueryString["Comp"].ToString()] = "&nbsp; <b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
-                    + " &nbsp;   <b>W:</b> " + compWidth.SelectedItem.Text + "   <b>D:</b> " + compDepth.SelectedItem.Text + "   <b>H:</b> " + compHeight.SelectedItem.Text
-                    + "  <b>Doors:</b> " + doors + "  <b>Material:</b> " + compMaterial.SelectedItem.Text + "  <b>Price:</b>" + compPrice.Value;
+                    + " &nbsp;   <b>W:</b> " + compWidthVal.Value.ToString() + "   <b>D:</b> " + compDepthVal.Value.ToString() + "   <b>H:</b> " + compHeightVal.Value.ToString()
+                    + "  <b>Doors:</b> " + doors + "  <b>Material:</b> " + compMaterialVal.Value.ToString() + "  <b>Price:</b>" + compPrice.Value;
                 if (ideas != null)
                 {
                     Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);

@@ -72,7 +72,7 @@
     </div>
     <div id="orderForm" class="col-lg-8 " runat="server">
         <div class="col-xs-10 input-form">
-            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
+            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 80%;" ></asp:DropDownList>
         </div>
         <div class="col-xs-10 input-form">
             Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
@@ -95,6 +95,11 @@
             Total Price : 
             <asp:Label ID="price" runat="server" Style="display: inline-block;">N/A</asp:Label>
             <asp:HiddenField ID="compPrice" runat="server"></asp:HiddenField>
+            <asp:HiddenField ID="compWidthVal" runat="server"></asp:HiddenField>
+            <asp:HiddenField ID="compHeightVal" runat="server"></asp:HiddenField>
+            <asp:HiddenField ID="compDepthVal" runat="server"></asp:HiddenField>
+            <asp:HiddenField ID="compDoorsVal" runat="server"></asp:HiddenField>
+            <asp:HiddenField ID="compMaterialVal" runat="server"></asp:HiddenField>
         </div>
         <div class="row-fluid input-form">
             <asp:Button ID="btnOrder" runat="server" Text="Select" />
@@ -180,8 +185,12 @@
 
         function CalculatePrice() {
             var w = $("#MainContent_compWidth option:selected").text().replace('"', '');
+            $('#MainContent_compWidthVal').val(w);
             var h = $("#MainContent_compHeight option:selected").text().replace('"', '');
+            $('#MainContent_compHeightVal').val(h);
             var d = $("#MainContent_compDepth option:selected").text().replace('"', '');
+            $('#MainContent_compDepthVal').val(d);
+            $('#MainContent_compMaterialVal').val($("#MainContent_compMaterial option:selected").text());
             var numShelves = $("#MainContent_numShelves").text();
             var numDoors = $("#MainContent_numDoors").text();
             var numDrawers = $("#MainContent_numDrawers").text();
@@ -209,15 +218,16 @@
             var doors = "N/A"
             if (numDoors != 0) {
                 doors = $('#MainContent_compDoors').val();
+                $('#MainContent_compDoorsVal').val(doors)
             }
 
             $('#MainContent_orderValues').html("<b>Component ID :</b>" + compID + "&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
                  " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
-                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterial').val() + "</div>");
+                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
 
-            $('#MainContent_hdnOrderValues').Text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
-                 " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
-                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterial').val() + "</div>");
+            $('#MainContent_hdnOrderValues').Text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidthVal').val() +
+                 " <b>D:</b>" + $('#MainContent_compDepthVal').val() + " <b>H:</b>" + $('#MainContent_compHeightVal').val() +
+                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
 
         }
 
@@ -236,6 +246,12 @@
             CalculatePrice();
         });
         $('#MainContent_compDepth').change(function () {
+            CalculatePrice();
+        });
+        $('#MainContent_compMaterial').change(function () {
+            CalculatePrice();
+        });
+        $('#MainContent_compDoors').change(function () {
             CalculatePrice();
         });
     </script>

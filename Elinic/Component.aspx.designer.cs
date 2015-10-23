@@ -229,6 +229,51 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.HiddenField compPrice;
         
         /// <summary>
+        /// compWidthVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compWidthVal;
+        
+        /// <summary>
+        /// compHeightVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compHeightVal;
+        
+        /// <summary>
+        /// compDepthVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compDepthVal;
+        
+        /// <summary>
+        /// compDoorsVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compDoorsVal;
+        
+        /// <summary>
+        /// compMaterialVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField compMaterialVal;
+        
+        /// <summary>
         /// btnOrder control.
         /// </summary>
         /// <remarks>
