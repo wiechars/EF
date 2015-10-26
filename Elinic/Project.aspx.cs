@@ -421,10 +421,18 @@ namespace Elinic
                             HtmlGenericControl remove = new HtmlGenericControl("Button");
                             HtmlGenericControl addDetailsDiv = new HtmlGenericControl("div");
                             HtmlGenericControl anchor = new HtmlGenericControl("a");
-
                             anchor.Attributes.Add("href", link);
-                            anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
-                                + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
+                            if (Session["Comp" + counter] != null)
+                            {
+                                anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"" + Session["Comp" + counter + "CompImagePath"].ToString() + "\">";
+                                Session["ComponentImagePath"] = "";
+                            }
+                            else
+                            {
+                                anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
+                           + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
+                            }
+                                //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
                             add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
                             remove.InnerHtml = "<Button class=\"pull-right\" style=\"background-color: orange;width: 25%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";

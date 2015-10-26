@@ -15,11 +15,12 @@ namespace Elinic
 {
     public partial class Component : System.Web.UI.Page
     {
-
+        private string componentImagePath = "";
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
         int? ideas = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            componentImagePath = "";
             lblMsg.Visible = false;
             lblDescription.Text = "";
             if (Request.QueryString["Ideas"] != null)
@@ -131,7 +132,8 @@ namespace Elinic
                             comp.Controls.Add(li);
                             this.Page.Title = Convert.ToString(obj.rdr["CompTypeName"]) + " - " + Convert.ToString(obj.rdr["CompID"]);
                             HtmlGenericControl div = new HtmlGenericControl("div");
-                            div.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"]) + " - " + Convert.ToString(obj.rdr["CompID"]) + "</p><img src=\"../Images/CompThumbs/" + Convert.ToString(obj.rdr["CompThumbImage"].ToString()) +
+                            componentImagePath = "../Images/CompThumbs/" + Convert.ToString(obj.rdr["CompThumbImage"].ToString());
+                            div.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"]) + " - " + Convert.ToString(obj.rdr["CompID"]) + "</p><img src=\""+componentImagePath +
                                  "\">";
                             li.Controls.Add(div);
 
@@ -359,8 +361,8 @@ namespace Elinic
         {
             try
             {
-                string doors = String.IsNullOrEmpty(compDoorsVal.Value.ToString())?"N/A":compDoorsVal.Value.ToString();  
-
+                string doors = String.IsNullOrEmpty(compDoorsVal.Value.ToString())?"N/A":compDoorsVal.Value.ToString();
+                Session[Request.QueryString["Comp"].ToString() + "CompImagePath"] = componentImagePath;
                 Session[Request.QueryString["Comp"].ToString() + "Price"] = compPrice.Value.Substring(1, compPrice.Value.Length - 1);
                 Session[Request.QueryString["Comp"].ToString() + "OrderSummary"] = "<b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
                     + " </br><b>W:</b> " + compWidthVal.Value.ToString() + " </br><b>D:</b> " + compDepthVal.Value.ToString() + " </br><b>H:</b> " + compHeightVal.Value.ToString()

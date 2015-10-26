@@ -140,9 +140,9 @@ header p
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 55%;
+        max-width: 100px;
         height: auto;
-        max-height: 55%;
+        max-height: 100px;
     }
 }
 
@@ -230,17 +230,17 @@ header p
         #MainContent_comp_small img
         {
             margin-top: 10px;
-            max-width: 68%;
+            max-width: 80px;
             height: auto;
-            max-height: 68%;
+            max-height: 80px;
         }
 
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 50%;
+        max-width: 80px;
         height: auto;
-        max-height: 50%;
+        max-height: 80px;
     }
 }
 
@@ -377,9 +377,9 @@ header p
     #MainContent_comp_small img
     {
         margin-top: 2px;
-        max-width: 50%;
+        max-width: 80px;
         height: auto;
-        max-height: 50%;
+        max-height: 80px;
     }
 }
 .tiles_small li.inactive,
