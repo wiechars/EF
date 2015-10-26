@@ -72,7 +72,7 @@
     </div>
     <div id="orderForm" class="col-xs-12 col-sm-8" runat="server">
         <div class="col-xs-12 input-form">
-            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 70%;" ></asp:DropDownList>
+            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
         </div>
         <div class="col-xs-12 input-form">
             Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
@@ -92,8 +92,9 @@
         </div> -->
 
         <div class="col-xs-12 input-form text-center ">
-            <div>Total Price :
-            <asp:Label ID="price" runat="server"  Style="display: inline-block;">N/A</asp:Label>
+            <div>
+                Total Price :
+            <asp:Label ID="price" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
             <asp:HiddenField ID="compPrice" runat="server"></asp:HiddenField>
             <asp:HiddenField ID="compWidthVal" runat="server"></asp:HiddenField>
@@ -144,7 +145,7 @@
         </asp:Panel>
         <!-- ModalPopupExtender -->
     </div>
-    <div class="col-xs-12" >
+    <div class="col-xs-12">
         <div id="gallery-container">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
@@ -157,7 +158,7 @@
                 <%--<span class="fs-toggle icon-fullscreen"></span>--%>
             </div>
         </div>
-        </div>
+    </div>
 
 
 

@@ -316,8 +316,8 @@ header p
     .tiles li
     {
          margin: 0px 5px 5px 5px;
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
 
     #MainContent_comp_small li
@@ -355,8 +355,8 @@ header p
 {
     #MainContent_layout li
     {
-        width: 120px;
-        height: 120px;
+        width: 180px;
+        height: 180px;
     }
 
     #MainContent_comp_small li,

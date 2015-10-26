@@ -53,37 +53,36 @@
         </div>
     </div>
 
-    <div class="col-md-12 col-sm-12  ">
 
-        <div class="col-md-2 col-sm-6">
-            &nbsp;&nbsp;
-            <div id="selectedLayout">
-                <ul runat="server" id="layout" style="text-align: center; padding-left: 25%!important;">
+
+        <div class="col-xs-12 col-sm-3 col-sm-offset-1">
+               &nbsp;&nbsp;
+            <div id="selectedLayout" class="col-xs-12 col-sm-8">
+                <ul runat="server" id="layout">
                 </ul>
             </div>
         </div>
-        <div class="col-md-10 col-sm-12">
-            <div id="selectedComponent" class="col-xs-12" runat="server">
-                <div class="col-md-12">
-                    <label class="customize-title col-md-12">Customize your components by selecting from below.</label>
-                </div>
-                <ul runat="server" id="comp_small" class="col-md-12">
-                </ul>
+        <div id="selectedComponent" class="col-xs-12 col-sm-8" runat="server">
+            <div class="col-xs-12 col-sm-8">
+                <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
             </div>
-            <div id="notes" class="col-md-12 input-form" runat="server">
-                 <div class="col-md-12 ">
-                    <div class="pull-right ">
-                        Total Price :
+            <ul runat="server" id="comp_small" class="col-xs-12">
+            </ul>
+        </div>
+        <div id="notes" class="col-xs-12 input-form" runat="server">
+            <div class="col-xs-12 text-center ">
+                <div>
+                    Total Price :
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
-                    </div>
                 </div>
-                <div class="row-fluid input-form">
-                    <asp:Button ID="btnOrder" runat="server" Text="Select" />
-                    <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
-                </div>
-
             </div>
-         </div>
+            <div class="col-xs-12 input-form text-center">
+                <asp:Button ID="btnOrder" runat="server" Text="Select" />
+                <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
+            </div>
+
+        </div>
+
 
         <!-- ModalPopupExtender -->
         <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
@@ -109,10 +108,9 @@
         <!-- ModalPopupExtender -->
 
 
-  
 
-     <div style="margin-left: 22%!important; " class="col-md-12">
-        <div id="gallery-container" class="">
+    <div class="col-xs-12">
+        <div id="gallery-container">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
             <ul runat="server" class="items--big" id="gallery_large">
@@ -125,7 +123,7 @@
             </div>
         </div>
     </div>
-  </div>
+
 
     <script>
         $(document).ready(function () {
