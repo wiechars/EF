@@ -83,7 +83,7 @@
                 </div>
 
             </div>
-        </div>
+         </div>
 
         <!-- ModalPopupExtender -->
         <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
@@ -109,10 +109,10 @@
         <!-- ModalPopupExtender -->
 
 
-    </div>
+  
 
-     <div style="margin-left: 22%!important;">
-        <div id="gallery-container">
+     <div style="margin-left: 22%!important; " class="col-md-12">
+        <div id="gallery-container" class="">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
             <ul runat="server" class="items--big" id="gallery_large">
@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-
+  </div>
 
     <script>
         $(document).ready(function () {

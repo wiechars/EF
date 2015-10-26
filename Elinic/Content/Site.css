@@ -15,8 +15,6 @@ a {
 body
 {
     background-color: white;
-    border-top: solid 10px #000;
-    color: #333;
     font-size: .85em;
     margin: 0;
     padding: 0;
@@ -745,12 +743,7 @@ tr.pager td
         background-position: 10px 0;
     }
 
-    .content-wrapper
-    {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
+  
     .featured .content-wrapper
     {
         padding: 10px;

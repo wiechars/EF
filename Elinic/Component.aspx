@@ -66,34 +66,34 @@
         <ul runat="server" id="tiles_small5" class="tiles_small">
         </ul>
     </div>
-    <div id="selectedComponent" class="col-lg-4">
+    <div id="selectedComponent" class="col-xs-12 col-sm-3 col-sm-offset-1 col-xs-offset-2">
         <ul runat="server" id="comp">
         </ul>
     </div>
-    <div id="orderForm" class="col-lg-8 " runat="server">
-        <div class="col-xs-10 input-form">
-            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 80%;" ></asp:DropDownList>
+    <div id="orderForm" class="col-xs-12 col-sm-8" runat="server">
+        <div class="col-xs-12 input-form">
+            Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 70%;" ></asp:DropDownList>
         </div>
-        <div class="col-xs-10 input-form">
-            Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
+        <div class="col-xs-12 input-form">
+            Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-10 input-form">
-            Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
+        <div class="col-xs-12 input-form">
+            Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-10 input-form" id="divDoors" runat="server">
-            Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
+        <div class="col-xs-12 input-form" id="divDoors" runat="server">
+            Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
         </div>
-        <div class="col-xs-10 input-form">
-            Material:<asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 80%;"></asp:DropDownList>
+        <div class="col-xs-12 input-form">
+            Material:<asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
         </div>
 
         <!-- <div id="notes" class="row-fluid input-form" runat="server">
             Notes:<textarea name="Text1" cols="40" rows="3" class="input-form" style="width: 80%;"></textarea>
         </div> -->
 
-        <div class="col-xs-12 input-form">
-            <div class="pull-right">Total Price :
-            <asp:Label ID="price" runat="server" class="pull-right" Style="display: inline-block;">N/A</asp:Label>
+        <div class="col-xs-12 input-form text-center ">
+            <div>Total Price :
+            <asp:Label ID="price" runat="server"  Style="display: inline-block;">N/A</asp:Label>
             </div>
             <asp:HiddenField ID="compPrice" runat="server"></asp:HiddenField>
             <asp:HiddenField ID="compWidthVal" runat="server"></asp:HiddenField>
@@ -102,7 +102,7 @@
             <asp:HiddenField ID="compDoorsVal" runat="server"></asp:HiddenField>
             <asp:HiddenField ID="compMaterialVal" runat="server"></asp:HiddenField>
         </div>
-        <div class="row-fluid input-form">
+        <div class="col-xs-12 input-form text-center">
             <asp:Button ID="btnOrder" runat="server" Text="Select" />
             <asp:Button ID="btnConfigure" runat="server" Text="Select" Visible="false" OnClick="btnConfigure_Click" />
             <asp:Button ID="btnGoBack" runat="server" Text="Go Back" Visible="false" OnClick="btnGoBack_Click" />
@@ -144,8 +144,8 @@
         </asp:Panel>
         <!-- ModalPopupExtender -->
     </div>
-    <div style="margin:25%!important;">
-        <div id="gallery-container" class="col-xs-10 center-block"  >
+    <div class="col-xs-12" >
+        <div id="gallery-container">
             <ul runat="server" class="items--small" id="gallery">
             </ul>
             <ul runat="server" class="items--big" id="gallery_large">

@@ -99,7 +99,6 @@ header p
 
     #MainContent_btnOrder
     {
-        float: right !important;
         padding: 5x 5px 5px 5px;
         margin-top: 10px;
         font-size: 16px;
@@ -198,7 +197,6 @@ header p
 
     #MainContent_btnOrder
     {
-        float: right !important;
         padding: 5px 5px 5px 5px !important;
         margin-top: 10px !important;
         font-size: 16px !important;
