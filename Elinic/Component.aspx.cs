@@ -116,7 +116,9 @@ namespace Elinic
                 }
                 else
                 {
-                    obj.Query("SELECT * FROM Components Where CompType = " + Request.QueryString["Type"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
+                    obj.Query("SELECT ComponentTypes.Description, Components.CompThumbImage,Components.CompID, Components.CompStyle  " +
+                        "FROM Components INNER JOIN ComponentTypes ON (ComponentTypes.CompTypeID = Components.CompType)  " +
+                        "Where CompType = " + Request.QueryString["Type"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
                 }
 
                 if (obj.rdr.HasRows == true)
