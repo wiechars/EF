@@ -440,7 +440,10 @@ namespace Elinic
                             li.Controls.Add(add);
                             //li.Controls.Add(remove);
                             li.Controls.Add(anchor);
-                            li.Controls.Add(addDetailsDiv);
+                            if (counter % 5 != 0)  //Causing extra anchor tags - don't know why.
+                            {
+                                li.Controls.Add(addDetailsDiv);
+                            }
 
 
                         }
