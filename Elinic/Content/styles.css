@@ -96,8 +96,8 @@
 .icon-fullscreen
 {
     display: inline-block !important;
-    width: 20px !important;
-    height: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
     background-image: url(../Images/controls-dark.png) !important;
     background-repeat: no-repeat !important;
 }
@@ -109,12 +109,12 @@
 
 .icon-arrow-left
 {
-    background-position: -40px 0 !important;
+    background-position: -80px 0 !important;
 }
 
 .icon-arrow-right
 {
-    background-position: -80px 0 !important;
+    background-position: -160px 0 !important;
 }
 
 .icon-fullscreen-exit
