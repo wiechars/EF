@@ -449,7 +449,6 @@ namespace Elinic
             showMessage("Order Successful", true);
 
         }
-
         /// <summary>
         /// Status message for events.
         /// </summary>

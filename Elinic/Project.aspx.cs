@@ -383,7 +383,7 @@ namespace Elinic
                                         + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
-                                orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  id=\"Comp" + counter
+                                orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"font-size:16px!important;\" id=\"Comp" + counter
                                         + "\"><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
                                 price = price + Convert.ToDouble(Session["Comp" + counter + "Price"].ToString());
@@ -412,7 +412,7 @@ namespace Elinic
                                         + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
-                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  id=\"Comp"
+                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  style=\"font-size:16px!important;\" id=\"Comp"
                                         + counter + "\"><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
