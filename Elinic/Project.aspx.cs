@@ -79,7 +79,11 @@ namespace Elinic
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         tiles.Controls.Add(li);
                         HtmlGenericControl anchor = new HtmlGenericControl("a");
-                        anchor.Attributes.Add("href", "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString()));
+                        if (Convert.ToString(obj.rdr["ProjectType"].ToString()) == "12"){  //Hardcode link for walking closets
+                            anchor.Attributes.Add("href", "ClosetShape.htm");
+                        }else{
+                            anchor.Attributes.Add("href", "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString()));
+                        }
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["ProjectName"].ToString()) + "</p><img src=\"../Images/ProjectTypeThumbs/"
                             + Convert.ToString(obj.rdr["ProjectThumbImage"].ToString()) + "\">";
                         li.Controls.Add(anchor);
