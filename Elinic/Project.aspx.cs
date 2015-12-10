@@ -507,7 +507,7 @@ namespace Elinic
             {
                 obj.Connect();
 
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes) VALUES('" + orderNoHTML + "','" + price + "','" + notes + "');");
+                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate) VALUES('" + orderNoHTML + "','" + price + "','" + notes + "', '" + DateTime.Now + "');");
                 obj.Close();
             }
             catch (Exception ex)
