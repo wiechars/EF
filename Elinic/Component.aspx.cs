@@ -21,7 +21,6 @@ namespace Elinic
         protected void Page_Load(object sender, EventArgs e)
         {
             componentImagePath = "";
-            lblMsg.Visible = false;
             lblDescription.Text = "";
             if (Request.QueryString["Ideas"] != null)
             {
@@ -358,6 +357,26 @@ namespace Elinic
 
         }
 
+        /// <summary>
+        /// Redirect to the Order Screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            OrderDetails odr = new OrderDetails();
+            odr.NumOfDoors = compDoors.SelectedIndex == -1 ? "N/A" : compDoors.SelectedItem.Text;
+            odr.Details = "Component ID: " + Request.QueryString["CompId"].ToString()
+                    + " W:" + compWidth.SelectedItem.Text + " D:" + compDepth.SelectedItem.Text + " H: " + compHeight.SelectedItem.Text
+                    + " Doors:" + odr.NumOfDoors + " Material:" + compMaterial.SelectedItem.Text;
+
+            odr.Price = compPrice.Value;
+
+            Session["OrderDetails"] = null;
+            Session["OrderDetails"] = odr;
+
+            Response.Redirect("~/SubmitOrder.aspx");
+        }
 
         protected void btnConfigure_Click(object sender, EventArgs e)
         {
@@ -413,55 +432,6 @@ namespace Elinic
             Response.Redirect("http://www.elinic.ca/index.htm");
         }
 
-        /// <summary>
-        /// Populates the database with the order details
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnSend_Click(object sender, EventArgs e)
-        {
-            string doors = compDoors.SelectedIndex == -1 ? "N/A" : compDoors.SelectedItem.Text; 
 
-            string orderDetails = "Component ID: " + Request.QueryString["CompId"].ToString()
-                    + " W:" + compWidth.SelectedItem.Text + " D:" + compDepth.SelectedItem.Text + " H: " + compHeight.SelectedItem.Text
-                    + " Doors:" + doors + " Material:" + compMaterial.SelectedItem.Text;
-           
-            string price = compPrice.Value;
-            string notes = orderNotes.InnerText;
-
-            Database obj = new Database();
-            try
-            {
-                obj.Connect();
-
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate) VALUES('" + orderDetails + "','" + price + "','" + notes + "', '" + DateTime.Now +"');");
-                obj.Close();
-            }
-            catch (Exception ex)
-            {
-                showMessage("Error Creating Order.", false);
-                log.LogErrorMessage("Error creating order: " + ex);
-            }
-            finally
-            {
-                obj.Close();
-            }
-            showMessage("Order Successful", true);
-
-        }
-        /// <summary>
-        /// Status message for events.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="success"></param>
-        private void showMessage(string message, bool success)
-        {
-            lblMsg.Visible = true; // here lblMsg is asp label control on your aspx page.
-            if (success)
-                lblMsg.ForeColor = Color.Green;
-            else
-                lblMsg.ForeColor = Color.Red;
-            lblMsg.Text = message;
-        }
     }
 }

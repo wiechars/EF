@@ -478,11 +478,11 @@ namespace Elinic
         }
 
         /// <summary>
-        /// Populates the database with the order details
+        /// Redirect to the Order Screen
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnSend_Click(object sender, EventArgs e)
+        protected void btnOrder_Click(object sender, EventArgs e)
         {
             int i = 1;
             string orderHTML = "";
@@ -499,34 +499,16 @@ namespace Elinic
                 }
             }
 
-            string price = lblOrderPrice.Text;
-            string notes = orderNotes.InnerText;
-            string orderNoHTML = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
-            Database obj = new Database();
-            try
-            {
-                obj.Connect();
+            OrderDetails odr = new OrderDetails();
+            odr.Price = lblOrderPrice.Text;
+            odr.Details = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
 
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate) VALUES('" + orderNoHTML + "','" + price + "','" + notes + "', '" + DateTime.Now + "');");
-                obj.Close();
-            }
-            catch (Exception ex)
-            {
-                showMessage("Error Creating Order.", false);
-                log.LogErrorMessage("Error creating order: " + ex);
-            }
-            showMessage("Order Successful", true);
+            Session["OrderDetails"] = null;
+            Session["OrderDetails"] = odr;
+
+            Response.Redirect("~/SubmitOrder.aspx");
         }
 
-        private void showMessage(string message, bool success)
-        {
-            lblMsg.Visible = true; // here lblMsg is asp label control on your aspx page.
-            if (success)
-                lblMsg.ForeColor = Color.Green;
-            else
-                lblMsg.ForeColor = Color.Red;
-            lblMsg.Text = message;
-        }
 
 
     }

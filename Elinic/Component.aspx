@@ -104,10 +104,9 @@
             <asp:HiddenField ID="compMaterialVal" runat="server"></asp:HiddenField>
         </div>
         <div class="col-xs-12 input-form text-center">
-            <asp:Button ID="btnOrder" runat="server" Text="Select" />
+            <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
             <asp:Button ID="btnConfigure" runat="server" Text="Select" Visible="false" OnClick="btnConfigure_Click" />
             <asp:Button ID="btnGoBack" runat="server" Text="Go Back" Visible="false" OnClick="btnGoBack_Click" />
-            <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
 
         </div>
         <div>
@@ -120,29 +119,30 @@
         </div>
 
         <!-- ModalPopupExtender -->
-        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
+<%--        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnOrder"
             CancelControlID="btnClose" BackgroundCssClass="modalBackground">
-        </cc1:ModalPopupExtender>
+        </cc1:ModalPopupExtender>--%>
         <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center" Style="display: none">
-            <h3>Order Summary</h3>
+            <h3>What Happens Next</h3>
             <div id="orderSummary" class="span4">
-                <div id="order_values" class="customized-values">
+
+<%--                <div id="order_values" class="customized-values">
                     <label runat="server" id="orderValues"></label>
                     <asp:HiddenField ID="hdnOrderValues" runat="server"></asp:HiddenField>
-                </div>
+                </div>--%>
                 <br />
-                <h4><b>Total Price:</b>
+<%--                <h4><b>Total Price:</b>
                     <asp:Label ID="lblOrderPrice" runat="server" Style="display: inline-block">N/A</asp:Label><br />
-                    <br />
+                    <br />--%>
                     <b>Notes:</b></h4>
                 <textarea name="Text1" id="orderNotes" runat="server" rows="4" style="width: 94%;"></textarea>
                 <br />
                 <br />
             </div>
             <div>
-                <asp:Button ID="btnNext" runat="server" Text="What Happens Next?" Style="width: 94%!important;" />
+                <asp:Button ID="btnNext" runat="server" Visible="false" Text="What Happens Next?" Style="width: 94%!important;" />
             </div>
-            <asp:Button ID="btnSend" runat="server" OnClick="btnSend_Click" Text="Send" />
+            <asp:Button ID="btnSend" runat="server" Text="Send" />
             <asp:Button ID="btnClose" runat="server" Text="Cancel" />
 
         </asp:Panel>
