@@ -12,6 +12,12 @@ a {
     text-decoration: none !important;
 }
 
+@media (min-width: 1200px) {
+    .pull-right-lg {
+        text-align: right !important;
+    }
+}
+
 body
 {
     background-color: white;
@@ -478,7 +484,7 @@ input, textarea
 textarea
 {
     font-family: inherit;
-    width: 500px;
+    width: 100%;
 }
 
     input:focus, textarea:focus

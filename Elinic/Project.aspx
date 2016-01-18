@@ -26,37 +26,37 @@
 
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
-        <h1><%: Title %></h1>
-        <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
-        <hr />
-        <h4>
-            <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
-    </hgroup>
-    <div id="layoutsDiv" runat="server">
-        <h2>Standard Layouts</h2>
-    </div>
-    <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
-        <div id="main" style="clear: both;">
-            <ul runat="server" id="tiles" class="tiles">
-            </ul>
-            <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
-            </ul>
+    <div id="pageContent" runat="server">
+        <hgroup class="title">
+            <h1><%: Title %></h1>
+            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
+            <hr />
+            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+        </hgroup>
+        <div id="layoutsDiv" runat="server">
+            <h2>Standard Layouts</h2>
         </div>
-    </div>
+        <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
+            <div id="main" style="clear: both;">
+                <ul runat="server" id="tiles" class="tiles">
+                </ul>
+                <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
+                </ul>
+            </div>
+        </div>
 
-    <div id="ideasDiv" runat="server">
-        <h2>Ideas</h2>
-        <div id="main2">
-            <ul runat="server" id="tiles_ideas">
-            </ul>
+        <div id="ideasDiv" runat="server">
+            <h2>Ideas</h2>
+            <div id="main2">
+                <ul runat="server" id="tiles_ideas">
+                </ul>
+            </div>
         </div>
-    </div>
 
 
 
         <div class="col-xs-12 col-sm-3 col-sm-offset-1">
-               &nbsp;&nbsp;
+            &nbsp;&nbsp;
             <div id="selectedLayout" class="col-xs-12 col-sm-8">
                 <ul runat="server" id="layout">
                 </ul>
@@ -77,20 +77,22 @@
                 </div>
             </div>
             <div class="col-xs-12 input-form text-center">
-                <asp:Button ID="btnOrder" runat="server" Text="Select"  OnClick="btnOrder_Click"/>
-                <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
+                <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
+
             </div>
+            <div class="col-xs-12" style="text-align: center;">
+                <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label></div>
 
         </div>
 
 
         <!-- ModalPopupExtender -->
-         <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center" Style="display: none">
+        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center" Style="display: none">
             <h3>Order Summary</h3>
             <div id="order_values" class="span4">
                 <label runat="server" id="orderValues"></label>
                 <br />
-                 <h4><b>Total Price:</b>
+                <h4><b>Total Price:</b>
                     <asp:Label ID="lblOrderPrice" runat="server" Style="display: inline-block">N/A</asp:Label><br />
                     <br />
                     <b>Notes:</b></h4>
@@ -108,28 +110,33 @@
         <!-- ModalPopupExtender -->
 
 
-    <div class="col-xs-12">
-        <div id="gallery-container">
-            <ul runat="server" class="items--small" id="gallery">
-            </ul>
-            <ul runat="server" class="items--big" id="gallery_large">
-            </ul>
-            <div class="controls">
-                <span class="control icon-arrow-left" data-direction="previous"></span>
-                <span class="control icon-arrow-right" data-direction="next"></span>
-                <span class="grid icon-grid" id="gridIcon"></span>
-                <%--<span class="fs-toggle icon-fullscreen"></span>--%>
+        <div class="col-xs-12">
+            <div id="gallery-container">
+                <ul runat="server" class="items--small" id="gallery">
+                </ul>
+                <ul runat="server" class="items--big" id="gallery_large">
+                </ul>
+                <div class="controls">
+                    <span class="control icon-arrow-left" data-direction="previous"></span>
+                    <span class="control icon-arrow-right" data-direction="next"></span>
+                    <span class="grid icon-grid" id="gridIcon"></span>
+                    <%--<span class="fs-toggle icon-fullscreen"></span>--%>
+                </div>
             </div>
         </div>
+
     </div>
-
-
     <script>
-        $(document).ready(function () {
+
+        $(window).on('load', function () {
+            $("#MainContent_pageContent").hide();
+        });
+
+        $(window).load(function () {
             $('#gallery-container').sGallery({
                 fullScreenEnabled: true
             });
-
+            $("#MainContent_pageContent").show();
         });
     </script>
     <script type="text/javascript">

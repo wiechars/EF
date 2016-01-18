@@ -133,7 +133,7 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Content\contact.css" />
     <Content Include="Content\demo.css" />
-    <Content Include="SubmitOrder.aspx" />
+    <Content Include="SubmitRequest.aspx" />
     <Content Include="database.mdb" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\demo-styles.css" />
@@ -611,12 +611,12 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SubmitOrder.aspx.cs">
-      <DependentUpon>SubmitOrder.aspx</DependentUpon>
+    <Compile Include="SubmitRequest.aspx.cs">
+      <DependentUpon>SubmitRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SubmitOrder.aspx.designer.cs">
-      <DependentUpon>SubmitOrder.aspx</DependentUpon>
+    <Compile Include="SubmitRequest.aspx.designer.cs">
+      <DependentUpon>SubmitRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

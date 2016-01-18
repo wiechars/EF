@@ -28,6 +28,17 @@ namespace Elinic
 
             selectedComponent.Visible = false;
             notes.Visible = false;
+            if (Request.QueryString["Request"] != null)
+            {
+                if (Request.QueryString["Request"] == "true")
+                {
+                    showMessage("Request successfully submitted!", true);
+                }
+                else
+                {
+                    showMessage("Error submitting request! Please call.", false);
+                }
+            }
             if (Request.QueryString["Type"] != null)
             {
                 Session.Clear();
@@ -79,9 +90,12 @@ namespace Elinic
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         tiles.Controls.Add(li);
                         HtmlGenericControl anchor = new HtmlGenericControl("a");
-                        if (Convert.ToString(obj.rdr["ProjectType"].ToString()) == "12"){  //Hardcode link for walking closets
+                        if (Convert.ToString(obj.rdr["ProjectType"].ToString()) == "12")
+                        {  //Hardcode link for walking closets
                             anchor.Attributes.Add("href", "ClosetShape.htm");
-                        }else{
+                        }
+                        else
+                        {
                             anchor.Attributes.Add("href", "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString()));
                         }
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["ProjectName"].ToString()) + "</p><img src=\"../Images/ProjectTypeThumbs/"
@@ -378,7 +392,7 @@ namespace Elinic
 
                             if (Session["Comp" + counter] != null)
                             {
-                                detailsDiv = "<div class=\"customized-values configured\"  id=\"Comp" 
+                                detailsDiv = "<div class=\"customized-values configured\"  id=\"Comp"
                                         + counter
                                         + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
@@ -436,7 +450,7 @@ namespace Elinic
                                 anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                            + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             }
-                                //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
+                            //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
                             add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
                             remove.InnerHtml = "<Button class=\"pull-right\" style=\"background-color: orange;width: 25%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
@@ -484,18 +498,14 @@ namespace Elinic
         /// <param name="e"></param>
         protected void btnOrder_Click(object sender, EventArgs e)
         {
-            int i = 1;
+            int itemNumber = 1;
             string orderHTML = "";
-            while (i > 0)
+            for(int i=1; i< 50; i++)//Hardcoded limit on how many configured components
             {
                 if (Session["Comp" + i] != null)
                 {
-                    orderHTML = orderHTML + "ITEM #" + i + ": " + Session["Comp" + i].ToString() + " ";
-                    i++;
-                }
-                else
-                {
-                    i = -1;
+                    orderHTML = orderHTML + "ITEM #" + itemNumber + ": " + Session["Comp" + i].ToString() + "\n";
+                    itemNumber++;
                 }
             }
 
@@ -506,9 +516,23 @@ namespace Elinic
             Session["OrderDetails"] = null;
             Session["OrderDetails"] = odr;
 
-            Response.Redirect("~/SubmitOrder.aspx");
+            Response.Redirect("~/SubmitRequest.aspx");
         }
 
+        /// <summary>
+        /// Status message for events.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="success"></param>
+        private void showMessage(string message, bool success)
+        {
+            lblMsg.Visible = true; // here lblMsg is asp label control on your aspx page.
+            if (success)
+                lblMsg.ForeColor = Color.Green;
+            else
+                lblMsg.ForeColor = Color.Red;
+            lblMsg.Text = message;
+        }
 
 
     }

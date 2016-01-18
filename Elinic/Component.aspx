@@ -27,12 +27,13 @@
     </style>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <div id="pageContent" runat="server">
     <hgroup class="title">
         <h1><%: Title %></h1>
         <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
         <hr />
-        <h4>
-            <asp:Label ID="lblDescription" runat="server" Text=""></asp:Label></h4>
+        
+            <asp:Label ID="lblDescription" runat="server" Text="" style="display:block; text-align:justify;" ></asp:Label>
     </hgroup>
     <h4>
         <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
@@ -107,8 +108,10 @@
             <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
             <asp:Button ID="btnConfigure" runat="server" Text="Select" Visible="false" OnClick="btnConfigure_Click" />
             <asp:Button ID="btnGoBack" runat="server" Text="Go Back" Visible="false" OnClick="btnGoBack_Click" />
+           
 
         </div>
+        <div class="col-xs-12" style="text-align:center;"> <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label></div>
         <div>
             <asp:Label ID="numShelves" runat="server" Style="display: none;"></asp:Label>
             <asp:Label ID="numDoors" runat="server" Style="display: none;"></asp:Label>
@@ -182,7 +185,7 @@
             </div>
         </div>
     </div>
-
+    </div>
 
 
     <script>
@@ -195,17 +198,20 @@
         var EDGE_PRICE_PER_SQ_INCH = 0.007
         var GLUE_FASTENERS_SCREWS = 0.002
 
-        $(document).ready(function () {
+        $(window).on('load', function () {            
+            $("#MainContent_pageContent").hide();
+        });
 
+        $(window).load(function () {
             $('#gallery-container').sGallery({
                 fullScreenEnabled: true
             });
+            $("#MainContent_pageContent").show();
             var compID = getUrlVars()["CompId"];
             if (compID != null) {
-                CalculatePrice();
-
-
+               CalculatePrice();
             }
+           
         });
 
         function CalculatePrice() {

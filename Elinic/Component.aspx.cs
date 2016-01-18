@@ -22,6 +22,17 @@ namespace Elinic
         {
             componentImagePath = "";
             lblDescription.Text = "";
+            if (Request.QueryString["Request"] != null)
+            {
+                if (Request.QueryString["Request"] == "true")
+                {
+                    showMessage("Request successfully submitted!", true);
+                }
+                else
+                {
+                    showMessage("Error submitting request! Please call.", false);
+                }
+            }
             if (Request.QueryString["Ideas"] != null)
             {
                 ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
@@ -375,7 +386,7 @@ namespace Elinic
             Session["OrderDetails"] = null;
             Session["OrderDetails"] = odr;
 
-            Response.Redirect("~/SubmitOrder.aspx");
+            Response.Redirect("~/SubmitRequest.aspx");
         }
 
         protected void btnConfigure_Click(object sender, EventArgs e)
@@ -430,6 +441,21 @@ namespace Elinic
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("http://www.elinic.ca/index.htm");
+        }
+
+        /// <summary>
+        /// Status message for events.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="success"></param>
+        private void showMessage(string message, bool success)
+        {
+            lblMsg.Visible = true; // here lblMsg is asp label control on your aspx page.
+            if (success)
+                lblMsg.ForeColor = Color.Green;
+            else
+                lblMsg.ForeColor = Color.Red;
+            lblMsg.Text = message;
         }
 
 
