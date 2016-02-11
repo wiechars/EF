@@ -98,7 +98,7 @@ namespace Elinic
 
             catch (Exception ex)
             {
-                log.LogErrorMessage("Load Component Types : " + ex);
+                //log.LogErrorMessage("Load Component Types : " + ex);
             }
             finally
             {
@@ -216,7 +216,7 @@ namespace Elinic
 
             catch (Exception ex)
             {
-                log.LogErrorMessage("Load Components : " + ex);
+                //log.LogErrorMessage("Load Components : " + ex);
             }
             finally
             {
@@ -263,7 +263,7 @@ namespace Elinic
 
             catch (Exception ex)
             {
-                log.LogErrorMessage("Load Render : " + ex);
+                //log.LogErrorMessage("Load Render : " + ex);
             }
             finally
             {
@@ -359,7 +359,7 @@ namespace Elinic
 
             catch (Exception ex)
             {
-                log.LogErrorMessage("Populate Drop Downs : " + ex);
+               // log.LogErrorMessage("Populate Drop Downs : " + ex);
             }
             finally
             {
@@ -413,7 +413,7 @@ namespace Elinic
             }
             catch (Exception ex)
             {
-                log.LogErrorMessage("Error Getting Configuration Values " + ex);
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
 
             }
         }
@@ -433,14 +433,14 @@ namespace Elinic
             }
             catch (Exception ex)
             {
-                log.LogErrorMessage("Error Getting Configuration Values " + ex);
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
 
             }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
-            Response.Redirect("http://www.elinic.ca/index.htm");
+            Response.Redirect("http://www.elinic.com/index.htm");
         }
 
         /// <summary>

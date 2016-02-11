@@ -11,7 +11,7 @@ namespace Elinic.Classes
 
         public  void LogErrorMessage(String e)
         {
-            using (StreamWriter w = File.AppendText(("c:\\Elinic\\errorlog.txt")))
+            using (StreamWriter w = File.AppendText((AppDomain.CurrentDomain.BaseDirectory + @"\\LogFiles\\errorlog.txt")))
             {
                 w.Write("\r\nLog Entry : ");
                 w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),

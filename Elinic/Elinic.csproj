@@ -504,6 +504,7 @@
     <Content Include="Images\ProjectTypeThumbs\LibraryStudy.png" />
     <Content Include="packages.config" />
     <Content Include="Component.aspx" />
+    <None Include="Properties\PublishProfiles\elinic.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Project.aspx" />
     <Content Include="Scripts\contact.js" />
@@ -653,6 +654,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="LogFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

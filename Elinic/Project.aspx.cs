@@ -488,7 +488,7 @@ namespace Elinic
         /// <param name="e"></param>
         protected void btnHome_Click(object sender, EventArgs e)
         {
-            Response.Redirect("http://www.elinic.ca/index.htm");
+            Response.Redirect("http://www.elinic.com/index.htm");
         }
 
         /// <summary>
