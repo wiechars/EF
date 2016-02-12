@@ -214,11 +214,11 @@
 
         $(window).on('load', function () {
             //Hide Containers until everything is loaded.
-            $('#main').hide();
-            $('#main2').hide();
-            $('#main3').hide();
-            $('#main4').hide();
-            $('#main5').hide();
+            //$('#main').hide();
+            //$('#main2').hide();
+            //$('#main3').hide();
+            //$('#main4').hide();
+            //$('#main5').hide();
         });
 
         $(window).load(function () {
@@ -321,80 +321,58 @@
             handler5 = $('#MainContent_tiles_small5 li'); // Get a reference to your grid items.
 
             /**************************************************/
-            /******   Style 1 ********************************/
+            /******   Styles  ********************************/
             /*************************************************/
-            $('#MainContent_tiles, #MainContent_tiles_small').imagesLoaded(function () {
-                $('#main').show();
+            $('#MainContent_tiles, #MainContent_tiles_small', '#MainContent_tiles_small2').imagesLoaded(function () {
+                //$('#main').show();
+                //$('#main2').show();
+                //$('#main3').show();
+                //$('#main4').show();
+                //$('#main5').show();
                 // Prepare layout options.
                 var options = {
                     autoResize: true, // This will auto-update the layout when the browser window is resized.
                     container: $('#main'), // Optional, used for some extra CSS styling
+                    align: 'left',
+                    offset: 5//, // Optional, the distance between grid items
+                };
+                var options2 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main2'), // Optional, used for some extra CSS styling
+                    align: 'left',
+                    offset: 5//, // Optional, the distance between grid items
+
+                };
+                var options3 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main3'), // Optional, used for some extra CSS styling
+                    align: 'left',
+                    offset: 5//, // Optional, the distance between grid items
+
+
+                };
+                var options4 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main4'), // Optional, used for some extra CSS styling
+                    align: 'left',
+                    offset: 5//, // Optional, the distance between grid items
+
+                };
+                var options5 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main5'), // Optional, used for some extra CSS styling
+                    align: 'left',
                     offset: 5//, // Optional, the distance between grid items
                 };
                 // Call the layout function.
                 handler.wookmark(options);
-
-
-            });
-
-            /**************************************************/
-            /******   Style 2 ********************************/
-            /*************************************************/
-            $('#MainContent_tiles_small2').imagesLoaded(function () {
-                $('#main2').show();
-                var options2 = {
-                    autoResize: true, // This will auto-update the layout when the browser window is resized.
-                    container: $('#main2'), // Optional, used for some extra CSS styling
-                    offset: 5//, // Optional, the distance between grid items
-
-                };
                 handler2.wookmark(options2);
-            });
-
-            /**************************************************/
-            /******   Style 3 ********************************/
-            /*************************************************/
-            $('#MainContent_tiles_small3').imagesLoaded(function () {
-                $('#main3').show();
-                var options3 = {
-                    autoResize: true, // This will auto-update the layout when the browser window is resized.
-                    container: $('#main3'), // Optional, used for some extra CSS styling
-                    offset: 5//, // Optional, the distance between grid items
-
-
-                };
-                // Call the layout function.
                 handler3.wookmark(options3);
-            });
-
-            /**************************************************/
-            /******   Style 4 ********************************/
-            /*************************************************/
-            $('#MainContent_tiles_small4').imagesLoaded(function () {
-                $('#main4').show();
-                var options4 = {
-                    autoResize: true, // This will auto-update the layout when the browser window is resized.
-                    container: $('#main4'), // Optional, used for some extra CSS styling
-                    offset: 5//, // Optional, the distance between grid items
-
-                };
-                // Call the layout function.
                 handler4.wookmark(options4);
-            });
-
-            /**************************************************/
-            /******   Style 5 ********************************/
-            /*************************************************/
-            $('#MainContent_tiles_small5').imagesLoaded(function () {
-                $('#main5').show();
-                var options5 = {
-                    autoResize: true, // This will auto-update the layout when the browser window is resized.
-                    container: $('#main5'), // Optional, used for some extra CSS styling
-                    offset: 5//, // Optional, the distance between grid items
-                };
-                // Call the layout function.
                 handler5.wookmark(options5);
             });
+
+           
 
         })(jQuery);
 

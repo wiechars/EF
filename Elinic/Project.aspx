@@ -130,8 +130,8 @@
 
         $(window).on('load', function () {
             //Hide Containers until everything is loaded.
-            $('#main').hide();
-            $('#main2').hide();
+            //$('#main').hide();
+            //$('#main2').hide();
         });
 
         $(window).load(function () {
@@ -206,6 +206,7 @@
             var options = {
                 autoResize: false, // This will auto-update the layout when the browser window is resized.
                 container: $('#main, #main2'), // Optional, used for some extra CSS styling
+                align: 'left',
                 offset: 5//, // Optional, the distance between grid items
                 // outerOffset: 10, // Optional, the distance to the containers border
                 //  itemWidth: 400 // Optional, the width of a grid item
@@ -213,8 +214,8 @@
 
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
                 //Show Hidden Containers
-                $('#main').show();
-                $('#main2').show();
+                //$('#main').show();
+                //$('#main2').show();
                 // Call the layout function.
                 handler.wookmark(options);
                 handler2.wookmark(options);
