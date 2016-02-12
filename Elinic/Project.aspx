@@ -129,7 +129,9 @@
     <script>
 
         $(window).on('load', function () {
-            $("#MainContent_pageContent").hide();
+            //Hide Containers until everything is loaded.
+            $('#main').hide();
+            $('#main2').hide();
         });
 
         $(window).load(function () {
@@ -210,6 +212,9 @@
             };
 
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
+                //Show Hidden Containers
+                $('#main').show();
+                $('#main2').show();
                 // Call the layout function.
                 handler.wookmark(options);
                 handler2.wookmark(options);
