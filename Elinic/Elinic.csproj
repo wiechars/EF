@@ -134,7 +134,7 @@
     <Content Include="Content\contact.css" />
     <Content Include="Content\demo.css" />
     <Content Include="SubmitRequest.aspx" />
-    <Content Include="database.mdb" />
+    <None Include="database.mdb" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\demo-styles.css" />
     <Content Include="Content\image-picker.css" />
