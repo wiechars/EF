@@ -119,6 +119,7 @@
             <div>
                 <asp:Label ID="numShelves" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numDoors" runat="server" Style="display: none;"></asp:Label>
+                 <asp:Label ID="formula" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numDrawers" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numHandles" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="faceDoorCoverage" runat="server" Style="display: none;"></asp:Label>
@@ -204,6 +205,7 @@
 
     <script>
         var WASTE_FACTOR = 1.2;
+        var DESK_MOLDING_FOOT_PRICE = 1.5;
         var PANEL_PRICE_PER_SQ_INCH = 80 / 48 / 96;
         var ONE_DRAWER_PRICE = 40;
         var ONE_HANDLE_PRICE = 4;
@@ -234,30 +236,49 @@
         });
 
         function CalculatePrice() {
-            var w = $("#MainContent_compWidth option:selected").text().replace('"', '');
+
+            //** Get Formula Values **//
+            var w = parseInt($("#MainContent_compWidth option:selected").text().replace('"', ''));
             $('#MainContent_compWidthVal').val(w);
-            var h = $("#MainContent_compHeight option:selected").text().replace('"', '');
+            var h = parseInt($("#MainContent_compHeight option:selected").text().replace('"', ''));
             $('#MainContent_compHeightVal').val(h);
-            var d = $("#MainContent_compDepth option:selected").text().replace('"', '');
+            var d = parseInt($("#MainContent_compDepth option:selected").text().replace('"', ''));
             $('#MainContent_compDepthVal').val(d);
             $('#MainContent_compMaterialVal').val($("#MainContent_compMaterial option:selected").text());
-            var numShelves = $("#MainContent_numShelves").text();
-            var numDoors = $("#MainContent_numDoors").text();
-            var numDrawers = $("#MainContent_numDrawers").text();
-            var numHandles = $("#MainContent_numHandles").text();
-            var faceDoorCoverage = $("#MainContent_faceDoorCoverage").text();
+            var numShelves = isNaN(parseInt($("#MainContent_numShelves").text())) ? 0 : parseInt($("#MainContent_numShelves").text());
+            var numDoors = isNaN(parseInt($("#MainContent_numDoors").text())) ? 0 : parseInt($("#MainContent_numDoors").text());
+            var formula = isNaN(parseInt($("#MainContent_formula").text())) ? 0 : parseInt($("#MainContent_formula").text());
+            var numDrawers = isNaN(parseInt($("#MainContent_numDrawers").text())) ? 0 : parseInt($("#MainContent_numDrawers").text());
+            var numHandles = isNaN(parseInt($("#MainContent_numHandles").text())) ? 0 : parseInt($("#MainContent_numHandles").text());
+            var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text()))  ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
 
-            var area = w * d * (2 + parseInt(numShelves)) + 2 * h * d + w * h * (1 + parseFloat(faceDoorCoverage));
-            var materialUsed = area * WASTE_FACTOR;
-            var panelPrice = materialUsed * PANEL_PRICE_PER_SQ_INCH;
+            //** Common Formula **//
             var drawerPrice = ONE_DRAWER_PRICE * numDrawers;
             var handlePrice = ONE_HANDLE_PRICE * numHandles;
-            var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
             var hingePrice = ONE_HINGE_PRICE * numDoors;
-            var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
-            var otherPrice = GLUE_FASTENERS_SCREWS * area;
-            var price = (panelPrice + drawerPrice + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
 
+
+            //** Initialize area and price **//
+            var area = 0;
+            var price = 0;
+
+
+            if (formula == '1') {  //Components table has "Formula" column with a value of 1
+                var desktopMolding = DESK_MOLDING_FOOT_PRICE * (w+d+d);
+                area = (w * d) + (3 * d * h) + (20 * w);
+                var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
+                var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
+                var otherPrice = GLUE_FASTENERS_SCREWS * area;
+                price = ((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + desktopMolding + (drawerPrice * 1.1) + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
+                
+            } else {
+                area = w * d * (2 + parseInt(numShelves)) + 2 * h * d + w * h * (1 + parseFloat(faceDoorCoverage));
+                var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
+                var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
+                var otherPrice = GLUE_FASTENERS_SCREWS * area;
+                price = ((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + drawerPrice + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
+
+            }
 
             $('#MainContent_price').text("$" + price.toFixed(2));
             $('#MainContent_compPrice').val("$" + price.toFixed(2));

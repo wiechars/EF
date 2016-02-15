@@ -310,6 +310,7 @@ namespace Elinic
                         depthMin = !string.IsNullOrEmpty((Convert.ToString(db.rdr["Dmin"]))) ? Convert.ToInt32(Convert.ToString(db.rdr["Dmin"])) : 0;
                         depthMax = !string.IsNullOrEmpty((Convert.ToString(db.rdr["Dmax"]))) ? Convert.ToInt32(Convert.ToString(db.rdr["Dmax"])) : 0;
                         numDoors.Text = (Convert.ToString(db.rdr["Ndoors"]));
+                        formula.Text = (Convert.ToString(db.rdr["Formula"]));
                         numShelves.Text = (Convert.ToString(db.rdr["Nshelves"]));
                         numDrawers.Text = (Convert.ToString(db.rdr["Ndrawers"]));
                         numHandles.Text = (Convert.ToString(db.rdr["Nhandles"]));

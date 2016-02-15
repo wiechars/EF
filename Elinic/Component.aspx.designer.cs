@@ -337,6 +337,15 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.Label numDoors;
         
         /// <summary>
+        /// formula control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label formula;
+        
+        /// <summary>
         /// numDrawers control.
         /// </summary>
         /// <remarks>
