@@ -345,11 +345,7 @@
             /******   Styles  ********************************/
             /*************************************************/
             $('#MainContent_tiles, #MainContent_tiles_small', '#MainContent_tiles_small2').imagesLoaded(function () {
-                //$('#main').show();
-                //$('#main2').show();
-                //$('#main3').show();
-                //$('#main4').show();
-                //$('#main5').show();
+
                 // Prepare layout options.
                 var options = {
                     autoResize: true, // This will auto-update the layout when the browser window is resized.
@@ -391,6 +387,13 @@
                 handler3.wookmark(options3);
                 handler4.wookmark(options4);
                 handler5.wookmark(options5);
+
+                //Show panel
+               // $('#main').show();
+               // $('#main2').show();
+               // $('#main3').show();
+               // $('#main4').show();
+              //  $('#main5').show();
             });
 
            

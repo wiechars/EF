@@ -130,8 +130,8 @@
 
         $(window).on('load', function () {
             //Hide Containers until everything is loaded.
-            //$('#main').hide();
-            //$('#main2').hide();
+            $('#main').hide();
+            $('#main2').hide();
         });
 
         $(window).load(function () {
@@ -198,7 +198,9 @@
         });
 
         (function ($) {
-
+            //Show Hidden Containers
+            $('#main').show(500);
+            $('#main2').show(500);
             var loadedImages = 0, // Counter for loaded images
                  handler = $('#MainContent_tiles li, #MainContent_tiles_small li'); // Get a reference to your grid items.
             handler2 = $('#MainContent_tiles_ideas li'); // Get a reference to your grid items.
@@ -213,31 +215,13 @@
             };
 
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
-                //Show Hidden Containers
-                //$('#main').show();
-                //$('#main2').show();
+ 
                 // Call the layout function.
                 handler.wookmark(options);
                 handler2.wookmark(options);
 
-                // Capture clicks on grid items.
-                handler.click(function () {
 
-                    // Randomize the height of the clicked item.
-                    //var newHeight = $('img', this).height() + Math.round(Math.random() * 300 + 30);
-                    //$(this).css('height', newHeight + 'px');
-
-                    // Update the layout.
-                    handler.wookmark();
-                });
-            }).progress(function (instance, image) {
-                // Update progress bar after each image load
-                loadedImages++;
-                if (loadedImages == handler.length)
-                    $('.progress-bar').hide();
-                else
-                    $('.progress-bar').width((loadedImages / handler.length * 100) + '%');
-            });
+             })
         })(jQuery);
     </script>
 </asp:Content>
