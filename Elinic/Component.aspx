@@ -37,7 +37,7 @@
         </hgroup>
         <h4>
             <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
-        <div id="main">
+        <div id="main" style="visibility:hidden;">
             <ul runat="server" id="tiles" class="tiles">
             </ul>
             <ul runat="server" id="tiles_small" class="tiles_small">
@@ -46,26 +46,26 @@
         </div>
         <h4>
             <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
-        <div id="main2">
+        <div id="main2" style="visibility:hidden;">
             <ul runat="server" id="tiles_small2" class="tiles_small">
             </ul>
         </div>
         <h4>
             <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
-        <div id="main3">
+        <div id="main3" style="visibility:hidden;">
             <ul runat="server" id="tiles_small3" class="tiles_small">
             </ul>
 
         </div>
         <h4>
             <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
-        <div id="main4">
+        <div id="main4" style="visibility:hidden;">
             <ul runat="server" id="tiles_small4" class="tiles_small">
             </ul>
         </div>
         <h4>
             <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
-        <div id="main5">
+        <div id="main5" style="visibility:hidden;">
             <ul runat="server" id="tiles_small5" class="tiles_small">
             </ul>
         </div>
@@ -389,11 +389,12 @@
                 handler5.wookmark(options5);
 
                 //Show panel
-               // $('#main').show();
-               // $('#main2').show();
-               // $('#main3').show();
-               // $('#main4').show();
-              //  $('#main5').show();
+                //Show Hidden Containers
+                $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+                $('#main2').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+                $('#main3').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+                $('#main4').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+                $('#main5').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
             });
 
            

@@ -37,7 +37,7 @@
             <h2>Standard Layouts</h2>
         </div>
         <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
-            <div id="main" style="clear: both;">
+            <div id="main" style="clear: both;visibility:hidden;">
                 <ul runat="server" id="tiles" class="tiles">
                 </ul>
                 <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
@@ -47,7 +47,7 @@
 
         <div id="ideasDiv" runat="server">
             <h2>Ideas</h2>
-            <div id="main2">
+            <div id="main2" style="visibility:hidden;">
                 <ul runat="server" id="tiles_ideas">
                 </ul>
             </div>
@@ -129,9 +129,6 @@
     <script>
 
         $(window).on('load', function () {
-            //Hide Containers until everything is loaded.
-            $('#main').hide();
-            $('#main2').hide();
         });
 
         $(window).load(function () {
@@ -198,9 +195,7 @@
         });
 
         (function ($) {
-            //Show Hidden Containers
-            $('#main').show(500);
-            $('#main2').show(500);
+     
             var loadedImages = 0, // Counter for loaded images
                  handler = $('#MainContent_tiles li, #MainContent_tiles_small li'); // Get a reference to your grid items.
             handler2 = $('#MainContent_tiles_ideas li'); // Get a reference to your grid items.
@@ -215,13 +210,18 @@
             };
 
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
- 
+
                 // Call the layout function.
                 handler.wookmark(options);
                 handler2.wookmark(options);
 
+                //Show Hidden Containers
+                $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+                $('#main2').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+            });
 
-             })
+
+
         })(jQuery);
     </script>
 </asp:Content>
