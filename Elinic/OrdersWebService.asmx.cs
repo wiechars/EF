@@ -21,77 +21,92 @@ namespace Elinic
     public class OrdersWebService : System.Web.Services.WebService
     {
 
+        Elinic.Classes.Logger log = new Elinic.Classes.Logger();
+
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public string GetTableData()
         {
-            var echo = int.Parse(HttpContext.Current.Request.Params["sEcho"]);
-            var displayLength = int.Parse(HttpContext.Current.Request.Params["iDisplayLength"]);
-            var displayStart = int.Parse(HttpContext.Current.Request.Params["iDisplayStart"]);
-            var sortOrder = HttpContext.Current.Request.Params["sSortDir_0"].ToString(CultureInfo.CurrentCulture);
-            string rawSearch = HttpContext.Current.Request.Params["sSearch"];
-            //var roleId = HttpContext.Current.Request.Params["roleId"].ToString(CultureInfo.CurrentCulture);
-
-
             Database db = new Database();
             List<OrderDetails> results = new List<OrderDetails>(); db.Connect();
+            var echo = 0;
+            var displayLength = 0;
+            var displayStart = 0;
+            var sortOrder = "";
+            string rawSearch = "";
 
             var sb = new StringBuilder();
-
-            var wrappedSearch = "'%" + rawSearch + "%'";
-
-            sb.Append("SELECT * FROM Orders");
-            var whereClause = string.Empty;
-
-            // Raw Search
-            if (rawSearch.Length > 0)
+            try
             {
-                sb.Append(" WHERE ID LIKE ");
-                sb.Append(wrappedSearch);
-                sb.Append(" OR OrderDetails LIKE ");
-                sb.Append(wrappedSearch);
-                sb.Append(" OR TotalPrice LIKE ");
-                sb.Append(wrappedSearch);
-                sb.Append(" OR Notes LIKE ");
-                sb.Append(wrappedSearch);
-                sb.Append(" OR OrderDate LIKE ");
-                sb.Append(wrappedSearch);
-                sb.Append(" OR Email LIKE ");
-                sb.Append(wrappedSearch);
+                echo = int.Parse(HttpContext.Current.Request.Params["sEcho"]);
+                displayLength = int.Parse(HttpContext.Current.Request.Params["iDisplayLength"]);
+                displayStart = int.Parse(HttpContext.Current.Request.Params["iDisplayStart"]);
+                sortOrder = HttpContext.Current.Request.Params["sSortDir_0"].ToString(CultureInfo.CurrentCulture);
+                rawSearch = HttpContext.Current.Request.Params["sSearch"];
+                //var roleId = HttpContext.Current.Request.Params["roleId"].ToString(CultureInfo.CurrentCulture);
 
+
+
+
+                var wrappedSearch = "'%" + rawSearch + "%'";
+
+                sb.Append("SELECT * FROM Orders");
+                var whereClause = string.Empty;
+
+                // Raw Search
+                if (rawSearch.Length > 0)
+                {
+                    sb.Append(" WHERE ID LIKE ");
+                    sb.Append(wrappedSearch);
+                    sb.Append(" OR OrderDetails LIKE ");
+                    sb.Append(wrappedSearch);
+                    sb.Append(" OR TotalPrice LIKE ");
+                    sb.Append(wrappedSearch);
+                    sb.Append(" OR Notes LIKE ");
+                    sb.Append(wrappedSearch);
+                    sb.Append(" OR OrderDate LIKE ");
+                    sb.Append(wrappedSearch);
+                    sb.Append(" OR Email LIKE ");
+                    sb.Append(wrappedSearch);
+
+                }
+
+                sb.Append(whereClause);
+
+                // Ordering
+                StringBuilder sbOrder = new StringBuilder();
+                sbOrder.Append(HttpContext.Current.Request.Params["iSortCol_0"].ToString());
+
+                sbOrder.Append(" ");
+
+                sbOrder.Append(HttpContext.Current.Request.Params["sSortDir_0"].ToString());
+
+                string orderByClause = sbOrder.ToString();
+
+                if (!String.IsNullOrEmpty(sbOrder.ToString()))
+                {
+
+                    orderByClause = orderByClause.Replace("0", ", ID ");
+                    orderByClause = orderByClause.Replace("1", ", Email ");
+                    orderByClause = orderByClause.Replace("2", ", OrderDate ");
+                    orderByClause = orderByClause.Replace("3", ", TotalPrice ");
+                    orderByClause = orderByClause.Replace("4", ", Notes ");
+                    orderByClause = orderByClause.Replace("5", ", OrderDetails ");
+                    orderByClause = orderByClause.Remove(0, 1);
+                }
+                else
+                {
+                    orderByClause = "ID ASC";
+                }
+                orderByClause = " ORDER BY " + orderByClause + ";";
+                sb.Append(orderByClause);
             }
-
-            sb.Append(whereClause);
-
-            // Ordering
-            StringBuilder sbOrder = new StringBuilder();
-            sbOrder.Append(HttpContext.Current.Request.Params["iSortCol_0"].ToString());
-
-            sbOrder.Append(" ");
-
-            sbOrder.Append(HttpContext.Current.Request.Params["sSortDir_0"].ToString());
-
-            string orderByClause = sbOrder.ToString();
-
-            if (!String.IsNullOrEmpty(sbOrder.ToString()))
+            catch (Exception ex)
             {
-
-                orderByClause = orderByClause.Replace("0", ", ID ");
-                orderByClause = orderByClause.Replace("1", ", Email ");
-                orderByClause = orderByClause.Replace("2", ", OrderDate ");
-                orderByClause = orderByClause.Replace("3", ", TotalPrice ");
-                orderByClause = orderByClause.Replace("4", ", Notes ");
-                orderByClause = orderByClause.Replace("5", ", OrderDetails ");
-                orderByClause = orderByClause.Remove(0, 1);
+                log.LogErrorMessage("Error Getting Orders : " + ex);
             }
-            else
-            {
-                orderByClause = "ID ASC";
-            }
-            orderByClause = " ORDER BY " + orderByClause + ";";
-            sb.Append(orderByClause);
-
             var records = GetRecordsFromDatabaseWithFilter(sb.ToString()).ToList();
+
 
             if (!records.Any())
             {
@@ -135,6 +150,7 @@ namespace Elinic
             }
             sb.Append("]}");
             return sb.ToString();
+
         }
 
 
