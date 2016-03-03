@@ -18,11 +18,19 @@
     <link rel="stylesheet" href="../Content/bootstrap-responsive.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 
+    <link href="Content/DataTables/css/demo_table_jui.css" rel="stylesheet" />
+    <link href="Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+
+
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <!-- Latest compiled JavaScript -->
 <%--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--%>
+
+   
+ 
+
 
 </head>
 <body>
@@ -92,6 +100,8 @@
             <script src="../Scripts/s-gallery-master/plugins.js"></script>
             <script src="../Scripts/s-gallery-master/screenfull.min.js"></script>
             <script src="../Scripts/s-gallery-master/scripts.js"></script>
+            
+        <script src="Scripts/DataTables/jquery.dataTables.js"></script>
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />

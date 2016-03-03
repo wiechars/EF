@@ -131,8 +131,17 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Classes\OrderSummary.asmx" />
     <Content Include="Content\contact.css" />
+    <Content Include="Content\DataTables\css\demo_table_jui.css" />
     <Content Include="Content\demo.css" />
+    <Content Include="Orders2.aspx" />
+    <Content Include="Images\details_open.png" />
+    <Content Include="Orders.aspx" />
+    <Content Include="OrdersWebService.asmx" />
+    <Content Include="Scripts\jquery-1.8.1.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.json-2.3.min.js" />
     <Content Include="SubmitRequest.aspx" />
     <None Include="database.mdb" />
     <Content Include="Contact.aspx" />
@@ -605,12 +614,34 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Classes\OrderDetails.cs" />
+    <Compile Include="Classes\OrderSummary.asmx.cs">
+      <DependentUpon>OrderSummary.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders2.aspx.cs">
+      <DependentUpon>Orders2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Orders2.aspx.designer.cs">
+      <DependentUpon>Orders2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersWebService.asmx.cs">
+      <DependentUpon>OrdersWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SubmitRequest.aspx.cs">
       <DependentUpon>SubmitRequest.aspx</DependentUpon>
