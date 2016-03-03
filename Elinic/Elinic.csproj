@@ -135,7 +135,6 @@
     <Content Include="Content\contact.css" />
     <Content Include="Content\DataTables\css\demo_table_jui.css" />
     <Content Include="Content\demo.css" />
-    <Content Include="Orders2.aspx" />
     <Content Include="Images\details_open.png" />
     <Content Include="Orders.aspx" />
     <Content Include="OrdersWebService.asmx" />
@@ -624,13 +623,6 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Orders2.aspx.cs">
-      <DependentUpon>Orders2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Orders2.aspx.designer.cs">
-      <DependentUpon>Orders2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
