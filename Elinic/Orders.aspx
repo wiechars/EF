@@ -97,7 +97,7 @@
                     "sZeroRecords": "No records to display",
                     "sSearch": "Search: "
                 },
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "aLengthMenu": [[10, 25, 50], [10, 25, 50]],
                 "iDisplayLength": 10,
                 "bSortClasses": false,
                 "bStateSave": false,

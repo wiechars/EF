@@ -113,10 +113,7 @@ namespace Elinic
                 return string.Empty;
             }
 
-            //var orderedResults = sortOrder == "asc"
-            //                     ? records.OrderBy(o => o.Notes)
-            //                     : records.OrderByDescending(o => o.Notes);
-            var itemsToSkip = displayStart == 0
+           var itemsToSkip = displayStart == 0
                               ? 0
                               : displayStart + 1;
             var pagedResults = records.Skip(itemsToSkip).Take(displayLength).ToList();
