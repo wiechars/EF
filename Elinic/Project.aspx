@@ -182,11 +182,19 @@
             }
         });
 
+        //Remove item and clear configuration
         $("[id ^= 'Remove']").click(function () {
             id = this.id.replace(/[^\d.]/g, '');
-
-            $('#liAddComponent' + id).hide();
-            $('#Comp' + id).css('visibility', 'hidden');
+            $.ajax({
+                type: "POST",
+                url: 'Project.aspx/RemoveSession',
+                data: "{ id :" + id +"}",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#liAddComponent' + id).hide();
+                    $('#Comp' + id).css('visibility', 'hidden');
+                }
+            }); 
 
         });
 

@@ -411,28 +411,28 @@ namespace Elinic
                                 //Logic to hide additional place holders
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
-                                    detailsDiv = "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                        + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
-                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    //detailsDiv = "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
+                                    //    + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
+                                    //   // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
-                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                        + counter + "\"><b>Component Type:</b> "
-                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
+                                    //    + counter + "\"><b>Component Type:</b> "
+                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                 }
                                 else
                                 {
-                                    detailsDiv = "<div class=\"customized-values\" id=\"Comp"
-                                        + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
-                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    //detailsDiv = "<div class=\"customized-values\" id=\"Comp"
+                                    //    + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
+                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
-                                    orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  style=\"font-size:16px!important;\" id=\"Comp"
-                                        + counter + "\"><b>Component Type:</b> "
-                                        + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  style=\"font-size:16px!important;\" id=\"Comp"
+                                    //    + counter + "\"><b>Component Type:</b> "
+                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                 }
-                                detailsDiv = detailsDiv + "&nbsp; <b>ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                                orderValues.InnerHtml = orderValues.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
+                                //detailsDiv = detailsDiv + "&nbsp; <b>ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
+                                //orderValues.InnerHtml = orderValues.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
                                 //values.InnerHtml.Style.Add("display", "none");
                             }
                             HtmlGenericControl add = new HtmlGenericControl("div");
@@ -452,11 +452,20 @@ namespace Elinic
                             }
                             //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
-                            add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 100%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
-                            remove.InnerHtml = "<Button class=\"pull-right\" style=\"background-color: orange;width: 25%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            if (counter != 1 + (5 * (i - 1)))                           {
+                                
+
+                                add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
+                                                "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            }
+                            else
+                            {
+                                add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                            }
+                            remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
-                            //li.Controls.Add(remove);
+                           // li.Controls.Add(remove);
                             li.Controls.Add(anchor);
                             if (counter % 5 != 0)  //Causing extra anchor tags - don't know why.
                             {
@@ -533,6 +542,15 @@ namespace Elinic
                 lblMsg.ForeColor = Color.Red;
             lblMsg.Text = message;
         }
+
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static void RemoveSession(String id)
+        {
+
+            HttpContext.Current.Session.Remove("Comp" + id);
+        }
+
+       
 
 
     }
