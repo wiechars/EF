@@ -81,7 +81,7 @@ namespace Elinic
             try
             {
                 obj.Connect();
-                obj.Query("SELECT * FROM Projects ORDER BY seq");
+                obj.Query("SELECT * FROM Projects WHERE Active = 1 ORDER BY seq");
 
                 if (obj.rdr.HasRows == true)
                 {
