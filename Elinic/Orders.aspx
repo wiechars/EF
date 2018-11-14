@@ -97,8 +97,8 @@
                     "sZeroRecords": "No records to display",
                     "sSearch": "Search: "
                 },
-                "aLengthMenu": [[10, 25, 50], [10, 25, 50]],
-                "iDisplayLength": 10,
+                "aLengthMenu": [[25, 50, 100], [25, 50, 100]],
+                "iDisplayLength": 25,
                 "bSortClasses": false,
                 "bStateSave": false,
                 "bPaginate": true,
@@ -134,7 +134,8 @@
                         "url": sSource,
                         "data": aoData,
                         "success":
-                                    function (msg) {
+                            function (msg) {
+                                        
                                         var json = jQuery.parseJSON(msg.d);
                                         fnCallback(json);
                                         $("#sampleTable").show();
