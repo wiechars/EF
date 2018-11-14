@@ -61,7 +61,7 @@
 
         <br />
         <div align="center" class="">
-            <asp:Button ID="btnOrder" runat="server" OnClick="btnSend_Click" Text="Submit" />
+            <asp:Button ID="btnOrder" runat="server" OnClick="btnSend_Click" Text="Submit Set For Review" />
             <asp:Button ID="btnClose" runat="server" OnClick="btnGoBack_Click" Text="Go Back" />
 
         </div>
