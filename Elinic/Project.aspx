@@ -29,7 +29,7 @@
     <div id="pageContent" runat="server">
         <hgroup class="title">
             <h1><%: Title %></h1>
-            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
+            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width:110px;" />
             <hr />
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </hgroup>
@@ -76,8 +76,8 @@
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
                 </div>
             </div>
-            <div class="col-xs-12 input-form text-center">
-                <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
+            <div class="col-xs-offset-3 col-xs-6 input-form text-center">
+                <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
 
             </div>
             <div class="col-xs-12" style="text-align: center;">
