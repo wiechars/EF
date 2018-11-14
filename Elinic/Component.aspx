@@ -30,44 +30,46 @@
     <div id="pageContent" runat="server">
         <hgroup class="title">
             <h1><%: Title %></h1>
-            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
+            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
             <hr />
 
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </hgroup>
-        <h4>
-            <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
-        <div id="main" style="visibility:hidden;">
-            <ul runat="server" id="tiles" class="tiles">
-            </ul>
-            <ul runat="server" id="tiles_small" class="tiles_small">
-            </ul>
+        <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-12">
+            <h4>
+                <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
+            <div id="main" style="visibility: hidden;">
+                <ul runat="server" id="tiles" class="tiles">
+                </ul>
+                <ul runat="server" id="tiles_small" class="tiles_small">
+                </ul>
 
-        </div>
-        <h4>
-            <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
-        <div id="main2" style="visibility:hidden;">
-            <ul runat="server" id="tiles_small2" class="tiles_small">
-            </ul>
-        </div>
-        <h4>
-            <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
-        <div id="main3" style="visibility:hidden;">
-            <ul runat="server" id="tiles_small3" class="tiles_small">
-            </ul>
+            </div>
+            <h4>
+                <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
+            <div id="main2" style="visibility: hidden;">
+                <ul runat="server" id="tiles_small2" class="tiles_small">
+                </ul>
+            </div>
+            <h4>
+                <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
+            <div id="main3" style="visibility: hidden;">
+                <ul runat="server" id="tiles_small3" class="tiles_small">
+                </ul>
 
-        </div>
-        <h4>
-            <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
-        <div id="main4" style="visibility:hidden;">
-            <ul runat="server" id="tiles_small4" class="tiles_small">
-            </ul>
-        </div>
-        <h4>
-            <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
-        <div id="main5" style="visibility:hidden;">
-            <ul runat="server" id="tiles_small5" class="tiles_small">
-            </ul>
+            </div>
+            <h4>
+                <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
+            <div id="main4" style="visibility: hidden;">
+                <ul runat="server" id="tiles_small4" class="tiles_small">
+                </ul>
+            </div>
+            <h4>
+                <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
+            <div id="main5" style="visibility: hidden;">
+                <ul runat="server" id="tiles_small5" class="tiles_small">
+                </ul>
+            </div>
         </div>
         <div id="selectedComponent" class="col-xs-12 col-sm-3 col-sm-offset-1 col-xs-offset-2">
             <ul runat="server" id="comp">
@@ -109,7 +111,7 @@
             <div class="col-xs-12 input-form text-center">
                 <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
                 <asp:Button ID="btnConfigure" runat="server" Text="Select" Visible="false" OnClick="btnConfigure_Click" />
-                <asp:Button ID="btnGoBack" runat="server" Text="Go Back" Visible="false" OnClick="btnGoBack_Click" />
+                <asp:Button ID="btnGoBack" runat="server" Text="Back To Set Layout" Visible="false" OnClick="btnGoBack_Click" />
 
 
             </div>
@@ -119,7 +121,7 @@
             <div>
                 <asp:Label ID="numShelves" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numDoors" runat="server" Style="display: none;"></asp:Label>
-                 <asp:Label ID="formula" runat="server" Style="display: none;"></asp:Label>
+                <asp:Label ID="formula" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numDrawers" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="numHandles" runat="server" Style="display: none;"></asp:Label>
                 <asp:Label ID="faceDoorCoverage" runat="server" Style="display: none;"></asp:Label>
@@ -250,7 +252,7 @@
             var formula = isNaN(parseInt($("#MainContent_formula").text())) ? 0 : parseInt($("#MainContent_formula").text());
             var numDrawers = isNaN(parseInt($("#MainContent_numDrawers").text())) ? 0 : parseInt($("#MainContent_numDrawers").text());
             var numHandles = isNaN(parseInt($("#MainContent_numHandles").text())) ? 0 : parseInt($("#MainContent_numHandles").text());
-            var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text()))  ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
+            var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text())) ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
 
             //** Common Formula **//
             var drawerPrice = ONE_DRAWER_PRICE * numDrawers;
@@ -264,13 +266,13 @@
 
 
             if (formula == '1') {  //Components table has "Formula" column with a value of 1
-                var desktopMolding = DESK_MOLDING_FOOT_PRICE * (w+d+d);
+                var desktopMolding = DESK_MOLDING_FOOT_PRICE * (w + d + d);
                 area = (w * d) + (3 * d * h) + (20 * w);
                 var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
                 var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
                 var otherPrice = GLUE_FASTENERS_SCREWS * area;
                 price = ((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + desktopMolding + (drawerPrice * 1.1) + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
-                
+
             } else {
                 area = w * d * (2 + parseInt(numShelves)) + 2 * h * d + w * h * (1 + parseFloat(faceDoorCoverage));
                 var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
@@ -293,12 +295,12 @@
             }
 
             $('#MainContent_orderValues').html("<b>Component ID :</b>" + compID + "&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
-                 " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
-                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
+                " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
+                " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
 
             $('#MainContent_hdnOrderValues').Text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidthVal').val() +
-                 " <b>D:</b>" + $('#MainContent_compDepthVal').val() + " <b>H:</b>" + $('#MainContent_compHeightVal').val() +
-                 " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
+                " <b>D:</b>" + $('#MainContent_compDepthVal').val() + " <b>H:</b>" + $('#MainContent_compHeightVal').val() +
+                " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
 
         }
 
@@ -397,7 +399,7 @@
                 $('#main5').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
             });
 
-           
+
 
         })(jQuery);
 
