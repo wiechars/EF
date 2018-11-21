@@ -166,23 +166,27 @@
             id = this.id.replace(/[^\d.]/g, '');
             var li = $('#li' + this.id);
             nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
+
+            
+
+           // alert('nextId ' + nextId);
             var found = false;
 
             //Don't allow creating another <li> element
             //unless the current one is configured
-            if ($('#Comp' + id).hasClass('configured')) {
+            //if ($('#Comp' + id).hasClass('configured')) {
                 while (!found) {
                     if (nextId % 5 === 1) {
                         alert("Cannot add more of this component!");
                         found = true;
                     } else {
                         if ($('#liAddComponent' + nextId).is(":visible")) {
-                            if ($('#Comp' + nextId).hasClass('configured')) {
+                           //if ($('#Comp' + nextId).hasClass('configured')) {
                                 nextId++;
-                            } else {
-                                alert('Please configure all instances of this component before adding additional');
-                                break;
-                            }
+                        //} else {
+                        //        alert('Please configure all instances of this component before adding additional');
+                        //        break;
+                        //    }
                         } else {
                             $('#liAddComponent' + nextId).show();
                             $('#Comp' + nextId).show();
@@ -190,9 +194,9 @@
                         }
                     }
                 }
-            } else {
-                alert('Please configure all instances of this component before adding additional');
-            }
+            //} else {
+            //    alert('Please configure all instances of this component before adding additional');
+            //}
         });
 
         //Remove item and clear configuration
