@@ -33,6 +33,11 @@
             <hr />
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </hgroup>
+        <div class="col-xs-12 ">
+            <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
+               <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
+            </div>
+        </div>
         <div class="col-xs-offset-0 col-xs-12">
             <div id="layoutsDiv" runat="server">
                 <h2>Standard Layouts</h2>
@@ -81,9 +86,11 @@
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
-        <div class="col-xs-offset-3 col-xs-6 input-form text-center">
+        <div class="col-xs-offset-4 col-xs-8 input-form text-center">
             <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
-
+            <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
+        </div>
+        <div class=" col-xs-3">
         </div>
         <div class="col-xs-12" style="text-align: center;">
             <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
@@ -131,7 +138,7 @@
         </div>
     </div>
 
-  
+
     <script>
 
         $(window).on('load', function () {

@@ -16,7 +16,6 @@ namespace Elinic
     public partial class Project : System.Web.UI.Page
     {
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //Initialize specific Divs.
@@ -25,7 +24,7 @@ namespace Elinic
             ideasDiv.Visible = false;
             lblMsg.Visible = false;
             lblDescription.Text = "";
-
+            btnBackToProjects.Visible = false;
             selectedComponent.Visible = false;
             notes.Visible = false;
             if (Request.QueryString["Request"] != null)
@@ -42,8 +41,10 @@ namespace Elinic
             if (Request.QueryString["Type"] != null)
             {
                 Session.Clear();
+                Session["Type"] = Convert.ToString(Request.QueryString["Type"]);
+                Session["Title"] = Convert.ToString(Request.QueryString["Title"]);
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
-
+                btnBackToProjects.Visible = true;
                 LoadProjectLayouts(null, null);
 
             }
@@ -209,6 +210,31 @@ namespace Elinic
             finally
             {
                 obj.Close();
+            }
+        }
+        protected void btnGoBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+              Response.Redirect("~/Project.aspx?Type=" + Session["Type"] + "&Title=" + Session["Title"]);
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
+            }
+        }
+
+        protected void btnBackToProjects_click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Project.aspx");
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
             }
         }
 

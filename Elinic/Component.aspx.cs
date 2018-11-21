@@ -419,6 +419,26 @@ namespace Elinic
             }
         }
 
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ideas != null)
+                {
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);
+                }
+                else
+                {
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
+                }
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
+            }
+        }
+
         protected void btnGoBack_Click(object sender, EventArgs e)
         {
             try
