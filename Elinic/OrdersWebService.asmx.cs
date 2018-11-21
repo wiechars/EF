@@ -171,7 +171,7 @@ namespace Elinic
                     order.ID = (Convert.ToString(db.rdr["ID"]));
                     order.Email = (Convert.ToString(db.rdr["Email"]));
                     order.OrderDate = (Convert.ToString(db.rdr["OrderDate"]));
-                    order.Details = RemoveSpecialCharacters(Convert.ToString(db.rdr["OrderDetails"]).ToString());
+                    order.Details = RemoveSpecialCharacters(Convert.ToString(db.rdr["OrderDetails"]).Replace("\n","\\n"));  
                     order.Price = (Convert.ToString(db.rdr["TotalPrice"]));
                     order.Notes = RemoveSpecialCharacters(Convert.ToString(db.rdr["Notes"].ToString().Replace("\r\n", "\\n")));
                     results.Add(order);
