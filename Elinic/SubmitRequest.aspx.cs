@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elinic.Classes;
 using System.Drawing;
+using System.Collections.Specialized;
 
 namespace Elinic
 {
@@ -65,12 +66,21 @@ namespace Elinic
             {
                 obj.Close();
             }
-            
+
+
 
             Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
             object refUrl = ViewState["RefUrl"];
+            string returnUrl = "";
             if (refUrl != null)
-                Response.Redirect((string)refUrl+"&Request="+result);
+                //Remove old Query String
+                 returnUrl = refUrl.ToString();
+                if (returnUrl.Contains("Request"))
+                {
+                returnUrl = returnUrl.Replace("&Request=true", "");
+                returnUrl = returnUrl.Replace("&Request=false", "");
+                }
+            Response.Redirect(returnUrl + "&Request="+result);
 
         }
 
