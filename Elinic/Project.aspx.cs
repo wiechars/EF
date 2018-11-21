@@ -481,14 +481,14 @@ namespace Elinic
                             if (counter != 1 + (5 * (i - 1)))                           {
                                 
 
-                                add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
-                                                "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
+                                                "<Button style=\"padding:0px !important; font-size:2em;  background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             }
                             else
                             {
-                                add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
                             }
-                            remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            remove.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
                            // li.Controls.Add(remove);
