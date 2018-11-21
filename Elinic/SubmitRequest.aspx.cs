@@ -21,6 +21,13 @@ namespace Elinic
                 if (Request.UrlReferrer != null)
                 {
                     ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+                    if (Request.UrlReferrer.ToString().Contains("Component")){
+                        btnOrder.Text = "Submit Component For Review";
+                    }
+                    else {
+                        btnOrder.Text = "Submit Set For Review";
+                    }
+                    
                 }
             }
 
