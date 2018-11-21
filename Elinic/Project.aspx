@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="col-xs-offset-4 col-xs-8 input-form text-center">
-            <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
+            <asp:Button ID="btnOrder" runat="server" OnClientClick="return isConfigurationComplete();"  Text="Finish Configuring" OnClick="btnOrder_Click" />
             <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
         </div>
         <div class=" col-xs-3">
@@ -165,6 +165,8 @@
             // $("[id ^= 'Add']").hide();
             id = this.id.replace(/[^\d.]/g, '');
             var li = $('#li' + this.id);
+            var comp = $('#Comp' + this.id);
+ 
             nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
 
             
@@ -174,29 +176,54 @@
 
             //Don't allow creating another <li> element
             //unless the current one is configured
-            //if ($('#Comp' + id).hasClass('configured')) {
+            if ($('#Comp' + id).hasClass('configured')) {
                 while (!found) {
                     if (nextId % 5 === 1) {
                         alert("Cannot add more of this component!");
                         found = true;
                     } else {
                         if ($('#liAddComponent' + nextId).is(":visible")) {
-                           //if ($('#Comp' + nextId).hasClass('configured')) {
+                           if ($('#Comp' + nextId).hasClass('configured')) {
                                 nextId++;
-                        //} else {
-                        //        alert('Please configure all instances of this component before adding additional');
-                        //        break;
-                        //    }
                         } else {
+                                alert('Please configure all instances of this component before adding additional');
+                                break;
+                            }
+                        } else {
+                            var clone;
+                          //  $('#liAddComponent' + nextId).empty();]
                             $('#liAddComponent' + nextId).show();
+                            // $('#Comp' + this.id).clone().appendTo('#Comp' + nextId);
+                            //comp.clone().appendTo('#Comp' + nextId);
                             $('#Comp' + nextId).show();
+                            //console.log('YY');
+                            //console.log(comp);
+                            //console.log(comp.html());
+                            //console.log($('#Comp' + this.id).text);
+                            // $('#li' + this.id).children().clone().appendTo('#liAddComponent' + nextId);
+                          
+                            //console.log(clone);
+
+                           
+
+                            //Update Session
+                        //     $.ajax({
+                        //    type: "POST",
+                        //    url: 'Project.aspx/CloneSession',
+                        //    data: "{ srcId :" + id + ", destId :" +nextId +"}",
+                        //    contentType: 'application/json; charset=utf-8',
+                        //         success: function (data) {
+                        //        // comp.clone().appendTo('#Comp' + nextId);
+                        //    }
+                        //});
+                            //$('#Comp' + nextId).show();
                             found = true;
                         }
                     }
                 }
-            //} else {
-            //    alert('Please configure all instances of this component before adding additional');
-            //}
+            } else {
+                alert('Please configure all instances of this component before adding additional');
+            }
         });
 
         //Remove item and clear configuration
@@ -248,6 +275,21 @@
 
 
         })(jQuery);
+
+        function isConfigurationComplete() {
+            for (i = 1; i < 100; i++) {
+                if ($('#liAddComponent' + i).length) {
+                    if (!$('#liAddComponent' + i).is(":hidden")) {
+                        if (!$('#Comp' + i).hasClass('configured')) {
+                            alert('Please finish configuring components');
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            return true;
+        }
     </script>
 </asp:Content>
 

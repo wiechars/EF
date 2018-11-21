@@ -437,9 +437,9 @@ namespace Elinic
                                 //Logic to hide additional place holders
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
-                                    //detailsDiv = "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                    //    + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
-                                    //   // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
+                                        + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
+                                                                                     // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                     //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
                                     //    + counter + "\"><b>Component Type:</b> "
@@ -478,16 +478,16 @@ namespace Elinic
                             }
                             //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
-                            //if (counter != 1 + (5 * (i - 1)))                           {
+                            if (counter != 1 + (5 * (i - 1)))                           {
                                 
 
                                 add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
                                                 "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
-                            //}
-                            //else
-                            //{
-                            //    add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
-                            //}
+                            }
+                            else
+                            {
+                                add.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                            }
                             remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
@@ -576,8 +576,15 @@ namespace Elinic
             HttpContext.Current.Session.Remove("Comp" + id);
         }
 
-       
 
+        //using System.Web.Services;
+        [System.Web.Services.WebMethod(EnableSession = true)]
+    public static string CloneSession(int srcId, int destId)
+    {
+       HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
 
+        return HttpContext.Current.Session["Comp" + destId].ToString();
     }
+
+}
 }
