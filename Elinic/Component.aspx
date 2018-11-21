@@ -32,43 +32,43 @@
             <h1><%: Title %></h1>
             <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
             <hr />
-
-            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </hgroup>
-        <div class="col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-12">
+        <div class="col-xs-offset-1 col-xs-10">
+            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+        </div>
+        <div class="col-xs-offset-1 col-xs-11">
             <h4>
                 <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
             <div id="main" style="visibility: hidden;">
-                <ul runat="server" id="tiles" class="tiles">
-                </ul>
-                <ul runat="server" id="tiles_small" class="tiles_small">
-                </ul>
-
+                   <ul runat="server" id="tiles" class="tiles">
+                    </ul>
+                    <ul runat="server" id="tiles_small" class="tiles_small">
+                    </ul>
             </div>
             <h4>
                 <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
             <div id="main2" style="visibility: hidden;">
-                <ul runat="server" id="tiles_small2" class="tiles_small">
-                </ul>
-            </div>
+                    <ul runat="server" id="tiles_small2" class="tiles_small">
+                    </ul>
+                </div>
             <h4>
                 <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
             <div id="main3" style="visibility: hidden;">
-                <ul runat="server" id="tiles_small3" class="tiles_small">
-                </ul>
-
+                    <ul runat="server" id="tiles_small3" class="tiles_small">
+                    </ul>
             </div>
             <h4>
                 <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
             <div id="main4" style="visibility: hidden;">
-                <ul runat="server" id="tiles_small4" class="tiles_small">
-                </ul>
-            </div>
+                    <ul runat="server" id="tiles_small4" class="tiles_small">
+                    </ul>
+                </div>
             <h4>
                 <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
             <div id="main5" style="visibility: hidden;">
-                <ul runat="server" id="tiles_small5" class="tiles_small">
-                </ul>
+ 
+                    <ul runat="server" id="tiles_small5" class="tiles_small">
+                    </ul>
             </div>
         </div>
         <div id="selectedComponent" class="col-xs-12 col-sm-3 col-sm-offset-1 col-xs-offset-2">

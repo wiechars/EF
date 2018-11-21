@@ -31,14 +31,18 @@
             <h1><%: Title %></h1>
             <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
             <hr />
-            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+         
         </hgroup>
-        <div class="col-xs-12 ">
+         <div class ="col-xs-offset-1 col-xs-10">
+                   <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+         </div>
+        <div class="col-xs-offset-1 col-xs-10 ">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
                <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
             </div>
         </div>
-        <div class="col-xs-offset-0 col-xs-12">
+
+        <div class="col-xs-offset-1 col-xs-10">
             <div id="layoutsDiv" runat="server">
                 <h2>Standard Layouts</h2>
             </div>
