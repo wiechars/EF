@@ -33,16 +33,16 @@
             <hr />
          
         </hgroup>
-         <div class ="col-xs-offset-1 col-xs-10">
+         <div class ="col-sm-offset-1 col-sm-10">
                    <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
          </div>
-        <div class="col-xs-offset-1 col-xs-10 ">
+        <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
                <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
             </div>
         </div>
 
-        <div class="col-xs-offset-1 col-xs-10">
+        <div class="col-xs-offset-1 col-sm-11">
             <div id="layoutsDiv" runat="server">
                 <h2>Standard Layouts</h2>
             </div>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="col-xs-12">
-            <div class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-3 ">
+            <div class="col-xs-offset-3 col-xs-4 col-sm-offset-1 col-sm-3 ">
                 &nbsp;&nbsp;
             <div class="row"></div>
                 <div id="selectedLayout" class="">
@@ -74,7 +74,7 @@
                     </ul>
                 </div>
             </div>
-            <div id="selectedComponent" class="col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-7" runat="server">
+            <div id="selectedComponent" class="col-xs-12 col-sm-offset-1 col-sm-7" runat="server">
                 <div class="">
                     <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
                 </div>
@@ -84,13 +84,14 @@
         </div>
     </div>
     <div id="notes" class="col-xs-12 input-form" runat="server">
+        <br /><br />
         <div class="col-xs-12 text-center ">
             <div>
                 Total Price :
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
-        <div class="col-xs-offset-4 col-xs-8 input-form text-center">
+        <div class="col-sm-offset-4 col-sm-8">
             <asp:Button ID="btnOrder" runat="server" OnClientClick="return isConfigurationComplete();"  Text="Finish Configuring" OnClick="btnOrder_Click" />
             <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
         </div>
@@ -273,6 +274,24 @@
 
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
+         
+                if ($(window).width() < 440) {
+                    $('#main').css({ height: "35em" });
+                }
+
+                if ($(window).width() < 900 && $(window).width() >= 440) {
+                    $('#main').css({ height: "25em" });
+                }
+
+                if ($(window).width() >= 900){
+                     $('#main').css({ height: "15em" });
+                }
+                if ($('#MainContent_selectedComponent').length) {
+      
+                     $('#main').css({ height: "1.5em" });
+                }
+              
+                
                 $('#main2').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
             });
 

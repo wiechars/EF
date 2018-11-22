@@ -312,23 +312,23 @@ header p
     .tiles li
     {
          margin: 0px 5px 5px 5px;
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
     }
 
     #MainContent_comp_small li
     {
         margin: 2px 2px 2px 2px;
         float: left;
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
     }
 }
 .tiles_small li,
 #MainContent_tiles_ideas li
 {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
 }
 
 
@@ -418,9 +418,10 @@ header p
     .tiles li img
     {
         display: inline-block;
-        max-width: 85%;
-        max-height: 85%;
+        max-width: 70%;
+        max-height: 70%;
         vertical-align: middle;
+        padding-top:5px;
     }
     .tiles_small li h2,
     #MainContent_comp li h2,

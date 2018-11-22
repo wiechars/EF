@@ -71,7 +71,7 @@
                     </ul>
             </div>
         </div>
-        <div id="selectedComponent" class="col-xs-12 col-sm-3 col-sm-offset-1 col-xs-offset-2">
+        <div id="selectedComponent" class="col-xs-4 col-sm-3 col-sm-offset-1 col-xs-offset-5">
             <ul runat="server" id="comp">
             </ul>
         </div>
