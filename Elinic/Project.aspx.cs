@@ -24,6 +24,7 @@ namespace Elinic
             ideasDiv.Visible = false;
             lblMsg.Visible = false;
             lblDescription.Text = "";
+            lblLayoutDescription.Text = "";
             btnBackToProjects.Visible = false;
             selectedComponent.Visible = false;
             notes.Visible = false;
@@ -50,7 +51,7 @@ namespace Elinic
             }
             else if (Request.QueryString["LayoutID"] != null)
             {
-
+                
                 orderValues.InnerHtml = "";
                 int? ideas = null;
 
@@ -150,9 +151,12 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
+                        lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
+
                         if (hasDescription)
                         {
                             lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
+
                         }
                         if (layoutID != null && ideas == null)
                         {

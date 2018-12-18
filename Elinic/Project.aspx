@@ -66,6 +66,9 @@
         </div>
 
         <div class="col-xs-12">
+             <div class ="col-sm-offset-1 col-sm-10">
+                   <asp:Label ID="lblLayoutDescription" runat="server" Text=""  class="customize-title" >Layout Description.</asp:Label>
+            </div>
             <div class="col-xs-offset-3 col-xs-4 col-sm-offset-1 col-sm-3 ">
                 &nbsp;&nbsp;
             <div class="row"></div>
@@ -276,15 +279,15 @@
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
          
                 if ($(window).width() < 440) {
-                    $('#main').css({ height: "35em" });
+                    $('#main').css({ height: "48em" });
                 }
 
                 if ($(window).width() < 900 && $(window).width() >= 440) {
-                    $('#main').css({ height: "25em" });
+                    $('#main').css({ height: "35em" });
                 }
 
                 if ($(window).width() >= 900){
-                     $('#main').css({ height: "15em" });
+                     $('#main').css({ height: "25em" });
                 }
                 if ($('#MainContent_selectedComponent').length) {
       
