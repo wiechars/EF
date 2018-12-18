@@ -40,35 +40,35 @@
             <h4>
                 <asp:Label ID="styleHeader" Text="" runat="server"></asp:Label></h4>
             <div id="main" style="visibility: hidden;">
-                   <ul runat="server" id="tiles" class="tiles">
-                    </ul>
-                    <ul runat="server" id="tiles_small" class="tiles_small">
-                    </ul>
+                <ul runat="server" id="tiles" class="tiles">
+                </ul>
+                <ul runat="server" id="tiles_small" class="tiles_small">
+                </ul>
             </div>
             <h4>
                 <asp:Label ID="styleHeader2" Text="" runat="server"></asp:Label></h4>
             <div id="main2" style="visibility: hidden;">
-                    <ul runat="server" id="tiles_small2" class="tiles_small">
-                    </ul>
-                </div>
+                <ul runat="server" id="tiles_small2" class="tiles_small">
+                </ul>
+            </div>
             <h4>
                 <asp:Label ID="styleHeader3" Text="" runat="server"></asp:Label></h4>
             <div id="main3" style="visibility: hidden;">
-                    <ul runat="server" id="tiles_small3" class="tiles_small">
-                    </ul>
+                <ul runat="server" id="tiles_small3" class="tiles_small">
+                </ul>
             </div>
             <h4>
                 <asp:Label ID="styleHeader4" Text="" runat="server"></asp:Label></h4>
             <div id="main4" style="visibility: hidden;">
-                    <ul runat="server" id="tiles_small4" class="tiles_small">
-                    </ul>
-                </div>
+                <ul runat="server" id="tiles_small4" class="tiles_small">
+                </ul>
+            </div>
             <h4>
                 <asp:Label ID="styleHeader5" Text="" runat="server"></asp:Label></h4>
             <div id="main5" style="visibility: hidden;">
- 
-                    <ul runat="server" id="tiles_small5" class="tiles_small">
-                    </ul>
+
+                <ul runat="server" id="tiles_small5" class="tiles_small">
+                </ul>
             </div>
         </div>
         <div id="selectedComponent" class="col-xs-4 col-sm-3 col-sm-offset-1 col-xs-offset-5">
@@ -77,19 +77,34 @@
         </div>
         <div id="orderForm" class="col-xs-12 col-sm-8" runat="server">
             <div class="col-xs-12 input-form">
-                Width:<asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
+                <label class="col-xs-4 text-right">Width:</label>
+                <div class="col-xs-8" style="margin-top: 5px;">
+                    <asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                </div>
             </div>
             <div class="col-xs-12 input-form">
-                Depth:<asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
+                <label class="col-xs-4 text-right">Depth:</label>
+                <div class="col-xs-8" style="margin-top: 5px;">
+                    <asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                </div>
             </div>
             <div class="col-xs-12 input-form">
-                Height:<asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
+                <label class="col-xs-4 text-right">Height:</label>
+                <div class="col-xs-8" style="margin-top: 5px;">
+                    <asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                </div>
             </div>
             <div class="col-xs-12 input-form" id="divDoors" runat="server">
-                Doors:<asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
+                <label class="col-xs-4 text-right">Door Hinge Side:</label>
+                <div class="col-xs-8" style="margin-top: 5px;">
+                    <asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                </div>
             </div>
             <div class="col-xs-12 input-form">
-                Material:<asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 70%;"></asp:DropDownList>
+                <label class="col-xs-4 text-right">Material:</label>
+                <div class="col-xs-8" style="margin-top: 5px;">
+                    <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                </div>
             </div>
 
             <!-- <div id="notes" class="row-fluid input-form" runat="server">
