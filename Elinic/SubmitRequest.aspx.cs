@@ -46,14 +46,14 @@ namespace Elinic
         /// <param name="e"></param>
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            string notes = orderNotes.InnerText;
+            string notes = orderNotes.InnerText;           
             string result = "";
             Database obj = new Database();
             try
             {
                 obj.Connect();
 
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate, Email) VALUES('" + odr.Details + "','" + odr.Price + "','" + notes + "', '" + DateTime.Now + "','"+txtEmail.Text+"');");
+                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate, Email) VALUES('" + odr.Details + "','" + odr.Price + "','" + notes.Replace("'", "''") + "', '" + DateTime.Now + "','"+txtEmail.Text+"');");
                 obj.Close();
                 result = "true";
             }
