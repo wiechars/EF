@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="col-sm-offset-4 col-sm-8">
-            <asp:Button ID="btnOrder" runat="server" OnClientClick="return isConfigurationComplete();"  Text="Finish Configuring" OnClick="btnOrder_Click" />
+            <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring"  />
             <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
         </div>
         <div class=" col-xs-3">
@@ -105,6 +105,28 @@
         </div>
 
     </div>
+
+                <!-- ModalPopupExtender -->
+            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnOrder"
+                CancelControlID="btnCancelNext" BackgroundCssClass="modalBackground">
+            </cc1:ModalPopupExtender>
+            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
+                <div id="Div1" class="">
+                        
+                    <p>
+                        <br />
+                        &nbsp;&nbsp;Configuration not complete.  Do you want to submit order as is or go back?<br />
+                        <br />
+                    </p>
+                </div>
+                <div>
+            <asp:Button ID="Button1" runat="server" Style=" background-color: green;" Text="Submit" OnClick="btnOrder_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Go Back" />
+                </div>
+
+            </asp:Panel>
+            <!-- ModalPopupExtender -->
+
 
 
     <!-- ModalPopupExtender -->
