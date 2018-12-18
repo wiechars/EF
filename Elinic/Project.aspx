@@ -196,7 +196,6 @@
             id = this.id.replace(/[^\d.]/g, '');
             var li = $('#li' + this.id);
             var comp = $('#Comp' + this.id);
- 
             nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
 
             
@@ -212,40 +211,28 @@
                         alert("Cannot add more of this component!");
                         found = true;
                     } else {
-                        if ($('#liAddComponent' + nextId).is(":visible")) {
-                           if ($('#Comp' + nextId).hasClass('configured')) {
-                                nextId++;
-                        } else {
-                                alert('Please configure all instances of this component before adding additional');
-                                break;
-                            }
+                        if ($('#liAddComponent' + nextId).is(":visible")) {                          
+                                nextId++;              
                         } else {
                             var clone;
                           //  $('#liAddComponent' + nextId).empty();]
-                            $('#liAddComponent' + nextId).show();
-                            // $('#Comp' + this.id).clone().appendTo('#Comp' + nextId);
-                            //comp.clone().appendTo('#Comp' + nextId);
-                            $('#Comp' + nextId).show();
-                            //console.log('YY');
-                            //console.log(comp);
-                            //console.log(comp.html());
-                            //console.log($('#Comp' + this.id).text);
-                            // $('#li' + this.id).children().clone().appendTo('#liAddComponent' + nextId);
-                          
-                            //console.log(clone);
-
+              //              $('#liAddComponent' + nextId).show();
+                //            $('#liAddComponent' + nextId).empty();
+                  //          $('#li' + this.id).children().clone().appendTo('#liAddComponent' + nextId);
+    //                            $('#Comp' + nextId).show();
                            
 
                             //Update Session
-                        //     $.ajax({
-                        //    type: "POST",
-                        //    url: 'Project.aspx/CloneSession',
-                        //    data: "{ srcId :" + id + ", destId :" +nextId +"}",
-                        //    contentType: 'application/json; charset=utf-8',
-                        //         success: function (data) {
-                        //        // comp.clone().appendTo('#Comp' + nextId);
-                        //    }
-                        //});
+                             $.ajax({
+                            type: "POST",
+                            url: 'Project.aspx/CloneSession',
+                            data: "{ srcId :" + id + ", destId :" +nextId +"}",
+                            contentType: 'application/json; charset=utf-8',
+                                 success: function (data) {
+                                      location.reload();
+                                // comp.clone().appendTo('#Comp' + nextId);
+                            }
+                        });
                             //$('#Comp' + nextId).show();
                             found = true;
                         }
@@ -265,8 +252,10 @@
                 data: "{ id :" + id + "}",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    $('#liAddComponent' + id).hide();
-                    $('#Comp' + id).css('visibility', 'hidden');
+                    //$('#liAddComponent' + id).hide();
+                    //$('#Comp' + id).css('visibility', 'hidden');
+                     location.reload();
+                   
                 }
             });
 

@@ -586,8 +586,9 @@ namespace Elinic
     public static string CloneSession(int srcId, int destId)
     {
        HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
-
-        return HttpContext.Current.Session["Comp" + destId].ToString();
+       HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId+ "Price"];
+       HttpContext.Current.Session["Comp" + destId + "CompImagePath"] = HttpContext.Current.Session["Comp" + srcId + "CompImagePath"];
+       return HttpContext.Current.Session["Comp" + destId].ToString();
     }
 
 }
