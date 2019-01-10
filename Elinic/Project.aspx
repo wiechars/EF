@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="col-sm-offset-4 col-sm-8">
-            <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring"  />
+            <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
             <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
         </div>
         <div class=" col-xs-3">
@@ -107,7 +107,7 @@
     </div>
 
                 <!-- ModalPopupExtender -->
-            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnOrder"
+<%--            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID=""
                 CancelControlID="btnCancelNext" BackgroundCssClass="modalBackground">
             </cc1:ModalPopupExtender>
             <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
@@ -124,7 +124,7 @@
             <asp:Button ID="Button2" runat="server" Text="Go Back" />
                 </div>
 
-            </asp:Panel>
+            </asp:Panel>--%>
             <!-- ModalPopupExtender -->
 
 
