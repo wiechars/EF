@@ -9,7 +9,7 @@ using System.Web.Services;
 using Elinic.Classes;
 using System.Text.RegularExpressions;
 using System.Drawing;
-
+using System.Web.Script.Serialization;
 
 namespace Elinic
 {
@@ -27,6 +27,7 @@ namespace Elinic
             lblLayoutDescription.Text = "";
             btnBackToProjects.Visible = false;
             selectedComponent.Visible = false;
+            selectedMaterial.Visible = false;
             notes.Visible = false;
             if (Request.QueryString["Request"] != null)
             {
@@ -60,11 +61,13 @@ namespace Elinic
                     ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
                 }
                 selectedComponent.Visible = true;
+                selectedMaterial.Visible = true;
                 notes.Visible = true;
                 LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
                 LoadComponents(ideas);
                 LoadLayout(ideas);
-
+                LoadMaterials();
+                LoadHandle();
             }
             else
             {
@@ -117,6 +120,146 @@ namespace Elinic
             {
                 obj.Close();
             }
+        }
+
+        private void LoadMaterials()
+        {
+            if (compMaterial.Items.Count < 1)
+            {
+                Database obj = new Database();
+                try
+                {
+                    obj.Connect();
+                    obj.Query("SELECT * FROM Materials");
+                    int index = 0;
+                    if (obj.rdr.HasRows == true)
+                    {
+                        while (obj.rdr.Read())
+                        {
+                            Material material = new Material();
+
+                            material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
+                            material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
+                            material.Name = Convert.ToString(obj.rdr["MaterialName"]);
+                            var json = new JavaScriptSerializer().Serialize(material);
+
+                            compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
+                            if(index == 0)
+                            {
+                                imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
+                                imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
+                            }
+                            index++;
+                        }
+
+                    }
+                    //Stain
+                    compStain.Items.Insert(0, new ListItem("Not stained", "Not stained"));
+                    compStain.Items.Insert(1, new ListItem("Stained", "Stained"));
+
+
+                    //Finish
+                    compFinish.Items.Insert(0, new ListItem("Gloss", "Gloss"));
+                    compFinish.Items.Insert(1, new ListItem("Semi-Gloss", "Semi-Gloss"));
+                    compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
+
+                    compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
+                    compStain.SelectedValue = Session["materialStain"] != null ? Convert.ToString(Session["materialStain"]) : "";
+                    compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
+                }
+
+               
+
+                catch (Exception ex)
+                {
+
+                    log.LogErrorMessage("Load Material Types : " + ex);
+
+                }
+                finally
+                {
+                    obj.Close();
+                }
+            }
+
+        }
+
+        protected void MaterialChanged(object sender, EventArgs e)
+        {
+
+            MaterialSessionStore();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Material material = new Material();
+            material = serializer.Deserialize<Material>(compMaterial.SelectedItem.Value);
+            var json = new JavaScriptSerializer().Serialize(material);
+
+            imgMaterial.Src = "../Images/" + material.ImagePath;
+            imgMaterial.Alt = material.ImagePath;
+
+            compStain.Enabled = compMaterial.SelectedValue.Contains("Melamine") ? false : true;
+            if (!compStain.Enabled)
+            {
+                compStain.SelectedIndex = 0;
+            }
+        }
+        private void LoadHandle()
+        {
+            if (compHandle.Items.Count < 1)
+            {
+                Database obj = new Database();
+                try
+                {
+                    obj.Connect();
+                    obj.Query("SELECT * FROM Handles");
+                    int index = 0;
+                    if (obj.rdr.HasRows == true)
+                    {
+                        while (obj.rdr.Read())
+                        {
+                        
+                            compHandle.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["HandleID"]), Convert.ToString(obj.rdr["HandleImage"])));
+                            if (index == 0)
+                            {
+                                imgHandle.Src = "../Images/" + Convert.ToString(obj.rdr["HandleImage"]);
+                                imgHandle.Alt = Convert.ToString(obj.rdr["HandleImage"]);
+                            }
+                            index++;
+                        }
+
+                        compHandle.SelectedValue = Session["handleIndex"] != null ? Convert.ToString(Session["handleIndex"]) : "";
+                    }
+
+                    
+
+                }
+
+                catch (Exception ex)
+                {
+
+                    log.LogErrorMessage("Load Material Types : " + ex);
+
+                }
+                finally
+                {
+                    obj.Close();
+                }
+            }
+
+        }
+
+        protected void HandleChanged(object sender, EventArgs e)
+        {
+            imgHandle.Src = "../Images/" + compHandle.SelectedItem.Value;
+            imgHandle.Alt = compHandle.SelectedItem.Value;
+            MaterialSessionStore();
+        }
+
+        protected void MaterialSessionStore()
+        {
+            Session["materialIndex"] = compMaterial.SelectedValue;
+            Session["materialStain"] = compStain.SelectedValue;
+            Session["materialFinish"] = compFinish.SelectedValue;
+            Session["handleIndex"] = compHandle.SelectedValue;
         }
 
         /// <summary>
@@ -548,6 +691,11 @@ namespace Elinic
                 }
             }
 
+            orderHTML = orderHTML + "Material : " + compMaterial.SelectedItem.Text + "\n";
+            orderHTML = orderHTML + "Lacquer Finish  : " + compFinish.SelectedValue + "\n";
+            orderHTML = orderHTML + "Stain : " + compStain.SelectedValue + "\n";
+            orderHTML = orderHTML + "Handle : " + compHandle.SelectedItem.Text + "\n";
+
             OrderDetails odr = new OrderDetails();
             odr.Price = lblOrderPrice.Text;
             odr.Details = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
@@ -592,4 +740,12 @@ namespace Elinic
     }
 
 }
+}
+
+class Material
+{
+
+    public String ImagePath{get;set;}
+    public float Price { get; set; }
+    public String Name { get; set; }
 }

@@ -31,14 +31,14 @@
             <h1><%: Title %></h1>
             <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
             <hr />
-         
+
         </hgroup>
-         <div class ="col-sm-offset-1 col-sm-10">
-                   <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
-         </div>
+        <div class="col-sm-offset-1 col-sm-10">
+            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+        </div>
         <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
-               <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
+                <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
             </div>
         </div>
 
@@ -66,35 +66,74 @@
         </div>
 
         <div class="col-xs-12">
-             <div class ="col-sm-offset-1 col-sm-10">
-                   <asp:Label ID="lblLayoutDescription" runat="server" Text=""  class="customize-title" >Layout Description.</asp:Label>
+            <div class="col-sm-offset-1 col-lg-10">
+                <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
             </div>
-            <div class="col-xs-offset-3 col-xs-4 col-sm-offset-1 col-sm-3 ">
+            <div class="col-xs-12 col-sm-12 col-lg-6 ">
                 &nbsp;&nbsp;
-            <div class="row"></div>
-                <div id="selectedLayout" class="">
+             <div class="col-xs-12 row ">
+                <div id="selectedLayout" class="col-sm-4 col-lg-4" >
                     <ul runat="server" id="layout">
                     </ul>
                 </div>
+                   <div id="selectedMaterial"  class="col-sm-8 col-lg-8" runat="server">
+                        <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
+                        <div class="col-xs-12">
+                            <div class="col-xs-4 text-center">
+                                 <img id="imgMaterial" style="max-width: 60%; max-height: 60%;" src="" runat="server" />
+                            </div>
+                            <div class="col-xs-8 row">
+                                <%-- <label class="col-xs-4 text-right">Material:</label>--%>
+                                <div class="col-xs-12" style="margin-top: 5px;">
+                                    <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"  
+                                        AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged"
+                                        ></asp:DropDownList>
+                                </div>
+                                <%--  <label class="col-xs-4 text-right">Lacquer Finish:</label>--%>
+                                <div class="col-xs-12" style="margin-top: 5px;">
+                                    <asp:DropDownList ID="compFinish" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                                </div>
+                                <%-- <label class="col-xs-4 text-right">Stain:</label>--%>
+                                <div class="col-xs-12" style="margin-top: 5px;">
+                                    <asp:DropDownList ID="compStain" runat="server" class="input-form" Style="width: 100%;" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                       <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
+                        <div class="col-xs-12">
+                            <div class="col-xs-4 text-center">
+                                <img id="imgHandle" style="max-width: 60%; max-height: 60%;" src="" runat="server" />
+                            </div>
+                            <div class="col-xs-8 row">
+                                <%-- <label class="col-xs-4 text-right">Material:</label>--%>
+                                <div class="col-xs-12" style="margin-top: 5px;">
+                                    <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"
+                                         AutoPostBack="true" OnSelectedIndexChanged="HandleChanged"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
             </div>
-            <div id="selectedComponent" class="col-xs-12 col-sm-offset-1 col-sm-7" runat="server">
-                <div class="">
-                    <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
-                </div>
-                <ul runat="server" id="comp_small" class="">
-                </ul>
+            <div id="selectedComponent" class="col-xs-12  col-lg-6" runat="server">
+                    <div class="">
+                        <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
+                    </div>
+                    <ul runat="server" id="comp_small" class="">
+                    </ul>
             </div>
         </div>
     </div>
     <div id="notes" class="col-xs-12 input-form" runat="server">
-        <br /><br />
+        <br />
+        <br />
         <div class="col-xs-12 text-center ">
             <div>
                 Total Price :
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
-        <div class="col-sm-offset-4 col-sm-8">
+        <div class="col-xs-12 row text-center">
             <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
             <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
         </div>
@@ -106,8 +145,8 @@
 
     </div>
 
-                <!-- ModalPopupExtender -->
-<%--            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID=""
+    <!-- ModalPopupExtender -->
+    <%--            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID=""
                 CancelControlID="btnCancelNext" BackgroundCssClass="modalBackground">
             </cc1:ModalPopupExtender>
             <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
@@ -125,7 +164,7 @@
                 </div>
 
             </asp:Panel>--%>
-            <!-- ModalPopupExtender -->
+    <!-- ModalPopupExtender -->
 
 
 
@@ -198,9 +237,9 @@
             var comp = $('#Comp' + this.id);
             nextId = parseInt(li.prop('id').match(/\d+/g), 10) + 1;
 
-            
 
-           // alert('nextId ' + nextId);
+
+            // alert('nextId ' + nextId);
             var found = false;
 
             //Don't allow creating another <li> element
@@ -211,28 +250,28 @@
                         alert("Cannot add more of this component!");
                         found = true;
                     } else {
-                        if ($('#liAddComponent' + nextId).is(":visible")) {                          
-                                nextId++;              
+                        if ($('#liAddComponent' + nextId).is(":visible")) {
+                            nextId++;
                         } else {
                             var clone;
-                          //  $('#liAddComponent' + nextId).empty();]
-              //              $('#liAddComponent' + nextId).show();
-                //            $('#liAddComponent' + nextId).empty();
-                  //          $('#li' + this.id).children().clone().appendTo('#liAddComponent' + nextId);
-    //                            $('#Comp' + nextId).show();
-                           
+                            //  $('#liAddComponent' + nextId).empty();]
+                            //              $('#liAddComponent' + nextId).show();
+                            //            $('#liAddComponent' + nextId).empty();
+                            //          $('#li' + this.id).children().clone().appendTo('#liAddComponent' + nextId);
+                            //                            $('#Comp' + nextId).show();
+
 
                             //Update Session
-                             $.ajax({
-                            type: "POST",
-                            url: 'Project.aspx/CloneSession',
-                            data: "{ srcId :" + id + ", destId :" +nextId +"}",
-                            contentType: 'application/json; charset=utf-8',
-                                 success: function (data) {
-                                      location.reload();
-                                // comp.clone().appendTo('#Comp' + nextId);
-                            }
-                        });
+                            $.ajax({
+                                type: "POST",
+                                url: 'Project.aspx/CloneSession',
+                                data: "{ srcId :" + id + ", destId :" + nextId + "}",
+                                contentType: 'application/json; charset=utf-8',
+                                success: function (data) {
+                                    location.reload();
+                                    // comp.clone().appendTo('#Comp' + nextId);
+                                }
+                            });
                             //$('#Comp' + nextId).show();
                             found = true;
                         }
@@ -254,8 +293,8 @@
                 success: function (data) {
                     //$('#liAddComponent' + id).hide();
                     //$('#Comp' + id).css('visibility', 'hidden');
-                     location.reload();
-                   
+                    location.reload();
+
                 }
             });
 
@@ -288,7 +327,7 @@
 
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
-         
+
                 if ($(window).width() < 440) {
                     $('#main').css({ height: "48em" });
                 }
@@ -297,15 +336,15 @@
                     $('#main').css({ height: "35em" });
                 }
 
-                if ($(window).width() >= 900){
-                     $('#main').css({ height: "25em" });
+                if ($(window).width() >= 900) {
+                    $('#main').css({ height: "25em" });
                 }
                 if ($('#MainContent_selectedComponent').length) {
-      
-                     $('#main').css({ height: "1.5em" });
+
+                    $('#main').css({ height: "1.5em" });
                 }
-              
-                
+
+
                 $('#main2').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
             });
 

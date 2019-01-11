@@ -30,7 +30,7 @@
             <div class="form-group col-xs-12">
                 <label for="InputFieldEmail" class="col-lg-2 col-md-12 col-xs-12 pull-right-lg">Components:</label>
                 <div class="col-lg-10 col-md-12 col-xs-12">
-                    <textarea name="Text1" id="txtAreaComponents" runat="server" rows="4" placeholder="Order Configuration." style="background-color: #eee!important;" disabled></textarea>
+                    <textarea name="Text1" id="txtAreaComponents" runat="server" rows="10" placeholder="Order Configuration." style="background-color: #eee!important;" disabled></textarea>
                 </div>
             </div>
         </div>
