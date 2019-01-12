@@ -289,7 +289,7 @@ namespace Elinic
             compWidth.Items.Clear();
             compDepth.Items.Clear();
             compHeight.Items.Clear();
-            compMaterial.Items.Clear();
+            //compMaterial.Items.Clear();
             compDoors.Items.Clear();
 
 
@@ -349,10 +349,10 @@ namespace Elinic
                         divDoors.Visible = false;
                     }
                     //Material
-                    compMaterial.Items.Insert(0, new ListItem("Veneer Maple", "Veneer Maple"));
-                    compMaterial.Items.Insert(1, new ListItem("Veneer Oak", "Veneer Oak"));
-                    compMaterial.Items.Insert(2, new ListItem("Veneer Cherry", "Veneer Cherry"));
-                    compMaterial.Items.Insert(3, new ListItem("Painted", "Painted"));
+                    //compMaterial.Items.Insert(0, new ListItem("Veneer Maple", "Veneer Maple"));
+                    //compMaterial.Items.Insert(1, new ListItem("Veneer Oak", "Veneer Oak"));
+                    //compMaterial.Items.Insert(2, new ListItem("Veneer Cherry", "Veneer Cherry"));
+                    //compMaterial.Items.Insert(3, new ListItem("Painted", "Painted"));
 
 
 
@@ -381,7 +381,7 @@ namespace Elinic
             odr.NumOfDoors = compDoors.SelectedIndex == -1 ? "N/A" : compDoors.SelectedItem.Text;
             odr.Details = "Component ID: " + Request.QueryString["CompId"].ToString()
                     + " W:" + compWidth.SelectedItem.Text + " D:" + compDepth.SelectedItem.Text + " H: " + compHeight.SelectedItem.Text
-                    + " Doors:" + odr.NumOfDoors + " Material:" + compMaterial.SelectedItem.Text;
+                    + " Doors:" + odr.NumOfDoors; //+ " Material:" + compMaterial.SelectedItem.Text;
 
             odr.Price = compPrice.Value;
 
@@ -400,10 +400,10 @@ namespace Elinic
                 Session[Request.QueryString["Comp"].ToString() + "Price"] = compPrice.Value.Substring(1, compPrice.Value.Length - 1);
                 Session[Request.QueryString["Comp"].ToString() + "OrderSummary"] = "<b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
                     + " </br><b>W:</b> " + compWidthVal.Value.ToString() + " </br><b>D:</b> " + compDepthVal.Value.ToString() + " </br><b>H:</b> " + compHeightVal.Value.ToString()
-                    + " </br><b>Doors:</b> " + doors + " </br><b>Material:</b> " + compMaterialVal.Value.ToString() + " </br><b>Price:</b>" + compPrice.Value + "<hr/>";
+                    + " </br><b>Doors:</b> " + doors +  " </br><b>Price:</b>" + compPrice.Value + "<hr/>";
                 Session[Request.QueryString["Comp"].ToString()] = "&nbsp; <b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
                     + " &nbsp;   <b>W:</b> " + compWidthVal.Value.ToString() + "   <b>D:</b> " + compDepthVal.Value.ToString() + "   <b>H:</b> " + compHeightVal.Value.ToString()
-                    + "  <b>Doors:</b> " + doors + "  <b>Material:</b> " + compMaterialVal.Value.ToString() + "  <b>Price:</b>" + compPrice.Value;
+                    + "  <b>Doors:</b> " + doors  + "  <b>Price:</b>" + compPrice.Value;
                 if (ideas != null)
                 {
                     Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);

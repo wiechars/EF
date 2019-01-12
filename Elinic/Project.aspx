@@ -80,9 +80,10 @@
                         <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
                         <div class="col-xs-12">
                             <div class="col-xs-4 text-center">
-                                 <img id="imgMaterial" style="max-width: 60%; max-height: 60%;" src="" runat="server" />
+                                 <img id="imgMaterial" style="max-width: 60%; max-height: 60%;  border: 1px solid #dedede;
+  border-radius: 10px;" src="" runat="server" />
                             </div>
-                            <div class="col-xs-8 row">
+                            <div class="col-xs-8 ">
                                 <%-- <label class="col-xs-4 text-right">Material:</label>--%>
                                 <div class="col-xs-12" style="margin-top: 5px;">
                                     <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"  
@@ -102,9 +103,10 @@
                        <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
                         <div class="col-xs-12">
                             <div class="col-xs-4 text-center">
-                                <img id="imgHandle" style="max-width: 60%; max-height: 60%;" src="" runat="server" />
+                                <img id="imgHandle" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede;
+  border-radius: 10px;" src="" runat="server" />
                             </div>
-                            <div class="col-xs-8 row">
+                            <div class="col-xs-8 ">
                                 <%-- <label class="col-xs-4 text-right">Material:</label>--%>
                                 <div class="col-xs-12" style="margin-top: 5px;">
                                     <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"

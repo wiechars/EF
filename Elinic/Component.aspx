@@ -100,12 +100,12 @@
                     <asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
-            <div class="col-xs-12 input-form">
+<%--            <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Material:</label>
                 <div class="col-xs-8" style="margin-top: 5px;">
                     <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
-            </div>
+            </div>--%>
 
             <!-- <div id="notes" class="row-fluid input-form" runat="server">
             Notes:<textarea name="Text1" cols="40" rows="3" class="input-form" style="width: 80%;"></textarea>
