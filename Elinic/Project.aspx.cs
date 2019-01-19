@@ -576,7 +576,7 @@ namespace Elinic
                                 price = price + Convert.ToDouble(Session["Comp" + counter + "Price"].ToString());
                                 orderValues.InnerHtml = orderValues.InnerHtml + Session["Comp" + counter].ToString() + "</div>";
                                 detailsDiv = detailsDiv + Session["Comp" + counter].ToString() + "</div>";
-
+                       
 
                             }
                             else
@@ -638,14 +638,19 @@ namespace Elinic
                             remove.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
-                           // li.Controls.Add(remove);
+           
+                            // li.Controls.Add(remove);
                             li.Controls.Add(anchor);
                             if (counter % 5 != 0)  //Causing extra anchor tags - don't know why.
                             {
                                 li.Controls.Add(addDetailsDiv);
                             }
 
-
+                            //Unhide if has a value
+                            if (Session["Comp" + counter] != null)
+                            {
+                                li.Style.Remove("display");
+                            }
                         }
                         i++;
                     }
