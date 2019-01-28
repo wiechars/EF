@@ -45,6 +45,7 @@ namespace Elinic
                  "~/Content/styles.css",
                  "~/Content/DataTables/css/demo_table_jui.css",
                  "~/Content/themes/base/jquery.ui.all.css",
+                 "~/Content/font-awesome.min.css",
                  "~/Content/bootstrap - responsive.css"));
 
 

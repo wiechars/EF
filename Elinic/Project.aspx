@@ -204,6 +204,20 @@
 
         });
 
+        $("[id ^= 'Redo']").click(function () {
+            id = this.id.replace(/[^\d.]/g, '');
+            $.ajax({
+                type: "POST",
+                url: 'Project.aspx/RemoveSession',
+                data: "{ id :" + id + "}",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#Comp' + id).hide();
+                }
+            });
+
+        });
+
         $("li[id^='gallery_small']").click(function () {
             $('#MainContent_gallery_large').show();
         });
