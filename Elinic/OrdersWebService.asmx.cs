@@ -171,9 +171,9 @@ namespace Elinic
                     order.ID = (Convert.ToString(db.rdr["ID"]));
                     order.Email = (Convert.ToString(db.rdr["Email"]));
                     order.OrderDate = (Convert.ToString(db.rdr["OrderDate"]));
-                    order.Details = RemoveSpecialCharacters(Convert.ToString(db.rdr["OrderDetails"]).ToString());
+                    order.Details = RemoveSpecialCharacters(Convert.ToString(db.rdr["OrderDetails"]).Replace("\n","\\n").Replace("'", "\'"));  
                     order.Price = (Convert.ToString(db.rdr["TotalPrice"]));
-                    order.Notes = RemoveSpecialCharacters(Convert.ToString(db.rdr["Notes"].ToString().Replace("\r\n", "\\n")));
+                    order.Notes = RemoveSpecialCharacters(Convert.ToString(db.rdr["Notes"].ToString().Replace("\r\n", "\\n").Replace("'", "\'")));
                     results.Add(order);
                 }
             }
@@ -185,7 +185,7 @@ namespace Elinic
             StringBuilder sb = new StringBuilder();
             foreach (char c in str)
             {
-                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_' || c == ' ' || c == ':' || c == '\\' || c == ',')
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '\'' || c == '.' || c == '_' || c == ' ' || c == ':' || c == '\\' || c == ',')
                 {
                     sb.Append(c);
 

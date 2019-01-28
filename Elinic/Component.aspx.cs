@@ -277,6 +277,7 @@ namespace Elinic
         private void PopulateDropDowns()
         {
             int widthMin = 0;
+            int doorHinge = 0;
             int widthMax = 0;
             int depthMin = 0;
             int depthMax = 0;
@@ -310,7 +311,7 @@ namespace Elinic
                         depthMin = !string.IsNullOrEmpty((Convert.ToString(db.rdr["Dmin"]))) ? Convert.ToInt32(Convert.ToString(db.rdr["Dmin"])) : 0;
                         depthMax = !string.IsNullOrEmpty((Convert.ToString(db.rdr["Dmax"]))) ? Convert.ToInt32(Convert.ToString(db.rdr["Dmax"])) : 0;
                         numDoors.Text = (Convert.ToString(db.rdr["Ndoors"]));
-                        formula.Text = (Convert.ToString(db.rdr["Formula"]));
+                        doorHinge = !string.IsNullOrEmpty((Convert.ToString(db.rdr["DoorHingeSideChoice"]))) ? Convert.ToInt32(Convert.ToString(db.rdr["DoorHingeSideChoice"])) : 0;
                         numShelves.Text = (Convert.ToString(db.rdr["Nshelves"]));
                         numDrawers.Text = (Convert.ToString(db.rdr["Ndrawers"]));
                         numHandles.Text = (Convert.ToString(db.rdr["Nhandles"]));
@@ -335,17 +336,17 @@ namespace Elinic
                         compHeight.Items.Insert(index, new ListItem(Convert.ToString(i) + " \"", Convert.ToString(i) + " \""));
                         index++;
                     }
-                    //Doors
-                    if (numDoors.Text == "0" || numDoors.Text =="")
-                    {
-
-                        divDoors.Visible = false;
-                    }
-                    else
+                    //Door Hinge
+                    if (doorHinge > 0)
                     {
                         divDoors.Visible = true;
                         compDoors.Items.Insert(0, new ListItem("Left", "Left"));
                         compDoors.Items.Insert(1, new ListItem("Right", "Right"));
+                      
+                    }
+                    else
+                    {
+                        divDoors.Visible = false;
                     }
                     //Material
                     compMaterial.Items.Insert(0, new ListItem("Veneer Maple", "Veneer Maple"));
@@ -403,6 +404,26 @@ namespace Elinic
                 Session[Request.QueryString["Comp"].ToString()] = "&nbsp; <b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
                     + " &nbsp;   <b>W:</b> " + compWidthVal.Value.ToString() + "   <b>D:</b> " + compDepthVal.Value.ToString() + "   <b>H:</b> " + compHeightVal.Value.ToString()
                     + "  <b>Doors:</b> " + doors + "  <b>Material:</b> " + compMaterialVal.Value.ToString() + "  <b>Price:</b>" + compPrice.Value;
+                if (ideas != null)
+                {
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);
+                }
+                else
+                {
+                    Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
+                }
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
+            }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 if (ideas != null)
                 {
                     Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]) + "&Ideas=1", false);

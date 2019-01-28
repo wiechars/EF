@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elinic.Classes;
 using System.Drawing;
+using System.Collections.Specialized;
 
 namespace Elinic
 {
@@ -21,6 +22,13 @@ namespace Elinic
                 if (Request.UrlReferrer != null)
                 {
                     ViewState["RefUrl"] = Request.UrlReferrer.ToString();
+                    if (Request.UrlReferrer.ToString().Contains("Component")){
+                        btnOrder.Text = "Submit Component For Review";
+                    }
+                    else {
+                        btnOrder.Text = "Submit Set For Review";
+                    }
+                    
                 }
             }
 
@@ -38,14 +46,14 @@ namespace Elinic
         /// <param name="e"></param>
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            string notes = orderNotes.InnerText;
+            string notes = orderNotes.InnerText;           
             string result = "";
             Database obj = new Database();
             try
             {
                 obj.Connect();
 
-                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate, Email) VALUES('" + odr.Details + "','" + odr.Price + "','" + notes + "', '" + DateTime.Now + "','"+txtEmail.Text+"');");
+                obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate, Email) VALUES('" + odr.Details + "','" + odr.Price + "','" + notes.Replace("'", "''") + "', '" + DateTime.Now + "','"+txtEmail.Text+"');");
                 obj.Close();
                 result = "true";
             }
@@ -58,12 +66,21 @@ namespace Elinic
             {
                 obj.Close();
             }
-            
+
+
 
             Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
             object refUrl = ViewState["RefUrl"];
+            string returnUrl = "";
             if (refUrl != null)
-                Response.Redirect((string)refUrl+"&Request="+result);
+                //Remove old Query String
+                 returnUrl = refUrl.ToString();
+                if (returnUrl.Contains("Request"))
+                {
+                returnUrl = returnUrl.Replace("&Request=true", "");
+                returnUrl = returnUrl.Replace("&Request=false", "");
+                }
+            Response.Redirect(returnUrl + "&Request="+result);
 
         }
 

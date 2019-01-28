@@ -9,14 +9,13 @@ using System.Web.Services;
 using Elinic.Classes;
 using System.Text.RegularExpressions;
 using System.Drawing;
-
+using System.Web.Script.Serialization;
 
 namespace Elinic
 {
     public partial class Project : System.Web.UI.Page
     {
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             //Initialize specific Divs.
@@ -25,8 +24,10 @@ namespace Elinic
             ideasDiv.Visible = false;
             lblMsg.Visible = false;
             lblDescription.Text = "";
-
+            lblLayoutDescription.Text = "";
+            btnBackToProjects.Visible = false;
             selectedComponent.Visible = false;
+            selectedMaterial.Visible = false;
             notes.Visible = false;
             if (Request.QueryString["Request"] != null)
             {
@@ -42,14 +43,16 @@ namespace Elinic
             if (Request.QueryString["Type"] != null)
             {
                 Session.Clear();
+                Session["Type"] = Convert.ToString(Request.QueryString["Type"]);
+                Session["Title"] = Convert.ToString(Request.QueryString["Title"]);
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
-
+                btnBackToProjects.Visible = true;
                 LoadProjectLayouts(null, null);
 
             }
             else if (Request.QueryString["LayoutID"] != null)
             {
-
+                
                 orderValues.InnerHtml = "";
                 int? ideas = null;
 
@@ -58,11 +61,13 @@ namespace Elinic
                     ideas = Convert.ToInt32(Request.QueryString["Ideas"].ToString());
                 }
                 selectedComponent.Visible = true;
+                selectedMaterial.Visible = true;
                 notes.Visible = true;
                 LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
                 LoadComponents(ideas);
                 LoadLayout(ideas);
-
+                LoadMaterials();
+                LoadHandle();
             }
             else
             {
@@ -117,6 +122,146 @@ namespace Elinic
             }
         }
 
+        private void LoadMaterials()
+        {
+            if (compMaterial.Items.Count < 1)
+            {
+                Database obj = new Database();
+                try
+                {
+                    obj.Connect();
+                    obj.Query("SELECT * FROM Materials");
+                    int index = 0;
+                    if (obj.rdr.HasRows == true)
+                    {
+                        while (obj.rdr.Read())
+                        {
+                            Material material = new Material();
+
+                            material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
+                            material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
+                            material.Name = Convert.ToString(obj.rdr["MaterialName"]);
+                            var json = new JavaScriptSerializer().Serialize(material);
+
+                            compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
+                            if(index == 0)
+                            {
+                                imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
+                                imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
+                            }
+                            index++;
+                        }
+
+                    }
+                    //Stain
+                    compStain.Items.Insert(0, new ListItem("Not stained", "Not stained"));
+                    compStain.Items.Insert(1, new ListItem("Stained", "Stained"));
+
+
+                    //Finish
+                    compFinish.Items.Insert(0, new ListItem("Gloss", "Gloss"));
+                    compFinish.Items.Insert(1, new ListItem("Semi-Gloss", "Semi-Gloss"));
+                    compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
+
+                    compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
+                    compStain.SelectedValue = Session["materialStain"] != null ? Convert.ToString(Session["materialStain"]) : "";
+                    compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
+                }
+
+               
+
+                catch (Exception ex)
+                {
+
+                    log.LogErrorMessage("Load Material Types : " + ex);
+
+                }
+                finally
+                {
+                    obj.Close();
+                }
+            }
+
+        }
+
+        protected void MaterialChanged(object sender, EventArgs e)
+        {
+
+            MaterialSessionStore();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Material material = new Material();
+            material = serializer.Deserialize<Material>(compMaterial.SelectedItem.Value);
+            var json = new JavaScriptSerializer().Serialize(material);
+
+            imgMaterial.Src = "../Images/" + material.ImagePath;
+            imgMaterial.Alt = material.ImagePath;
+
+            compStain.Enabled = compMaterial.SelectedValue.Contains("Melamine") ? false : true;
+            if (!compStain.Enabled)
+            {
+                compStain.SelectedIndex = 0;
+            }
+        }
+        private void LoadHandle()
+        {
+            if (compHandle.Items.Count < 1)
+            {
+                Database obj = new Database();
+                try
+                {
+                    obj.Connect();
+                    obj.Query("SELECT * FROM Handles");
+                    int index = 0;
+                    if (obj.rdr.HasRows == true)
+                    {
+                        while (obj.rdr.Read())
+                        {
+                        
+                            compHandle.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["HandleID"]), Convert.ToString(obj.rdr["HandleImage"])));
+                            if (index == 0)
+                            {
+                                imgHandle.Src = "../Images/" + Convert.ToString(obj.rdr["HandleImage"]);
+                                imgHandle.Alt = Convert.ToString(obj.rdr["HandleImage"]);
+                            }
+                            index++;
+                        }
+
+                        compHandle.SelectedValue = Session["handleIndex"] != null ? Convert.ToString(Session["handleIndex"]) : "";
+                    }
+
+                    
+
+                }
+
+                catch (Exception ex)
+                {
+
+                    log.LogErrorMessage("Load Material Types : " + ex);
+
+                }
+                finally
+                {
+                    obj.Close();
+                }
+            }
+
+        }
+
+        protected void HandleChanged(object sender, EventArgs e)
+        {
+            imgHandle.Src = "../Images/" + compHandle.SelectedItem.Value;
+            imgHandle.Alt = compHandle.SelectedItem.Value;
+            MaterialSessionStore();
+        }
+
+        protected void MaterialSessionStore()
+        {
+            Session["materialIndex"] = compMaterial.SelectedValue;
+            Session["materialStain"] = compStain.SelectedValue;
+            Session["materialFinish"] = compFinish.SelectedValue;
+            Session["handleIndex"] = compHandle.SelectedValue;
+        }
+
         /// <summary>
         /// Initial load of the screen - loads the differnet component types.
         /// </summary>
@@ -149,9 +294,12 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
+                        lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
+
                         if (hasDescription)
                         {
                             lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
+
                         }
                         if (layoutID != null && ideas == null)
                         {
@@ -209,6 +357,31 @@ namespace Elinic
             finally
             {
                 obj.Close();
+            }
+        }
+        protected void btnGoBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+              Response.Redirect("~/Project.aspx?Type=" + Session["Type"] + "&Title=" + Session["Title"]);
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
+            }
+        }
+
+        protected void btnBackToProjects_click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Project.aspx");
+            }
+            catch (Exception ex)
+            {
+                //log.LogErrorMessage("Error Getting Configuration Values " + ex);
+
             }
         }
 
@@ -411,9 +584,9 @@ namespace Elinic
                                 //Logic to hide additional place holders
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
-                                    //detailsDiv = "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                    //    + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
-                                    //   // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
+                                    detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
+                                        + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
+                                                                                     // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
 
                                     //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
                                     //    + counter + "\"><b>Component Type:</b> "
@@ -455,19 +628,14 @@ namespace Elinic
                             if (counter != 1 + (5 * (i - 1)))                           {
                                 
 
-                                add.InnerHtml =
-                                                "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>"+
-                                                "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>" +
-                                                "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
+                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
+                                                "<Button style=\"padding:0px !important; font-size:2em;  background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             }
                             else
                             {
-                                add.InnerHtml = "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>" +
-                                                "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
+                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
                             }
-                            //remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
-                            remove.InnerHtml = "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>";
-
+                            remove.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
                            // li.Controls.Add(remove);
@@ -523,6 +691,11 @@ namespace Elinic
                 }
             }
 
+            orderHTML = orderHTML + "Material : " + compMaterial.SelectedItem.Text + "\n";
+            orderHTML = orderHTML + "Lacquer Finish  : " + compFinish.SelectedValue + "\n";
+            orderHTML = orderHTML + "Stain : " + compStain.SelectedValue + "\n";
+            orderHTML = orderHTML + "Handle : " + compHandle.SelectedItem.Text + "\n";
+
             OrderDetails odr = new OrderDetails();
             odr.Price = lblOrderPrice.Text;
             odr.Details = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
@@ -555,8 +728,24 @@ namespace Elinic
             HttpContext.Current.Session.Remove("Comp" + id);
         }
 
-       
 
-
+        //using System.Web.Services;
+        [System.Web.Services.WebMethod(EnableSession = true)]
+    public static string CloneSession(int srcId, int destId)
+    {
+       HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
+       HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId+ "Price"];
+       HttpContext.Current.Session["Comp" + destId + "CompImagePath"] = HttpContext.Current.Session["Comp" + srcId + "CompImagePath"];
+       return HttpContext.Current.Session["Comp" + destId].ToString();
     }
+
+}
+}
+
+class Material
+{
+
+    public String ImagePath{get;set;}
+    public float Price { get; set; }
+    public String Name { get; set; }
 }
