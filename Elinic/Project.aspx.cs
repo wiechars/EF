@@ -585,28 +585,8 @@ namespace Elinic
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
                                     detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
-                                        + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
-                                                                                     // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                    //    + counter + "\"><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
+                                        + counter + "\"><a href=\"" + link + "\"\\>";
                                 }
-                                else
-                                {
-                                    //detailsDiv = "<div class=\"customized-values\" id=\"Comp"
-                                    //    + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  style=\"font-size:16px!important;\" id=\"Comp"
-                                    //    + counter + "\"><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                }
-                                //detailsDiv = detailsDiv + "&nbsp; <b>ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                                //orderValues.InnerHtml = orderValues.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                                //values.InnerHtml.Style.Add("display", "none");
                             }
                             HtmlGenericControl add = new HtmlGenericControl("div");
                             HtmlGenericControl remove = new HtmlGenericControl("Button");
@@ -623,19 +603,31 @@ namespace Elinic
                                 anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                            + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             }
-                            //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
-                            // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
-                            if (counter != 1 + (5 * (i - 1)))                           {
-                                
+                    
+                            if (counter != 1 + (5 * (i - 1)))
+                            {
 
-                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
-                                                "<Button style=\"padding:0px !important; font-size:2em;  background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+
+                                add.InnerHtml =
+                                              "<Button class=\"btn btn-primary\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i></Button>" +
+                                                "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>" +
+                                                "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>" +
+                                                "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
                             }
                             else
                             {
-                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                                add.InnerHtml =
+                                  
+                                    "<Button class=\"btn btn-primary\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i></Button>" +
+                                    "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>" +
+                                     "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
                             }
-                            remove.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            //remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            remove.InnerHtml = "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>";
+
+
+
+
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
                            // li.Controls.Add(remove);
