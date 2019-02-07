@@ -279,7 +279,7 @@
                     }
                 }
             } else {
-                alert('Please configure all instances of this component before adding additional');
+                alert('Please configure prior to cloning.');
             }
         });
 

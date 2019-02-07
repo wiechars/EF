@@ -146,6 +146,7 @@
     <Content Include="Scripts\jquery-1.8.1.min.js" />
     <Content Include="Scripts\DataTables\jquery.dataTables.js" />
     <Content Include="Scripts\jquery.json-2.3.min.js" />
+    <Content Include="OrderComplete.aspx" />
     <Content Include="SubmitRequest.aspx" />
     <None Include="database.mdb" />
     <Content Include="Contact.aspx" />
@@ -647,6 +648,13 @@
     <Compile Include="OrdersWebService.asmx.cs">
       <DependentUpon>OrdersWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OrderComplete.aspx.cs">
+      <DependentUpon>OrderComplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderComplete.aspx.designer.cs">
+      <DependentUpon>OrderComplete.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubmitRequest.aspx.cs">
       <DependentUpon>SubmitRequest.aspx</DependentUpon>

@@ -48,13 +48,26 @@ namespace Elinic
         {
             string notes = orderNotes.InnerText;           
             string result = "";
+            string orderId = "";
             Database obj = new Database();
             try
             {
                 obj.Connect();
 
                 obj.Insert("INSERT INTO Orders (OrderDetails, TotalPrice, Notes, OrderDate, Email) VALUES('" + odr.Details + "','" + odr.Price + "','" + notes.Replace("'", "''") + "', '" + DateTime.Now + "','"+txtEmail.Text+"');");
-                obj.Close();
+
+                obj.Query("SELECT ID FROM Orders ORDER BY ID ASC");
+
+                if (obj.rdr.HasRows == true)
+                {
+                    
+                        while (obj.rdr.Read())
+                        {
+                            orderId = (Convert.ToString(obj.rdr["ID"]));
+                        }
+                }
+
+                    obj.Close();
                 result = "true";
             }
             catch (Exception ex)
@@ -68,19 +81,10 @@ namespace Elinic
             }
 
 
+           
 
-            Response.Redirect("~/Project.aspx?LayoutID=" + (Request.QueryString["LayoutID"]), false);
-            object refUrl = ViewState["RefUrl"];
-            string returnUrl = "";
-            if (refUrl != null)
-                //Remove old Query String
-                 returnUrl = refUrl.ToString();
-                if (returnUrl.Contains("Request"))
-                {
-                returnUrl = returnUrl.Replace("&Request=true", "");
-                returnUrl = returnUrl.Replace("&Request=false", "");
-                }
-            Response.Redirect(returnUrl + "&Request="+result);
+            Response.Redirect("~/OrderComplete.aspx?OrderId="+orderId, false);
+
 
         }
 
