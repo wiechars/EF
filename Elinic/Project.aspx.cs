@@ -728,7 +728,7 @@ namespace Elinic
        HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
        HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId+ "Price"];
        HttpContext.Current.Session["Comp" + destId + "CompImagePath"] = HttpContext.Current.Session["Comp" + srcId + "CompImagePath"];
-       return HttpContext.Current.Session["Comp" + destId].ToString();
+            return HttpContext.Current.Session["Comp" + destId] != null ? HttpContext.Current.Session["Comp" + destId].ToString() : "";
     }
 
 }
