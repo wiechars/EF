@@ -397,6 +397,7 @@ namespace Elinic
             {
                 string doors = String.IsNullOrEmpty(compDoorsVal.Value.ToString())?"N/A":compDoorsVal.Value.ToString();
                 Session[Request.QueryString["Comp"].ToString() + "CompImagePath"] = componentImagePath;
+                Session[Request.QueryString["Comp"].ToString() + "CompSelectedId"] = Request.QueryString["CompId"].ToString();
                 Session[Request.QueryString["Comp"].ToString() + "Price"] = compPrice.Value.Substring(1, compPrice.Value.Length - 1);
                 Session[Request.QueryString["Comp"].ToString() + "OrderSummary"] = "<b>Component ID:</b> " + Request.QueryString["CompId"].ToString()
                     + " </br><b>W:</b> " + compWidthVal.Value.ToString() + " </br><b>D:</b> " + compDepthVal.Value.ToString() + " </br><b>H:</b> " + compHeightVal.Value.ToString()
