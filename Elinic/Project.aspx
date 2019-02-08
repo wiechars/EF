@@ -331,18 +331,26 @@
             // Prepare layout options.
             var options = {
                 autoResize: true, // This will auto-update the layout when the browser window is resized.
-                container: $('#main, #main2'), // Optional, used for some extra CSS styling
+                container: $('#main'), // Optional, used for some extra CSS styling
                 align: 'left',
                 offset: 5//, // Optional, the distance between grid items
                 // outerOffset: 10, // Optional, the distance to the containers border
                 //  itemWidth: 400 // Optional, the width of a grid item
             };
 
+            var options2 = {
+                    autoResize: true, // This will auto-update the layout when the browser window is resized.
+                    container: $('#main2'), // Optional, used for some extra CSS styling
+                    align: 'left',
+                    offset: 5//, // Optional, the distance between grid items
+
+                };
+
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
 
                 // Call the layout function.
                 handler.wookmark(options);
-                handler2.wookmark(options);
+                handler2.wookmark(options2);
 
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
