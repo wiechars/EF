@@ -252,6 +252,7 @@
                         alert("Cannot add more of this component!");
                         found = true;
                     } else {
+
                         if ($('#liAddComponent' + nextId).is(":visible")) {
                             nextId++;
                         } else {
@@ -280,7 +281,7 @@
                     }
                 }
             } else {
-                alert('Please configure all instances of this component before adding additional');
+                alert('Please configure prior to cloning.');
             }
         });
 
@@ -297,6 +298,24 @@
                     //$('#Comp' + id).css('visibility', 'hidden');
                     location.reload();
 
+                }
+            });
+
+        });
+
+        $("[id ^= 'Redo']").click(function () {
+
+            id = this.id.replace(/[^\d.]/g, '');
+            $.ajax({
+                type: "POST",
+                url: 'Project.aspx/RemoveSession',
+                data: "{ id :" + id + "}",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if ($('#Comp' + id).hasClass('configured')) {
+                        $('#Comp' + id).removeClass('configured');
+                    }
+                    $('#Comp' + id).hide();
                 }
             });
 

@@ -7,7 +7,7 @@
     <title><%: Page.Title %> - Elinic Furniture</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
-       <%:   @Styles.Render("~/bundles/css") %>
+        <%:   @Styles.Render("~/bundles/css") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -44,60 +44,28 @@
             </Scripts>
 
 
+
         </asp:ScriptManager>
         <header>
-            <%--            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">
-                        <a runat="server" href="~/">Elinic furniture    </a>
-                    </p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        <asp:LoginView runat="server" ViewStateMode="Disabled">
-                            <AnonymousTemplate>
-                                <ul>
-                                    <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>>
-                                    <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
-                                </ul>
-                            </AnonymousTemplate>
-                            <LoggedInTemplate>
-                                <p>
-                                    Hello, <a runat="server" class="username" href="~/Account/Manage.aspx" title="Manage your account">
-                                        <asp:LoginName runat="server" CssClass="username" />
-                                    </a>!
-                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                </p>
-                            </LoggedInTemplate>
-                        </asp:LoginView>
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li><a runat="server" href="~/">Home</a></li>
-                            <li><a id="A1" runat="server" href="~/Project.aspx">Project</a></li>
-                            <li><a id="A2" runat="server" href="~/Component.aspx">Component</a></li>
-                            <li><a runat="server" href="~/About.aspx">About</a></li>
-                            <li><a runat="server" href="~/Contact.aspx">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>--%>
+                        <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86128642-1"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-86128642-1');
+            </script>
         </header>
         <div id="body">
-                <asp:PlaceHolder runat="server">
-                            <%: Scripts.Render("~/bundles/jqueryScripts") %>
-    </asp:PlaceHolder>
+            <asp:PlaceHolder runat="server">
+                <%: Scripts.Render("~/bundles/jqueryScripts") %>
+            </asp:PlaceHolder>
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
         </div>
         <footer>
-            <%--<div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; <%: DateTime.Now.Year %> - RSW Designs</p>
-                </div>
-            </div> --%>
         </footer>
     </form>
 

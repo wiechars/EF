@@ -52,7 +52,7 @@ namespace Elinic
             }
             else if (Request.QueryString["LayoutID"] != null)
             {
-                
+
                 orderValues.InnerHtml = "";
                 int? ideas = null;
 
@@ -144,7 +144,7 @@ namespace Elinic
                             var json = new JavaScriptSerializer().Serialize(material);
 
                             compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
-                            if(index == 0)
+                            if (index == 0)
                             {
                                 imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
                                 imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
@@ -168,7 +168,7 @@ namespace Elinic
                     compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
                 }
 
-               
+
 
                 catch (Exception ex)
                 {
@@ -216,7 +216,7 @@ namespace Elinic
                     {
                         while (obj.rdr.Read())
                         {
-                        
+
                             compHandle.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["HandleID"]), Convert.ToString(obj.rdr["HandleImage"])));
                             if (index == 0)
                             {
@@ -229,7 +229,7 @@ namespace Elinic
                         compHandle.SelectedValue = Session["handleIndex"] != null ? Convert.ToString(Session["handleIndex"]) : "";
                     }
 
-                    
+
 
                 }
 
@@ -363,7 +363,7 @@ namespace Elinic
         {
             try
             {
-              Response.Redirect("~/Project.aspx?Type=" + Session["Type"] + "&Title=" + Session["Title"]);
+                Response.Redirect("~/Project.aspx?Type=" + Session["Type"] + "&Title=" + Session["Title"]);
             }
             catch (Exception ex)
             {
@@ -576,7 +576,7 @@ namespace Elinic
                                 price = price + Convert.ToDouble(Session["Comp" + counter + "Price"].ToString());
                                 orderValues.InnerHtml = orderValues.InnerHtml + Session["Comp" + counter].ToString() + "</div>";
                                 detailsDiv = detailsDiv + Session["Comp" + counter].ToString() + "</div>";
-                       
+
 
                             }
                             else
@@ -585,28 +585,8 @@ namespace Elinic
                                 if (counter != 1 + (5 * (i - 1)))
                                 {
                                     detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
-                                        + counter + "\"><a href=\"" + link + "\"\\>";//<b>Component Type:</b> "
-                                                                                     // + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\" style=\"display:none;\" id=\"Comp"
-                                    //    + counter + "\"><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
+                                        + counter + "\"><a href=\"" + link + "\"\\>";
                                 }
-                                else
-                                {
-                                    //detailsDiv = "<div class=\"customized-values\" id=\"Comp"
-                                    //    + counter + "\"><a href=\"" + link + "\"\\><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                    //orderValues.InnerHtml = orderValues.InnerHtml + "<div class=\"customized-values\"  style=\"font-size:16px!important;\" id=\"Comp"
-                                    //    + counter + "\"><b>Component Type:</b> "
-                                    //    + Convert.ToString(obj.rdr["CompTypeID"].ToString());
-
-                                }
-                                //detailsDiv = detailsDiv + "&nbsp; <b>ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                                //orderValues.InnerHtml = orderValues.InnerHtml + "&nbsp; <b>Component ID :</b> n/a &nbsp; <b>W:</b> n/a <b>D:</b> n/a <b>H:</b> n/a <b>Doors:</b> n/a <b>Material:</b> n/a <b>Price:</b> n/a</div>";
-                                //values.InnerHtml.Style.Add("display", "none");
                             }
                             HtmlGenericControl add = new HtmlGenericControl("div");
                             HtmlGenericControl remove = new HtmlGenericControl("Button");
@@ -615,7 +595,8 @@ namespace Elinic
                             anchor.Attributes.Add("href", link);
                             if (Session["Comp" + counter] != null)
                             {
-                                anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"" + Session["Comp" + counter + "CompImagePath"].ToString() + "\">";
+                                var compId = Session["Comp" + counter + "CompSelectedId"] != null ? Session["Comp" + counter + "CompSelectedId"].ToString() : "";
+                                anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + " - " + compId + "</p><img src=\"" + Session["Comp" + counter + "CompImagePath"].ToString() + "\">";
                                 Session["ComponentImagePath"] = "";
                             }
                             else
@@ -623,22 +604,33 @@ namespace Elinic
                                 anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + "</p><img src=\"../Images/CompTypeThumbs/"
                            + Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
                             }
-                            //+ Convert.ToString(obj.rdr["CompTypeThumbImage"].ToString()) + "\"></a>";
-                            // add.InnerHtml = "<div style=\"background-color: orange;width: 100%;\"id=AddComponent" + counter + ">+</div>";
-                            if (counter != 1 + (5 * (i - 1)))                           {
-                                
 
-                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>" +
-                                                "<Button style=\"padding:0px !important; font-size:2em;  background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            if (counter != 1 + (5 * (i - 1)))
+                            {
+
+
+                                add.InnerHtml =
+                                              "<Button class=\"btn btn-primary\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i></Button>" +
+                                                "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>" +
+                                                "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>" +
+                                                "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
                             }
                             else
                             {
-                                add.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: orange;width: 40%;\"id=AddComponent" + counter + " onclick=\"return false;\">+</Button>";
+                                add.InnerHtml =
+
+                                    "<Button class=\"btn btn-primary\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i></Button>" +
+                                    "<Button class=\"btn btn-warning\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i></Button>" +
+                                     "<Button class=\"btn btn-info\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i></Button>";
                             }
-                            remove.InnerHtml = "<Button style=\"padding:0px !important; font-size:2em; background-color: red;width: 40%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            //remove.InnerHtml = "<Button style=\"padding:2 2 2 2px !important; background-color: red;width: 40%%;\"id=RemoveComponent" + counter + " onclick=\"return false;\">-</Button>";
+                            remove.InnerHtml = "<Button class=\"btn btn-danger\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i></Button>";
+
+
+
+
                             addDetailsDiv.InnerHtml = detailsDiv;
                             li.Controls.Add(add);
-           
                             // li.Controls.Add(remove);
                             li.Controls.Add(anchor);
                             if (counter % 5 != 0)  //Causing extra anchor tags - don't know why.
@@ -646,11 +638,7 @@ namespace Elinic
                                 li.Controls.Add(addDetailsDiv);
                             }
 
-                            //Unhide if has a value
-                            if (Session["Comp" + counter] != null)
-                            {
-                                li.Style.Remove("display");
-                            }
+
                         }
                         i++;
                     }
@@ -687,7 +675,7 @@ namespace Elinic
         {
             int itemNumber = 1;
             string orderHTML = "";
-            for(int i=1; i< 50; i++)//Hardcoded limit on how many configured components
+            for (int i = 1; i < 50; i++)//Hardcoded limit on how many configured components
             {
                 if (Session["Comp" + i] != null)
                 {
@@ -736,21 +724,22 @@ namespace Elinic
 
         //using System.Web.Services;
         [System.Web.Services.WebMethod(EnableSession = true)]
-    public static string CloneSession(int srcId, int destId)
-    {
-       HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
-       HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId+ "Price"];
-       HttpContext.Current.Session["Comp" + destId + "CompImagePath"] = HttpContext.Current.Session["Comp" + srcId + "CompImagePath"];
-       return HttpContext.Current.Session["Comp" + destId].ToString();
-    }
+        public static string CloneSession(int srcId, int destId)
+        {
+            HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
+            HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId + "Price"];
+            HttpContext.Current.Session["Comp" + destId + "CompSelectedId"] = HttpContext.Current.Session["Comp" + srcId + "CompSelectedId"];
+            HttpContext.Current.Session["Comp" + destId + "CompImagePath"] = HttpContext.Current.Session["Comp" + srcId + "CompImagePath"];
+            return HttpContext.Current.Session["Comp" + destId] != null ? HttpContext.Current.Session["Comp" + destId].ToString() : "";
+        }
 
-}
+    }
 }
 
 class Material
 {
 
-    public String ImagePath{get;set;}
+    public String ImagePath { get; set; }
     public float Price { get; set; }
     public String Name { get; set; }
 }
