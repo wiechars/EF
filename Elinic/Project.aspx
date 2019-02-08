@@ -127,8 +127,6 @@
         </div>
     </div>
     <div id="notes" class="col-xs-12 input-form" runat="server">
-        <br />
-        <br />
         <div class="col-xs-12 text-center ">
             <div>
                 Total Price :
@@ -349,17 +347,6 @@
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
 
-                if ($(window).width() < 440) {
-                    $('#main').css({ height: "48em" });
-                }
-
-                if ($(window).width() < 900 && $(window).width() >= 440) {
-                    $('#main').css({ height: "35em" });
-                }
-
-                if ($(window).width() >= 900) {
-                    $('#main').css({ height: "25em" });
-                }
                 if ($('#MainContent_selectedComponent').length) {
 
                     $('#main').css({ height: "1.5em" });
