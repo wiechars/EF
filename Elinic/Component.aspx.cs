@@ -120,13 +120,13 @@ namespace Elinic
                 obj.Connect();
                 if (compID != null)
                 {
-                    obj.Query("SELECT Components.Description, Components.CompID,Components.CompThumbImage,ComponentTypes.CompTypeName, ComponentTypes.CompTypeName, Components.CompID  FROM Components " +
+                    obj.Query("SELECT Components.Description, Components.CompID,Components.StyleName,Components.CompThumbImage,ComponentTypes.CompTypeName, ComponentTypes.CompTypeName, Components.CompID  FROM Components " +
                                 "INNER JOIN ComponentTypes ON (componentTypes.CompTypeID = Components.CompType)" +
                                 "WHERE CompId =" + Request.QueryString["CompId"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
                 }
                 else
                 {
-                    obj.Query("SELECT ComponentTypes.Description, Components.CompThumbImage,Components.CompID, Components.CompStyle  " +
+                    obj.Query("SELECT ComponentTypes.Description,Components.StyleName, Components.CompThumbImage,Components.CompID, Components.CompStyle  " +
                         "FROM Components INNER JOIN ComponentTypes ON (ComponentTypes.CompTypeID = Components.CompType)  " +
                         "Where CompType = " + Request.QueryString["Type"].ToString() + " ORDER BY Components.CompStyle,Components.CompID;");
                 }
@@ -170,35 +170,35 @@ namespace Elinic
 
                             if ((currentStyle == 0 && String.IsNullOrEmpty(prevStyle)) || (currentStyle == 1 && prevStyle == style))
                             {
-                                styleHeader.Text = "Style " + style;
+                                styleHeader.Text = "Style " + Convert.ToString(obj.rdr["StyleName"]); 
                                 tiles_small.Controls.Add(li);
                                 prevStyle = style;
                                 currentStyle = 1;
                             }
                             else if ((currentStyle == 1 && prevStyle != style) || (currentStyle == 2 && prevStyle == style))
                             {
-                                styleHeader2.Text = "Style " + style;
+                                styleHeader2.Text = "Style " + Convert.ToString(obj.rdr["StyleName"]);
                                 tiles_small2.Controls.Add(li);
                                 prevStyle = style;
                                 currentStyle = 2;
                             }
                             else if ((currentStyle == 2 && prevStyle != style) || (currentStyle == 3 && prevStyle == style))
                             {
-                                styleHeader3.Text = "Style " + style;
+                                styleHeader3.Text = "Style " + Convert.ToString(obj.rdr["StyleName"]);
                                 tiles_small3.Controls.Add(li);
                                 prevStyle = style;
                                 currentStyle = 3;
                             }
                             else if ((currentStyle == 3 && prevStyle != style) || (currentStyle == 4 && prevStyle == style))
                             {
-                                styleHeader4.Text = "Style " + style;
+                                styleHeader4.Text = "Style " + Convert.ToString(obj.rdr["StyleName"]);
                                 tiles_small4.Controls.Add(li);
                                 prevStyle = style;
                                 currentStyle = 4;
                             }
                             else if ((currentStyle == 4 && prevStyle != style) || (currentStyle == 5 && prevStyle == style))
                             {
-                                styleHeader5.Text = "Style " + style;
+                                styleHeader5.Text = "Style " + Convert.ToString(obj.rdr["StyleName"]);
                                 tiles_small5.Controls.Add(li);
                                 prevStyle = style;
                                 currentStyle = 5;
