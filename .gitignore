@@ -154,3 +154,10 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/.vs/Elinic/v15/Server/sqlite3/storage.ide-wal
+/.vs/Elinic/v15/Server/sqlite3/storage.ide-shm
+/.vs/Elinic/v15/Server/sqlite3/storage.ide
+/.vs/Elinic/v15/Server/sqlite3/db.lock
+/.vs/Elinic/DesignTimeBuild/.dtbcache
+/.vs/config/applicationhost.config
+/Elinic/LogFiles/errorlog.txt
