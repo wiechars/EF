@@ -14,6 +14,7 @@
 
         .modalPopup {
             width:80%;
+            height:80%;
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -22,8 +23,7 @@
             padding-top: 10px;
             padding-left: 5px;
             padding-right: 5px;
-            overflow-y: auto;
-            height: auto;
+            overflow-y: scroll;
         }
     </style>
 </asp:Content>
