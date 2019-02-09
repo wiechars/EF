@@ -40,9 +40,9 @@ namespace Elinic
             }
             orderForm.Visible = false;
             notes.Visible = true;
-            btnOrder.Visible = true;
-            btnConfigure.Visible = false;
-            btnGoBack.Visible = false;
+            btnSelect.Visible = true;
+            btnConfig.Visible = false;
+            btnBack.Visible = false;
             if (Request.QueryString["Type"] != null)
             {
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
@@ -53,9 +53,9 @@ namespace Elinic
                 if (Request.QueryString["Comp"] != null)
                 {
                     notes.Visible = false;
-                    btnOrder.Visible = false;
-                    btnConfigure.Visible = true;
-                    btnGoBack.Visible = true;
+                    btnSelect.Visible = false;
+                    btnConfig.Visible = true;
+                    btnBack.Visible = true;
                 }
 
                 orderForm.Visible = true;
@@ -375,7 +375,7 @@ namespace Elinic
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnOrder_Click(object sender, EventArgs e)
+        protected void btnSelect_Click(object sender, EventArgs e)
         {
             OrderDetails odr = new OrderDetails();
             odr.NumOfDoors = compDoors.SelectedIndex == -1 ? "N/A" : compDoors.SelectedItem.Text;
@@ -391,7 +391,7 @@ namespace Elinic
             Response.Redirect("~/SubmitRequest.aspx");
         }
 
-        protected void btnConfigure_Click(object sender, EventArgs e)
+        protected void btnConfig_Click(object sender, EventArgs e)
         {
             try
             {

@@ -30,7 +30,12 @@
     <div id="pageContent" runat="server">
         <hgroup class="title">
             <h1><%: Title %></h1>
-            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
+            <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
+                <i class="fa fa-home"></i>&nbsp;Home
+            </button>
+            <button id="btnHelp" class="btn  dark" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
+                <i class="fa fa-info-circle"></i>Help
+            </button>
             <hr />
         </hgroup>
         <div class="col-xs-offset-1 col-xs-10">
@@ -100,7 +105,7 @@
                     <asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
-<%--            <div class="col-xs-12 input-form">
+            <%--            <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Material:</label>
                 <div class="col-xs-8" style="margin-top: 5px;">
                     <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
@@ -111,7 +116,7 @@
             Notes:<textarea name="Text1" cols="40" rows="3" class="input-form" style="width: 80%;"></textarea>
         </div> -->
 
-            <div class="col-xs-12 input-form text-center ">
+            <div class="col-xs-offset-4 col-xs-8 input-form text-center ">
                 <div>
                     Total Price :
             <asp:Label ID="price" runat="server" Style="display: inline-block;">N/A</asp:Label>
@@ -123,13 +128,18 @@
                 <asp:HiddenField ID="compDoorsVal" runat="server"></asp:HiddenField>
                 <asp:HiddenField ID="compMaterialVal" runat="server"></asp:HiddenField>
             </div>
-            <div class="col-xs-12 input-form text-center">
-                <asp:Button ID="btnOrder" runat="server" Text="Select" OnClick="btnOrder_Click" />
-                <asp:Button ID="btnConfigure" runat="server" Text="Select" Visible="false" OnClick="btnConfigure_Click" />
-                <asp:Button ID="btnGoBack" runat="server" Text="Back To Set Layout" Visible="false" OnClick="btnGoBack_Click" />
-
-
+            <div class="col-xs-offset-4 col-xs-8 text-center">
+                <button id="btnSelect" visible="false" class="btn btn-success light" runat="server" onserverclick="btnSelect_Click">
+                    <i class="fa fa-edit"></i>&nbsp;Select
+                </button>
+                <button id="btnConfig" visible="false" class="btn btn-success light" runat="server" onserverclick="btnConfig_Click">
+                    <i class="fa fa-edit"></i>&nbsp;Select
+                </button>
+                <button id="btnBack" visible="false" class="btn btn-primary light" runat="server" onserverclick="btnGoBack_Click">
+                    <i class="fa fa-undo"></i>&nbsp;Back To Set Layout
+                </button>
             </div>
+
             <div class="col-xs-12" style="text-align: center;">
                 <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>
             </div>

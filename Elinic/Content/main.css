@@ -10,6 +10,14 @@ html
        font-family: 'Open Sans';
 }
 
+.light {
+    color: white !important;
+}
+
+.dark {
+    color: black !important;
+}
+
 #main,
 #main2,
 #main3, 

@@ -61,9 +61,12 @@
 
         <br />
         <div align="center" class="">
-            <asp:Button ID="btnOrder" runat="server" OnClick="btnSend_Click" Text="Submit Set For Review" />
-            <asp:Button ID="btnClose" runat="server" OnClick="btnGoBack_Click" Text="Go Back" />
-
+            <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSend_Click" >
+                <i class="fa fa-check-circle"></i>&nbsp;Submit Set For Review
+            </button>
+             <button id="btnBack" class="btn btn-primary light" runat="server" onserverclick="btnGoBack_Click" >
+                <i class="fa fa-undo"></i>&nbsp;Go Back
+            </button>
         </div>
         <div align="center">
             <asp:Label ID="lblMsg" runat="server" Visible="false" Style="display: inline-block;"></asp:Label>

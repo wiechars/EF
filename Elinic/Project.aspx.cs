@@ -302,7 +302,7 @@ namespace Elinic
                         }
                         else
                         {
-                            lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
+  lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
 
                         }
                         if (layoutID != null && ideas == null)
@@ -675,7 +675,7 @@ namespace Elinic
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnOrder_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             int itemNumber = 1;
             string orderHTML = "";

@@ -29,13 +29,15 @@
     <div id="pageContent" runat="server">
         <hgroup class="title">
             <h1><%: Title %></h1>
-            <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right; width: 110px;" />
+            <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
+                <i class="fa fa-home"></i>&nbsp;Home
+            </button>
             <hr />
 
         </hgroup>
         <div class="col-sm-offset-1 col-sm-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
-             <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
+            <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
         </div>
         <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
@@ -70,57 +72,58 @@
             <div class="col-xs-12 col-sm-12 col-lg-6 ">
                 &nbsp;&nbsp;
              <div class="col-xs-12 row ">
-                <div id="selectedLayout" class="col-sm-4 col-lg-4" >
-                    <ul runat="server" id="layout">
-                    </ul>
-                </div>
-                   <div id="selectedMaterial"  class="col-sm-8 col-lg-8" runat="server">
-                        <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
-                        <div class="col-xs-12">
-                            <div class="col-xs-4 text-center">
-                                 <img id="imgMaterial" style="max-width: 60%; max-height: 60%;  border: 1px solid #dedede;
-  border-radius: 10px;" src="" runat="server" />
-                            </div>
-                            <div class="col-xs-8 ">
-                                <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                                <div class="col-xs-12" style="margin-top: 5px;">
-                                    <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"  
-                                        AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged"
-                                        ></asp:DropDownList>
-                                </div>
-                                <%--  <label class="col-xs-4 text-right">Lacquer Finish:</label>--%>
-                                <div class="col-xs-12" style="margin-top: 5px;">
-                                    <asp:DropDownList ID="compFinish" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
-                                </div>
-                                <%-- <label class="col-xs-4 text-right">Stain:</label>--%>
-                                <div class="col-xs-12" style="margin-top: 5px;">
-                                    <asp:DropDownList ID="compStain" runat="server" class="input-form" Style="width: 100%;" runat="server"></asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                       <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
-                        <div class="col-xs-12">
-                            <div class="col-xs-4 text-center">
-                                <img id="imgHandle" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede;
-  border-radius: 10px;" src="" runat="server" />
-                            </div>
-                            <div class="col-xs-8 ">
-                                <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                                <div class="col-xs-12" style="margin-top: 5px;">
-                                    <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"
-                                         AutoPostBack="true" OnSelectedIndexChanged="HandleChanged"></asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 <div id="selectedLayout" class="col-sm-4 col-lg-4">
+                     <ul runat="server" id="layout">
+                     </ul>
                  </div>
+                 <div id="selectedMaterial" class="col-sm-8 col-lg-8" runat="server">
+                     <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
+                     <div class="col-xs-12">
+                         <div class="col-xs-4 text-center">
+                             <img id="imgMaterial" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
+                                 src="" runat="server" />
+                         </div>
+                         <div class="col-xs-8 ">
+                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
+                             <div class="col-xs-12" style="margin-top: 5px;">
+                                 <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"
+                                     AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged">
+                                 </asp:DropDownList>
+                             </div>
+                             <%--  <label class="col-xs-4 text-right">Lacquer Finish:</label>--%>
+                             <div class="col-xs-12" style="margin-top: 5px;">
+                                 <asp:DropDownList ID="compFinish" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
+                             </div>
+                             <%-- <label class="col-xs-4 text-right">Stain:</label>--%>
+                             <div class="col-xs-12" style="margin-top: 5px;">
+                                 <asp:DropDownList ID="compStain" runat="server" class="input-form" Style="width: 100%;" runat="server"></asp:DropDownList>
+                             </div>
+                         </div>
+                     </div>
+                     <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
+                     <div class="col-xs-12">
+                         <div class="col-xs-4 text-center">
+                             <img id="imgHandle" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
+                                 src="" runat="server" />
+                         </div>
+                         <div class="col-xs-8 ">
+                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
+                             <div class="col-xs-12" style="margin-top: 5px;">
+                                 <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"
+                                     AutoPostBack="true" OnSelectedIndexChanged="HandleChanged">
+                                 </asp:DropDownList>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
             </div>
             <div id="selectedComponent" class="col-xs-12  col-lg-6" runat="server">
-                    <div class="">
-                        <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
-                    </div>
-                    <ul runat="server" id="comp_small" class="">
-                    </ul>
+                <div class="">
+                    <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
+                </div>
+                <ul runat="server" id="comp_small" class="">
+                </ul>
             </div>
         </div>
     </div>
@@ -132,8 +135,13 @@
             </div>
         </div>
         <div class="col-xs-12 row text-center">
-            <asp:Button ID="btnOrder" runat="server" Text="Finish Configuring" OnClick="btnOrder_Click" />
-            <asp:Button ID="btnBack" runat="server" Text="Back to Layouts & Ideas" OnClick="btnGoBack_Click" />
+            <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSubmit_Click" >
+                <i class="fa fa-check-circle"></i>&nbsp;Finish Configuring
+            </button>
+            <button id="Button1" class="btn btn-primary light" runat="server" onserverclick="btnGoBack_Click" >
+                <i class="fa fa-undo"></i>&nbsp;Back to Layouts & Ideas
+            </button>
+
         </div>
         <div class=" col-xs-3">
         </div>
@@ -337,12 +345,12 @@
             };
 
             var options2 = {
-                    autoResize: true, // This will auto-update the layout when the browser window is resized.
-                    container: $('#main2'), // Optional, used for some extra CSS styling
-                    align: 'left',
-                    offset: 5//, // Optional, the distance between grid items
+                autoResize: true, // This will auto-update the layout when the browser window is resized.
+                container: $('#main2'), // Optional, used for some extra CSS styling
+                align: 'left',
+                offset: 5//, // Optional, the distance between grid items
 
-                };
+            };
 
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
 

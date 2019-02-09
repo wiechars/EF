@@ -13,21 +13,21 @@ namespace Elinic {
     public partial class OrderComplete {
         
         /// <summary>
-        /// btnConfigure control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfigure;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSubmit;
         
         /// <summary>
-        /// btnHome control.
+        /// btnHome2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHome;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnHome2;
     }
 }

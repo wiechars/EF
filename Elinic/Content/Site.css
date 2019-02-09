@@ -504,15 +504,15 @@ input[type="submit"],
 input[type="button"],
 button
 {
-    background-color: #4285f4;
     border: 1px solid white;
     cursor: pointer;
     font-size: 14px;
     color: white !important;
     font-weight: bold;
-    margin-left:3px;
+    margin-left:1px!important;
+    margin-right:1px!important;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
     margin-right: 8px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;

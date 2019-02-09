@@ -22,13 +22,22 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pageContent;
         
         /// <summary>
-        /// btnHome control.
+        /// btnHome2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHome;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnHome2;
+        
+        /// <summary>
+        /// btnHelp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnHelp;
         
         /// <summary>
         /// lblDescription control.
@@ -274,31 +283,31 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.HiddenField compMaterialVal;
         
         /// <summary>
-        /// btnOrder control.
+        /// btnSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrder;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSelect;
         
         /// <summary>
-        /// btnConfigure control.
+        /// btnConfig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfigure;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnConfig;
         
         /// <summary>
-        /// btnGoBack control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoBack;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnBack;
         
         /// <summary>
         /// lblMsg control.
