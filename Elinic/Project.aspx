@@ -35,6 +35,7 @@
         </hgroup>
         <div class="col-sm-offset-1 col-sm-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+             <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
         </div>
         <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
@@ -66,9 +67,6 @@
         </div>
 
         <div class="col-xs-12">
-            <div class="col-sm-offset-1 col-lg-10">
-                <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
-            </div>
             <div class="col-xs-12 col-sm-12 col-lg-6 ">
                 &nbsp;&nbsp;
              <div class="col-xs-12 row ">

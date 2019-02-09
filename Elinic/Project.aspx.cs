@@ -294,11 +294,15 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
-                        lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
-
+                      
                         if (hasDescription)
                         {
                             lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
+
+                        }
+                        else
+                        {
+                            lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
 
                         }
                         if (layoutID != null && ideas == null)
