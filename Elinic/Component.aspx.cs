@@ -20,6 +20,12 @@ namespace Elinic
         int? ideas = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                helpText.Text = GetHelpText();
+
+            }
+
             componentImagePath = "";
             lblDescription.Text = "";
             if (Request.QueryString["Request"] != null)
@@ -68,6 +74,39 @@ namespace Elinic
                 LoadComponentTypes();
             }
 
+        }
+
+
+        private string GetHelpText()
+        {
+            string helpText = "";
+            Database obj = new Database();
+            try
+            {
+                obj.Connect();
+                obj.Query("SELECT * FROM Helptext");
+
+                if (obj.rdr.HasRows == true)
+                {
+                    while (obj.rdr.Read())
+                    {
+                        helpText = Convert.ToString(obj.rdr["TopicText"].ToString());
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                log.LogErrorMessage("Load Help Text : " + ex);
+
+            }
+            finally
+            {
+                obj.Close();
+            }
+
+            return helpText;
         }
 
         /// <summary>

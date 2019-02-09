@@ -18,6 +18,11 @@ namespace Elinic
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                helpText.Text = GetHelpText();
+
+            }
             //Initialize specific Divs.
             layoutsDiv.Visible = false;
             layoutsDivContent.Visible = true;
@@ -75,6 +80,39 @@ namespace Elinic
                 LoadProjectTypes();
             }
 
+        }
+
+
+        private string GetHelpText()
+        {
+            string helpText = "";
+            Database obj = new Database();
+            try
+            {
+                obj.Connect();
+                obj.Query("SELECT * FROM Helptext");
+
+                if (obj.rdr.HasRows == true)
+                {
+                    while (obj.rdr.Read())
+                    {
+                        helpText = Convert.ToString(obj.rdr["TopicText"].ToString());
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                log.LogErrorMessage("Load Help Text : " + ex);
+
+            }
+            finally
+            {
+                obj.Close();
+            }
+
+            return helpText;
         }
 
         /// <summary>

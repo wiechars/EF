@@ -13,6 +13,7 @@
         }
 
         .modalPopup {
+            width:80%;
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -33,8 +34,8 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <button id="btnHelp" class="btn  dark" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
-                <i class="fa fa-info-circle"></i>Help
+            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+                <i class="fa fa-info-circle"></i>&nbsp;Help
             </button>
             <hr />
         </hgroup>
@@ -183,35 +184,9 @@
             </asp:Panel>
             <!-- ModalPopupExtender -->
 
-            <!-- ModalPopupExtender -->
-            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnNext"
-                CancelControlID="btnCancelNext" BackgroundCssClass="modalBackground">
-            </cc1:ModalPopupExtender>
-            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
-                <div id="Div1" class="span4" style="font-size: 1.5em; text-align: justify; text-justify: inter-word">
-                    <p>
-                        <br />
-                        &nbsp;&nbsp;Once you click Send, we instantly receive this design information.<br />
-                        <br />
-                        &nbsp; 
-                    Our design technician will then pull the required components from our drawing library in a CAD design package, resize them to your dimensions, and align them in a set accordingly. The designer will verify that all component dimensions, materials, and colours make sense and work together. If not, they will suggest changes, and will create renders to help you visualize the alterations.<br />
-                        <br />
-                        &nbsp;
-                    We'd like to make it clear that nothing gets built until we confirm every detail with you. We will show you your design, rendered in scale according to your dimensions, materials, and colour, and only when you approve will we start building. Even then, we will stay in contact with you to further verify things.  We are working with you throughout the entire process! We promise!<br />
-                        <br />
-                        &nbsp;
-                    In most cases, simple email (and a phone call) correspondence is sufficient. However, we are happy to come to you in order to discuss/measure in person. If you changed you mind and want to cancel or decided to change the selection, it is not a problem at all! Just send an email to let us know or write us a comment in the Note box if you are sending a revised design. We welcome your ideas! So please, experiment away!<br />
-                        <br />
-                        &nbsp;
-                    *Please double check your email address to make sure it is correct. **Click Send.
-                    </p>
-                </div>
-                <div>
-                    <button id="btnCancelNext" class="Cancel">Close</button>
-                </div>
 
-            </asp:Panel>
-            <!-- ModalPopupExtender -->
+
+    <!-- ModalPopupExtender -->
         </div>
         <div class="col-xs-12">
             <div id="gallery-container">
@@ -230,6 +205,28 @@
     </div>
 
 
+        <!-- ModalPopupExtender -->
+   <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
+                CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
+            </cc1:ModalPopupExtender>
+            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
+                <div id="Div1" class="text-left">
+                    <h3>Help</h3>
+                        <hr />
+                    <p>
+                        <br />
+                        <asp:Label runat="server" ID="helpText"></asp:Label>
+                    </p>
+                </div>
+                <div>
+             <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
+                <i class="fa fa-times"></i>&nbsp;Close
+            </button>
+                    </br>
+                </div>
+
+            </asp:Panel>
+    <!-- ModalPopupExtender -->
     <script>
         var WASTE_FACTOR = 1.2;
         var DESK_MOLDING_FOOT_PRICE = 1.5;
@@ -352,10 +349,10 @@
         $('#MainContent_compDoors').change(function () {
             CalculatePrice();
         });
-        $('#MainContent_btnCancelNext').click(function () {
-            var mpu = $find('mp2');
-            mpu.hide();
-        });
+        //$('#MainContent_btnCancelNext').click(function () {
+        //    var mpu = $find('mp2');
+        //    mpu.hide();
+        //});
     </script>
 
     <!-- Once the page is loaded, initalize the plug-in. -->

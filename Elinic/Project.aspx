@@ -11,6 +11,7 @@
         }
 
         .modalPopup {
+            width:80%;
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -31,6 +32,9 @@
             <h1><%: Title %></h1>
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
+            </button>
+            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+                <i class="fa fa-info-circle"></i>&nbsp;Help
             </button>
             <hr />
 
@@ -135,10 +139,10 @@
             </div>
         </div>
         <div class="col-xs-12 row text-center">
-            <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSubmit_Click" >
+            <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSubmit_Click">
                 <i class="fa fa-check-circle"></i>&nbsp;Finish Configuring
             </button>
-            <button id="Button1" class="btn btn-primary light" runat="server" onserverclick="btnGoBack_Click" >
+            <button id="Button1" class="btn btn-primary light" runat="server" onserverclick="btnGoBack_Click">
                 <i class="fa fa-undo"></i>&nbsp;Back to Layouts & Ideas
             </button>
 
@@ -212,7 +216,28 @@
             </div>
         </div>
     </div>
+    <!-- ModalPopupExtender -->
+    <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
+        CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
+    </cc1:ModalPopupExtender>
+    <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none">
+        <div id="Div1" class="text-left">
+            <h3>Help</h3>
+            <hr />
+            <p>
+                <br />
+                <asp:Label runat="server" ID="helpText"></asp:Label>
+            </p>
+        </div>
+        <div>
+            <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
+                <i class="fa fa-times"></i>&nbsp;Close
+            </button>
+            </br>
+        </div>
 
+    </asp:Panel>
+    <!-- ModalPopupExtender -->
 
     <script>
 

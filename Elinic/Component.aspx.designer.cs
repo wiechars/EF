@@ -418,6 +418,24 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
+        /// gallery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gallery;
+        
+        /// <summary>
+        /// gallery_large control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gallery_large;
+        
+        /// <summary>
         /// mp2 control.
         /// </summary>
         /// <remarks>
@@ -436,21 +454,12 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// gallery control.
+        /// helpText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gallery;
-        
-        /// <summary>
-        /// gallery_large control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gallery_large;
+        protected global::System.Web.UI.WebControls.Label helpText;
     }
 }
