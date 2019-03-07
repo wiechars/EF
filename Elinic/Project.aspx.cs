@@ -114,7 +114,35 @@ namespace Elinic
 
             return helpText;
         }
+        private void addCard(HtmlGenericControl container, String title, String imgSrc, String buttonText, String link)
+        {
+            HtmlGenericControl cardDiv = new HtmlGenericControl("div"),
+                                            card = new HtmlGenericControl("div"),
+                                            cardImg = new HtmlGenericControl("img"),
+                                            cardBody = new HtmlGenericControl("div"),
+                                            cardTitle = new HtmlGenericControl("h4"),
+                                            cardButton = new HtmlGenericControl("a");
 
+            cardDiv.Attributes["class"] = "col-md-6 col-sm-12 col-lg-4 col-xl-3 mb-4";
+            card.Attributes["class"] = "card m-1 m-b-1 h-100";
+            cardImg.Attributes["class"] = "card-img-top";
+            cardBody.Attributes["class"] = "card-body d-flex flex-column";
+            cardTitle.Attributes["class"] = "card-title font-weight-bold mt-auto border-top pt-3 text-center";
+            cardButton.Attributes["class"] = "btn btn-primary btn-lg btn-block mt-3";
+
+
+            cardButton.InnerHtml = buttonText;
+
+            cardButton.Attributes.Add("href", link);
+            cardTitle.InnerHtml = title;
+            cardImg.Attributes.Add("src", imgSrc);
+            card.Controls.Add(cardImg);
+            cardBody.Controls.Add(cardTitle);
+            cardBody.Controls.Add(cardButton);
+            card.Controls.Add(cardBody);
+            cardDiv.Controls.Add(card);
+            container.Controls.Add(cardDiv);
+        }
         /// <summary>
         /// Initial load of the screen - loads the differnet component types.
         /// </summary>
@@ -130,20 +158,22 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
-                        HtmlGenericControl li = new HtmlGenericControl("li");
-                        tiles.Controls.Add(li);
-                        HtmlGenericControl anchor = new HtmlGenericControl("a");
+                        String link = "";
+
                         if (Convert.ToString(obj.rdr["ProjectType"].ToString()) == "12")
                         {  //Hardcode link for walking closets
-                            anchor.Attributes.Add("href", "ClosetShape.htm");
+                            link = "ClosetShape.htm";
                         }
                         else
                         {
-                            anchor.Attributes.Add("href", "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString()));
+                            link = "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString());
                         }
-                        anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["ProjectName"].ToString()) + "</p><img src=\"../Images/ProjectTypeThumbs/"
-                            + Convert.ToString(obj.rdr["ProjectThumbImage"].ToString()) + "\">";
-                        li.Controls.Add(anchor);
+
+                        String title = obj.rdr["ProjectName"].ToString();
+                        String imageSrc = "../Images/ProjectTypeThumbs/"
+                            + Convert.ToString(obj.rdr["ProjectThumbImage"].ToString());
+                        String description = obj.rdr["Description"].ToString();
+                        addCard(tiles, title, imageSrc, "Select", link);
                     }
                 }
             }
@@ -368,13 +398,11 @@ namespace Elinic
                         else
                         {
                             layoutsDiv.Visible = true;
-                            HtmlGenericControl li = new HtmlGenericControl("li");
-                            tiles_small.Controls.Add(li);
-                            HtmlGenericControl anchor = new HtmlGenericControl("a");
-                            anchor.Attributes.Add("href", "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["LayoutID"].ToString()));
-                            anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["LayoutID"].ToString()) + "</p><img src=\"../Images/LayoutThumbs/"
-                                + Convert.ToString(obj.rdr["LayoutThumbImage"].ToString()) + "\">";
-                            li.Controls.Add(anchor);
+                            String title = Convert.ToString(obj.rdr["LayoutID"].ToString()),
+                                    link = "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["LayoutID"].ToString()),
+                                    imageSrc = "../Images/LayoutThumbs/" + Convert.ToString(obj.rdr["LayoutThumbImage"].ToString());
+
+                            addCard(tiles_small, title, imageSrc, "Select", link);
                         }
                     }
 
@@ -443,7 +471,12 @@ namespace Elinic
                     while (obj.rdr.Read())
                     {
                         lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
-
+                        String title = Convert.ToString(obj.rdr["IdeaID"].ToString()),
+                                imageSrc = "../Images/LayoutThumbs/"
+                            + Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()),
+                                link = "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "&Ideas=1";
+                        addCard(tiles_ideas, title, imageSrc, "Select", link);
+                        /**
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         tiles_ideas.Controls.Add(li);
 
@@ -452,6 +485,7 @@ namespace Elinic
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "</p><img src=\"../Images/LayoutThumbs/"
                             + Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()) + "\">";
                         li.Controls.Add(anchor);
+    **/
                     }
                 }
             }

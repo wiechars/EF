@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Project" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project.aspx.cs" Inherits="Elinic.Project" %>
+﻿<%@ Page Title="Select the type of your project" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project.aspx.cs" Inherits="Elinic.Project" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -22,6 +22,9 @@
             padding-right: 5px;
             overflow-y: auto;
             height: auto;
+        }
+        .card .btn {
+            color:#fff;
         }
     </style>
 
@@ -49,23 +52,23 @@
             </div>
         </div>
 
-        <div class="col-xs-offset-1 col-sm-11">
-            <div id="layoutsDiv" runat="server">
+        <div class="col-sm-11">
+            <div id="layoutsDiv" runat="server" class="container">
                 <h2>Standard Layouts</h2>
             </div>
-            <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
-                <div id="main" style="clear: both; visibility: hidden;">
-                    <ul runat="server" id="tiles" class="tiles">
+            <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;" class="container">
+                <div id="main" style="clear: both; visibility: hidden;;">
+                    <ul runat="server" id="tiles" class="row">
                     </ul>
-                    <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
+                    <ul runat="server" id="tiles_small" class="tiles_small row" style="overflow: auto">
                     </ul>
                 </div>
             </div>
 
-            <div id="ideasDiv" runat="server">
+            <div id="ideasDiv" runat="server" class="container">
                 <h2>Ideas</h2>
                 <div id="main2" style="visibility: hidden;">
-                    <ul runat="server" id="tiles_ideas">
+                    <ul runat="server" id="tiles_ideas" class="row">
                     </ul>
                 </div>
             </div>
@@ -124,7 +127,9 @@
             </div>
             <div id="selectedComponent" class="col-xs-12  col-lg-6" runat="server">
                 <div class="">
-                    <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
+                    <label class="customize-title col-xs-12 p-3">
+                        Configure and add components to your project. <br />
+                        Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
                 </ul>
@@ -138,7 +143,7 @@
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
-        <div class="col-xs-12 row text-center">
+        <div class="col-xs-12  text-center">
             <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSubmit_Click">
                 <i class="fa fa-check-circle"></i>&nbsp;Finish Configuring
             </button>
@@ -310,7 +315,7 @@
                     }
                 }
             } else {
-                alert('Please configure prior to cloning.');
+                alert('Let us suggest - Please configure this component before adding another one of the same kind. Click on the image or on the little dark blue gear button. Thank you!');
             }
         });
 
@@ -380,14 +385,13 @@
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
 
                 // Call the layout function.
-                handler.wookmark(options);
+                //handler.wookmark(options);
                 handler2.wookmark(options2);
 
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
 
                 if ($('#MainContent_selectedComponent').length) {
-
                     $('#main').css({ height: "1.5em" });
                 }
 

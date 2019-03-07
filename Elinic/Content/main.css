@@ -256,7 +256,6 @@ header p
 .tiles,
 .tiles_small,
 #MainContent_tiles_ideas {
-    display:inline-block !important;
     overflow:auto !important;
 }
 
