@@ -36,9 +36,9 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+            <a id="btnHelp" href="/Help.aspx" class="btn  dark" runat="server" style="float: right; width: 110px;">
                 <i class="fa fa-info-circle"></i>&nbsp;Help
-            </button>
+            </a>
             <hr />
 
         </hgroup>
@@ -222,9 +222,6 @@
         </div>
     </div>
     <!-- ModalPopupExtender -->
-    <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
-        CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
-    </cc1:ModalPopupExtender>
     <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none">
         <div id="Div1" class="text-left">
             <h3>Help</h3>
