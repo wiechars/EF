@@ -34,9 +34,9 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+            <a href="Help.aspx" target="_blank" class="btn dark" style="float: right; width: 110px;">
                 <i class="fa fa-info-circle"></i>&nbsp;Help
-            </button>
+            </a>
             <hr />
         </hgroup>
         <div class="col-xs-offset-1 col-xs-10">
@@ -205,28 +205,6 @@
     </div>
 
 
-        <!-- ModalPopupExtender -->
-   <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
-                CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
-            </cc1:ModalPopupExtender>
-            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
-                <div id="Div1" class="text-left">
-                    <h3>Help</h3>
-                        <hr />
-                    <p>
-                        <br />
-                        <asp:Label runat="server" ID="helpText"></asp:Label>
-                    </p>
-                </div>
-                <div>
-             <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
-                <i class="fa fa-times"></i>&nbsp;Close
-            </button>
-                    </br>
-                </div>
-
-            </asp:Panel>
-    <!-- ModalPopupExtender -->
     <script>
         var WASTE_FACTOR = 1.2;
         var DESK_MOLDING_FOOT_PRICE = 1.5;

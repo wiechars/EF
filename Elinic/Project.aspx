@@ -36,7 +36,7 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <a id="btnHelp" href="/Help.aspx" class="btn  dark" runat="server" style="float: right; width: 110px;">
+            <a target="_blank" href="/Help.aspx" class="btn  dark" runat="server" style="float: right; width: 110px;">
                 <i class="fa fa-info-circle"></i>&nbsp;Help
             </a>
             <hr />
@@ -221,25 +221,6 @@
             </div>
         </div>
     </div>
-    <!-- ModalPopupExtender -->
-    <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none">
-        <div id="Div1" class="text-left">
-            <h3>Help</h3>
-            <hr />
-            <p>
-                <br />
-                <asp:Label runat="server" ID="helpText"></asp:Label>
-            </p>
-        </div>
-        <div>
-            <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
-                <i class="fa fa-times"></i>&nbsp;Close
-            </button>
-            </br>
-        </div>
-
-    </asp:Panel>
-    <!-- ModalPopupExtender -->
 
     <script>
 

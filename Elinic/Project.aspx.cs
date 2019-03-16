@@ -18,11 +18,6 @@ namespace Elinic
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                helpText.Text = GetHelpText();
-
-            }
             //Initialize specific Divs.
             layoutsDiv.Visible = false;
             layoutsDivContent.Visible = true;

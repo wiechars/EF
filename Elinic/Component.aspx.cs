@@ -20,11 +20,6 @@ namespace Elinic
         int? ideas = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                helpText.Text = GetHelpText();
-
-            }
 
             componentImagePath = "";
             lblDescription.Text = "";
