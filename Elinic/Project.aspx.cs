@@ -48,6 +48,7 @@ namespace Elinic
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
                 btnBackToProjects.Visible = true;
                 LoadProjectLayouts(null, null);
+                index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + Convert.ToString(Request.QueryString["Title"]);
 
             }
             else if (Request.QueryString["LayoutID"] != null)
@@ -143,6 +144,7 @@ namespace Elinic
         /// </summary>
         private void LoadProjectTypes()
         {
+            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > Projects";
             Database obj = new Database();
             try
             {
@@ -377,6 +379,7 @@ namespace Elinic
                                 Convert.ToString(obj.rdr["LayoutThumbImage"].ToString()) + "\">";
                             li.Controls.Add(div);
                             this.Page.Title = Convert.ToString(obj.rdr["ProjectName"].ToString()) + " - " + Convert.ToString(obj.rdr["LayoutID"].ToString());
+                            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + this.Page.Title;
 
                         }
                         else if (layoutID != null && ideas != null)
@@ -388,6 +391,7 @@ namespace Elinic
                                 Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()) + "\">";
                             li.Controls.Add(div);
                             this.Page.Title = Convert.ToString(obj.rdr["ProjectName"].ToString()) + " - " + Convert.ToString(obj.rdr["IdeaID"].ToString());
+                            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + this.Page.Title;
 
                         }
                         else

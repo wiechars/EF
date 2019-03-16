@@ -39,6 +39,7 @@
             </a>
             <hr />
         </hgroup>
+        <h4 runat="server" ID="index" class="col-sm-offset-1 mb-3"></h4>
         <div class="col-xs-offset-1 col-xs-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </div>
@@ -84,25 +85,25 @@
         <div id="orderForm" class="col-xs-12 col-sm-8" runat="server">
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Width:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Depth:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Height:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form" id="divDoors" runat="server">
                 <label class="col-xs-4 text-right">Door Hinge Side:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
