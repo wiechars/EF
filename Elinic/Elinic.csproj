@@ -142,6 +142,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Images\details_open.png" />
     <Content Include="Help.aspx" />
+    <Content Include="Material.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="OrdersWebService.asmx" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
@@ -643,8 +644,15 @@
       <DependentUpon>Help.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Help.aspx.designer.cs">
+    <Compile Include="Help.aspx.designer.cs">	
       <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Material.aspx.cs">
+      <DependentUpon>Material.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Material.aspx.designer.cs">	
+      <DependentUpon>Material.aspx</DependentUpon>
     </Compile>
     <Compile Include="Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>

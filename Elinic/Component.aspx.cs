@@ -69,7 +69,7 @@ namespace Elinic
             {
                 LoadComponentTypes();
             }
-
+            //Convert.ToString(Request.QueryString["Title"]);
             if (this.Page.Title != "Component") index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Component.aspx\" class=\"text-info\">Components</a> > " + this.Page.Title;
             else index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > Components ";
         }

@@ -27,8 +27,11 @@
             color:#fff;
         }
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 </asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div id="pageContent" runat="server">
         <hgroup class="title">
@@ -85,44 +88,7 @@
                      </ul>
                  </div>
                  <div id="selectedMaterial" class="col-sm-8 col-lg-8" runat="server">
-                     <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
-                     <div class="col-xs-12">
-                         <div class="col-xs-4 text-center">
-                             <img id="imgMaterial" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
-                                 src="" runat="server" />
-                         </div>
-                         <div class="col-xs-8 ">
-                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"
-                                     AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged">
-                                 </asp:DropDownList>
-                             </div>
-                             <%--  <label class="col-xs-4 text-right">Lacquer Finish:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compFinish" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
-                             </div>
-                             <%-- <label class="col-xs-4 text-right">Stain:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compStain" runat="server" class="input-form" Style="width: 100%;" runat="server"></asp:DropDownList>
-                             </div>
-                         </div>
-                     </div>
-                     <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
-                     <div class="col-xs-12">
-                         <div class="col-xs-4 text-center">
-                             <img id="imgHandle" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
-                                 src="" runat="server" />
-                         </div>
-                         <div class="col-xs-8 ">
-                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"
-                                     AutoPostBack="true" OnSelectedIndexChanged="HandleChanged">
-                                 </asp:DropDownList>
-                             </div>
-                         </div>
-                     </div>
+                    
                  </div>
              </div>
             </div>
@@ -133,6 +99,20 @@
                         Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
+                    <li class="h-auto">
+                        <div>
+                            <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
+                            <div runat="server" ID="MaterialsContainer">
+
+                            </div>
+                            <div class="mt-auto">
+                                
+                            <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-fluid py-3 text-light">
+                                <i class="fa fa-wrench fa-lg mr-3"></i>Customize Materials
+
+                            </a>
+                            </div>
+                        </div>
                 </ul>
             </div>
         </div>

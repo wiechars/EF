@@ -42,7 +42,6 @@ namespace Elinic
             }
             if (Request.QueryString["Type"] != null)
             {
-                Session.Clear();
                 Session["Type"] = Convert.ToString(Request.QueryString["Type"]);
                 Session["Title"] = Convert.ToString(Request.QueryString["Title"]);
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
@@ -67,8 +66,8 @@ namespace Elinic
                 LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
                 LoadComponents(ideas);
                 LoadLayout(ideas);
-                LoadMaterials();
-                LoadHandle();
+                CustomizeMaterial.HRef = getMaterialsLink();
+                loadSessionMaterials();
             }
             else
             {
@@ -77,8 +76,28 @@ namespace Elinic
             }
 
         }
+        private string getMaterialsLink()
+        {
+            String link = "Material.aspx?";
+            if (Request.QueryString["LayoutID"] != null)
+            {
+                link += "LayoutID=" + Request.QueryString["LayoutID"] + "&";
+            }
+            if (Request.QueryString["Ideas"] != null)
+            {
+                link += "Ideas=" + Request.QueryString["Ideas"] + "&";
+            }
+            return link;
+        }
+        private void loadSessionMaterials()
+        {
+            if (Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null) return;
 
-
+            MaterialsContainer.InnerHtml = "<h4>Wood: " + Session["material"].ToString() + "</h4>" +
+                    "<h4>Stain: " + Session["materialStain"].ToString() + "</h4>" +
+                    "<h4>Finish: " + Session["materialFinish"].ToString() + "</h4>" +
+                    "<h4>Handle: " + Session["handleIndex"].ToString() + "</h4>"; 
+        }
         private string GetHelpText()
         {
             string helpText = "";
@@ -187,145 +206,6 @@ namespace Elinic
             }
         }
 
-        private void LoadMaterials()
-        {
-            if (compMaterial.Items.Count < 1)
-            {
-                Database obj = new Database();
-                try
-                {
-                    obj.Connect();
-                    obj.Query("SELECT * FROM Materials");
-                    int index = 0;
-                    if (obj.rdr.HasRows == true)
-                    {
-                        while (obj.rdr.Read())
-                        {
-                            Material material = new Material();
-
-                            material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
-                            material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
-                            material.Name = Convert.ToString(obj.rdr["MaterialName"]);
-                            var json = new JavaScriptSerializer().Serialize(material);
-
-                            compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
-                            if (index == 0)
-                            {
-                                imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
-                                imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
-                            }
-                            index++;
-                        }
-
-                    }
-                    //Stain
-                    compStain.Items.Insert(0, new ListItem("Not stained", "Not stained"));
-                    compStain.Items.Insert(1, new ListItem("Stained", "Stained"));
-
-
-                    //Finish
-                    compFinish.Items.Insert(0, new ListItem("Gloss", "Gloss"));
-                    compFinish.Items.Insert(1, new ListItem("Semi-Gloss", "Semi-Gloss"));
-                    compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
-
-                    compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
-                    compStain.SelectedValue = Session["materialStain"] != null ? Convert.ToString(Session["materialStain"]) : "";
-                    compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
-                }
-
-
-
-                catch (Exception ex)
-                {
-
-                    log.LogErrorMessage("Load Material Types : " + ex);
-
-                }
-                finally
-                {
-                    obj.Close();
-                }
-            }
-
-        }
-
-        protected void MaterialChanged(object sender, EventArgs e)
-        {
-
-            MaterialSessionStore();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Material material = new Material();
-            material = serializer.Deserialize<Material>(compMaterial.SelectedItem.Value);
-            var json = new JavaScriptSerializer().Serialize(material);
-
-            imgMaterial.Src = "../Images/" + material.ImagePath;
-            imgMaterial.Alt = material.ImagePath;
-
-            compStain.Enabled = compMaterial.SelectedValue.Contains("Melamine") ? false : true;
-            if (!compStain.Enabled)
-            {
-                compStain.SelectedIndex = 0;
-            }
-        }
-        private void LoadHandle()
-        {
-            if (compHandle.Items.Count < 1)
-            {
-                Database obj = new Database();
-                try
-                {
-                    obj.Connect();
-                    obj.Query("SELECT * FROM Handles");
-                    int index = 0;
-                    if (obj.rdr.HasRows == true)
-                    {
-                        while (obj.rdr.Read())
-                        {
-
-                            compHandle.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["HandleID"]), Convert.ToString(obj.rdr["HandleImage"])));
-                            if (index == 0)
-                            {
-                                imgHandle.Src = "../Images/" + Convert.ToString(obj.rdr["HandleImage"]);
-                                imgHandle.Alt = Convert.ToString(obj.rdr["HandleImage"]);
-                            }
-                            index++;
-                        }
-
-                        compHandle.SelectedValue = Session["handleIndex"] != null ? Convert.ToString(Session["handleIndex"]) : "";
-                    }
-
-
-
-                }
-
-                catch (Exception ex)
-                {
-
-                    log.LogErrorMessage("Load Material Types : " + ex);
-
-                }
-                finally
-                {
-                    obj.Close();
-                }
-            }
-
-        }
-
-        protected void HandleChanged(object sender, EventArgs e)
-        {
-            imgHandle.Src = "../Images/" + compHandle.SelectedItem.Value;
-            imgHandle.Alt = compHandle.SelectedItem.Value;
-            MaterialSessionStore();
-        }
-
-        protected void MaterialSessionStore()
-        {
-            Session["materialIndex"] = compMaterial.SelectedValue;
-            Session["materialStain"] = compStain.SelectedValue;
-            Session["materialFinish"] = compFinish.SelectedValue;
-            Session["handleIndex"] = compHandle.SelectedValue;
-        }
 
         /// <summary>
         /// Initial load of the screen - loads the differnet component types.
@@ -759,10 +639,10 @@ namespace Elinic
                 }
             }
 
-            orderHTML = orderHTML + "Material : " + compMaterial.SelectedItem.Text + "\n";
-            orderHTML = orderHTML + "Lacquer Finish  : " + compFinish.SelectedValue + "\n";
-            orderHTML = orderHTML + "Stain : " + compStain.SelectedValue + "\n";
-            orderHTML = orderHTML + "Handle : " + compHandle.SelectedItem.Text + "\n";
+            orderHTML = orderHTML + "Material : " + Session["material"].ToString() + "\n";
+            orderHTML = orderHTML + "Lacquer Finish  : " + Session["materialFinish"].ToString() + "\n";
+            orderHTML = orderHTML + "Stain : " + Session["materialStain"].ToString() + "\n";
+            orderHTML = orderHTML + "Handle : " + Session["handleIndex"].ToString() + "\n";
 
             OrderDetails odr = new OrderDetails();
             odr.Price = lblOrderPrice.Text;
@@ -811,7 +691,7 @@ namespace Elinic
     }
 }
 
-class Material
+class MaterialObject
 {
 
     public String ImagePath { get; set; }
