@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Project" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project.aspx.cs" Inherits="Elinic.Project" %>
+﻿<%@ Page Title="Select the type of your project" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Project.aspx.cs" Inherits="Elinic.Project" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -23,9 +23,15 @@
             padding-right: 5px;
             overflow-y: scroll;
         }
+        .card .btn {
+            color:#fff;
+        }
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 </asp:Content>
+
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div id="pageContent" runat="server">
         <hgroup class="title">
@@ -33,12 +39,13 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+            <a target="_blank" href="/Help.aspx" class="btn  dark" runat="server" style="float: right; width: 110px;">
                 <i class="fa fa-info-circle"></i>&nbsp;Help
-            </button>
+            </a>
             <hr />
 
         </hgroup>
+        <h4 runat="server" ID="index" class="col-sm-offset-1 mb-3"></h4>
         <div class="col-sm-offset-1 col-sm-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
             <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
@@ -49,23 +56,23 @@
             </div>
         </div>
 
-        <div class="col-xs-offset-1 col-sm-11">
-            <div id="layoutsDiv" runat="server">
+        <div class="col-sm-11">
+            <div id="layoutsDiv" runat="server" class="container">
                 <h2>Standard Layouts</h2>
             </div>
-            <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;">
-                <div id="main" style="clear: both; visibility: hidden;">
-                    <ul runat="server" id="tiles" class="tiles">
+            <div id="layoutsDivContent" runat="server" style="padding: 0px 0px 0px 0px;" class="container">
+                <div id="main" style="clear: both; visibility: hidden;;">
+                    <ul runat="server" id="tiles" class="row">
                     </ul>
-                    <ul runat="server" id="tiles_small" class="tiles_small" style="overflow: auto">
+                    <ul runat="server" id="tiles_small" class="tiles_small row" style="overflow: auto">
                     </ul>
                 </div>
             </div>
 
-            <div id="ideasDiv" runat="server">
+            <div id="ideasDiv" runat="server" class="container">
                 <h2>Ideas</h2>
                 <div id="main2" style="visibility: hidden;">
-                    <ul runat="server" id="tiles_ideas">
+                    <ul runat="server" id="tiles_ideas" class="row">
                     </ul>
                 </div>
             </div>
@@ -81,52 +88,31 @@
                      </ul>
                  </div>
                  <div id="selectedMaterial" class="col-sm-8 col-lg-8" runat="server">
-                     <label class="customize-title col-xs-12" style="margin-bottom: 5px !important;">Select Your Material Finish</label>
-                     <div class="col-xs-12">
-                         <div class="col-xs-4 text-center">
-                             <img id="imgMaterial" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
-                                 src="" runat="server" />
-                         </div>
-                         <div class="col-xs-8 ">
-                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compMaterial" runat="server" class="input-form" Style="width: 100%;"
-                                     AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged">
-                                 </asp:DropDownList>
-                             </div>
-                             <%--  <label class="col-xs-4 text-right">Lacquer Finish:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compFinish" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
-                             </div>
-                             <%-- <label class="col-xs-4 text-right">Stain:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compStain" runat="server" class="input-form" Style="width: 100%;" runat="server"></asp:DropDownList>
-                             </div>
-                         </div>
-                     </div>
-                     <label class="customize-title col-xs-12" style="margin-bottom: 10px !important; margin-top: 5px !important;">Select Your Handle</label>
-                     <div class="col-xs-12">
-                         <div class="col-xs-4 text-center">
-                             <img id="imgHandle" style="max-width: 60%; max-height: 60%; border: 1px solid #dedede; border-radius: 10px;"
-                                 src="" runat="server" />
-                         </div>
-                         <div class="col-xs-8 ">
-                             <%-- <label class="col-xs-4 text-right">Material:</label>--%>
-                             <div class="col-xs-12" style="margin-top: 5px;">
-                                 <asp:DropDownList ID="compHandle" runat="server" class="input-form" Style="width: 100%;"
-                                     AutoPostBack="true" OnSelectedIndexChanged="HandleChanged">
-                                 </asp:DropDownList>
-                             </div>
-                         </div>
-                     </div>
+                    
                  </div>
              </div>
             </div>
             <div id="selectedComponent" class="col-xs-12  col-lg-6" runat="server">
                 <div class="">
-                    <label class="customize-title col-xs-12">Customize your components by selecting from below.</label>
+                    <label class="customize-title col-xs-12 p-3">
+                        Configure and add components to your project. <br />
+                        Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
+                    <li class="h-auto">
+                        <div>
+                            <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
+                            <div runat="server" ID="MaterialsContainer">
+
+                            </div>
+                            <div class="mt-auto">
+                                
+                            <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-fluid py-3 text-light">
+                                <i class="fa fa-wrench fa-lg mr-3"></i>Customize Materials
+
+                            </a>
+                            </div>
+                        </div>
                 </ul>
             </div>
         </div>
@@ -138,7 +124,7 @@
                         <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
-        <div class="col-xs-12 row text-center">
+        <div class="col-xs-12  text-center">
             <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnSubmit_Click">
                 <i class="fa fa-check-circle"></i>&nbsp;Finish Configuring
             </button>
@@ -216,28 +202,6 @@
             </div>
         </div>
     </div>
-    <!-- ModalPopupExtender -->
-    <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
-        CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
-    </cc1:ModalPopupExtender>
-    <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none">
-        <div id="Div1" class="text-left">
-            <h3>Help</h3>
-            <hr />
-            <p>
-                <br />
-                <asp:Label runat="server" ID="helpText"></asp:Label>
-            </p>
-        </div>
-        <div>
-            <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
-                <i class="fa fa-times"></i>&nbsp;Close
-            </button>
-            </br>
-        </div>
-
-    </asp:Panel>
-    <!-- ModalPopupExtender -->
 
     <script>
 
@@ -310,7 +274,7 @@
                     }
                 }
             } else {
-                alert('Please configure prior to cloning.');
+                alert('Let us suggest - Please configure this component before adding another one of the same kind. Click on the image or on the little dark blue gear button. Thank you!');
             }
         });
 
@@ -380,14 +344,13 @@
             $('#MainContent_tiles, #MainContent_tiles_small, #MainContent_tiles_ideas').imagesLoaded(function () {
 
                 // Call the layout function.
-                handler.wookmark(options);
+                //handler.wookmark(options);
                 handler2.wookmark(options2);
 
                 //Show Hidden Containers
                 $('#main').css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 }, 1000);
 
                 if ($('#MainContent_selectedComponent').length) {
-
                     $('#main').css({ height: "1.5em" });
                 }
 

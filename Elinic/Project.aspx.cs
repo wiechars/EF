@@ -18,11 +18,6 @@ namespace Elinic
         Elinic.Classes.Logger log = new Elinic.Classes.Logger();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                helpText.Text = GetHelpText();
-
-            }
             //Initialize specific Divs.
             layoutsDiv.Visible = false;
             layoutsDivContent.Visible = true;
@@ -47,12 +42,12 @@ namespace Elinic
             }
             if (Request.QueryString["Type"] != null)
             {
-                Session.Clear();
                 Session["Type"] = Convert.ToString(Request.QueryString["Type"]);
                 Session["Title"] = Convert.ToString(Request.QueryString["Title"]);
                 this.Page.Title = Convert.ToString(Request.QueryString["Title"]);
                 btnBackToProjects.Visible = true;
                 LoadProjectLayouts(null, null);
+                index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + Convert.ToString(Request.QueryString["Title"]);
 
             }
             else if (Request.QueryString["LayoutID"] != null)
@@ -71,8 +66,8 @@ namespace Elinic
                 LoadProjectLayouts(Convert.ToInt32(Request.QueryString["LayoutID"].ToString()), ideas);
                 LoadComponents(ideas);
                 LoadLayout(ideas);
-                LoadMaterials();
-                LoadHandle();
+                CustomizeMaterial.HRef = getMaterialsLink();
+                loadSessionMaterials();
             }
             else
             {
@@ -81,8 +76,28 @@ namespace Elinic
             }
 
         }
+        private string getMaterialsLink()
+        {
+            String link = "Material.aspx?";
+            if (Request.QueryString["LayoutID"] != null)
+            {
+                link += "LayoutID=" + Request.QueryString["LayoutID"] + "&";
+            }
+            if (Request.QueryString["Ideas"] != null)
+            {
+                link += "Ideas=" + Request.QueryString["Ideas"] + "&";
+            }
+            return link;
+        }
+        private void loadSessionMaterials()
+        {
+            if (Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null) return;
 
-
+            MaterialsContainer.InnerHtml = "<h4>Wood: " + Session["material"].ToString() + "</h4>" +
+                    "<h4>Stain: " + Session["materialStain"].ToString() + "</h4>" +
+                    "<h4>Finish: " + Session["materialFinish"].ToString() + "</h4>" +
+                    "<h4>Handle: " + Session["handleIndex"].ToString() + "</h4>"; 
+        }
         private string GetHelpText()
         {
             string helpText = "";
@@ -114,12 +129,41 @@ namespace Elinic
 
             return helpText;
         }
+        private void addCard(HtmlGenericControl container, String title, String imgSrc, String buttonText, String link)
+        {
+            HtmlGenericControl cardDiv = new HtmlGenericControl("div"),
+                                            card = new HtmlGenericControl("div"),
+                                            cardImg = new HtmlGenericControl("img"),
+                                            cardBody = new HtmlGenericControl("div"),
+                                            cardTitle = new HtmlGenericControl("h4"),
+                                            cardButton = new HtmlGenericControl("a");
 
+            cardDiv.Attributes["class"] = "col-md-6 col-sm-12 col-lg-4 col-xl-3 mb-4";
+            card.Attributes["class"] = "card m-1 m-b-1 h-100";
+            cardImg.Attributes["class"] = "card-img-top";
+            cardBody.Attributes["class"] = "card-body d-flex flex-column";
+            cardTitle.Attributes["class"] = "card-title font-weight-bold mt-auto border-top pt-3 text-center";
+            cardButton.Attributes["class"] = "btn btn-primary btn-lg btn-block mt-3";
+
+
+            cardButton.InnerHtml = buttonText;
+
+            cardButton.Attributes.Add("href", link);
+            cardTitle.InnerHtml = title;
+            cardImg.Attributes.Add("src", imgSrc);
+            card.Controls.Add(cardImg);
+            cardBody.Controls.Add(cardTitle);
+            cardBody.Controls.Add(cardButton);
+            card.Controls.Add(cardBody);
+            cardDiv.Controls.Add(card);
+            container.Controls.Add(cardDiv);
+        }
         /// <summary>
         /// Initial load of the screen - loads the differnet component types.
         /// </summary>
         private void LoadProjectTypes()
         {
+            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > Projects";
             Database obj = new Database();
             try
             {
@@ -130,20 +174,22 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
-                        HtmlGenericControl li = new HtmlGenericControl("li");
-                        tiles.Controls.Add(li);
-                        HtmlGenericControl anchor = new HtmlGenericControl("a");
+                        String link = "";
+
                         if (Convert.ToString(obj.rdr["ProjectType"].ToString()) == "12")
                         {  //Hardcode link for walking closets
-                            anchor.Attributes.Add("href", "ClosetShape.htm");
+                            link = "ClosetShape.htm";
                         }
                         else
                         {
-                            anchor.Attributes.Add("href", "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString()));
+                            link = "Project.aspx?Type=" + Convert.ToString(obj.rdr["ProjectType"].ToString()) + "&Title=" + Convert.ToString(obj.rdr["ProjectName"].ToString());
                         }
-                        anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["ProjectName"].ToString()) + "</p><img src=\"../Images/ProjectTypeThumbs/"
-                            + Convert.ToString(obj.rdr["ProjectThumbImage"].ToString()) + "\">";
-                        li.Controls.Add(anchor);
+
+                        String title = obj.rdr["ProjectName"].ToString();
+                        String imageSrc = "../Images/ProjectTypeThumbs/"
+                            + Convert.ToString(obj.rdr["ProjectThumbImage"].ToString());
+                        String description = obj.rdr["Description"].ToString();
+                        addCard(tiles, title, imageSrc, "Select", link);
                     }
                 }
             }
@@ -160,145 +206,6 @@ namespace Elinic
             }
         }
 
-        private void LoadMaterials()
-        {
-            if (compMaterial.Items.Count < 1)
-            {
-                Database obj = new Database();
-                try
-                {
-                    obj.Connect();
-                    obj.Query("SELECT * FROM Materials");
-                    int index = 0;
-                    if (obj.rdr.HasRows == true)
-                    {
-                        while (obj.rdr.Read())
-                        {
-                            Material material = new Material();
-
-                            material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
-                            material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
-                            material.Name = Convert.ToString(obj.rdr["MaterialName"]);
-                            var json = new JavaScriptSerializer().Serialize(material);
-
-                            compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
-                            if (index == 0)
-                            {
-                                imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
-                                imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
-                            }
-                            index++;
-                        }
-
-                    }
-                    //Stain
-                    compStain.Items.Insert(0, new ListItem("Not stained", "Not stained"));
-                    compStain.Items.Insert(1, new ListItem("Stained", "Stained"));
-
-
-                    //Finish
-                    compFinish.Items.Insert(0, new ListItem("Gloss", "Gloss"));
-                    compFinish.Items.Insert(1, new ListItem("Semi-Gloss", "Semi-Gloss"));
-                    compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
-
-                    compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
-                    compStain.SelectedValue = Session["materialStain"] != null ? Convert.ToString(Session["materialStain"]) : "";
-                    compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
-                }
-
-
-
-                catch (Exception ex)
-                {
-
-                    log.LogErrorMessage("Load Material Types : " + ex);
-
-                }
-                finally
-                {
-                    obj.Close();
-                }
-            }
-
-        }
-
-        protected void MaterialChanged(object sender, EventArgs e)
-        {
-
-            MaterialSessionStore();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Material material = new Material();
-            material = serializer.Deserialize<Material>(compMaterial.SelectedItem.Value);
-            var json = new JavaScriptSerializer().Serialize(material);
-
-            imgMaterial.Src = "../Images/" + material.ImagePath;
-            imgMaterial.Alt = material.ImagePath;
-
-            compStain.Enabled = compMaterial.SelectedValue.Contains("Melamine") ? false : true;
-            if (!compStain.Enabled)
-            {
-                compStain.SelectedIndex = 0;
-            }
-        }
-        private void LoadHandle()
-        {
-            if (compHandle.Items.Count < 1)
-            {
-                Database obj = new Database();
-                try
-                {
-                    obj.Connect();
-                    obj.Query("SELECT * FROM Handles");
-                    int index = 0;
-                    if (obj.rdr.HasRows == true)
-                    {
-                        while (obj.rdr.Read())
-                        {
-
-                            compHandle.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["HandleID"]), Convert.ToString(obj.rdr["HandleImage"])));
-                            if (index == 0)
-                            {
-                                imgHandle.Src = "../Images/" + Convert.ToString(obj.rdr["HandleImage"]);
-                                imgHandle.Alt = Convert.ToString(obj.rdr["HandleImage"]);
-                            }
-                            index++;
-                        }
-
-                        compHandle.SelectedValue = Session["handleIndex"] != null ? Convert.ToString(Session["handleIndex"]) : "";
-                    }
-
-
-
-                }
-
-                catch (Exception ex)
-                {
-
-                    log.LogErrorMessage("Load Material Types : " + ex);
-
-                }
-                finally
-                {
-                    obj.Close();
-                }
-            }
-
-        }
-
-        protected void HandleChanged(object sender, EventArgs e)
-        {
-            imgHandle.Src = "../Images/" + compHandle.SelectedItem.Value;
-            imgHandle.Alt = compHandle.SelectedItem.Value;
-            MaterialSessionStore();
-        }
-
-        protected void MaterialSessionStore()
-        {
-            Session["materialIndex"] = compMaterial.SelectedValue;
-            Session["materialStain"] = compStain.SelectedValue;
-            Session["materialFinish"] = compFinish.SelectedValue;
-            Session["handleIndex"] = compHandle.SelectedValue;
-        }
 
         /// <summary>
         /// Initial load of the screen - loads the differnet component types.
@@ -352,6 +259,7 @@ namespace Elinic
                                 Convert.ToString(obj.rdr["LayoutThumbImage"].ToString()) + "\">";
                             li.Controls.Add(div);
                             this.Page.Title = Convert.ToString(obj.rdr["ProjectName"].ToString()) + " - " + Convert.ToString(obj.rdr["LayoutID"].ToString());
+                            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + this.Page.Title;
 
                         }
                         else if (layoutID != null && ideas != null)
@@ -363,18 +271,17 @@ namespace Elinic
                                 Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()) + "\">";
                             li.Controls.Add(div);
                             this.Page.Title = Convert.ToString(obj.rdr["ProjectName"].ToString()) + " - " + Convert.ToString(obj.rdr["IdeaID"].ToString());
+                            index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + this.Page.Title;
 
                         }
                         else
                         {
                             layoutsDiv.Visible = true;
-                            HtmlGenericControl li = new HtmlGenericControl("li");
-                            tiles_small.Controls.Add(li);
-                            HtmlGenericControl anchor = new HtmlGenericControl("a");
-                            anchor.Attributes.Add("href", "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["LayoutID"].ToString()));
-                            anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["LayoutID"].ToString()) + "</p><img src=\"../Images/LayoutThumbs/"
-                                + Convert.ToString(obj.rdr["LayoutThumbImage"].ToString()) + "\">";
-                            li.Controls.Add(anchor);
+                            String title = Convert.ToString(obj.rdr["LayoutID"].ToString()),
+                                    link = "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["LayoutID"].ToString()),
+                                    imageSrc = "../Images/LayoutThumbs/" + Convert.ToString(obj.rdr["LayoutThumbImage"].ToString());
+
+                            addCard(tiles_small, title, imageSrc, "Select", link);
                         }
                     }
 
@@ -443,7 +350,12 @@ namespace Elinic
                     while (obj.rdr.Read())
                     {
                         lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
-
+                        String title = Convert.ToString(obj.rdr["IdeaID"].ToString()),
+                                imageSrc = "../Images/LayoutThumbs/"
+                            + Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()),
+                                link = "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "&Ideas=1";
+                        addCard(tiles_ideas, title, imageSrc, "Select", link);
+                        /**
                         HtmlGenericControl li = new HtmlGenericControl("li");
                         tiles_ideas.Controls.Add(li);
 
@@ -452,6 +364,7 @@ namespace Elinic
                         anchor.InnerHtml = "<p>" + Convert.ToString(obj.rdr["IdeaID"].ToString()) + "</p><img src=\"../Images/LayoutThumbs/"
                             + Convert.ToString(obj.rdr["IdeaThumbImage"].ToString()) + "\">";
                         li.Controls.Add(anchor);
+    **/
                     }
                 }
             }
@@ -726,10 +639,10 @@ namespace Elinic
                 }
             }
 
-            orderHTML = orderHTML + "Material : " + compMaterial.SelectedItem.Text + "\n";
-            orderHTML = orderHTML + "Lacquer Finish  : " + compFinish.SelectedValue + "\n";
-            orderHTML = orderHTML + "Stain : " + compStain.SelectedValue + "\n";
-            orderHTML = orderHTML + "Handle : " + compHandle.SelectedItem.Text + "\n";
+            orderHTML = orderHTML + "Material : " + Session["material"].ToString() + "\n";
+            orderHTML = orderHTML + "Lacquer Finish  : " + Session["materialFinish"].ToString() + "\n";
+            orderHTML = orderHTML + "Stain : " + Session["materialStain"].ToString() + "\n";
+            orderHTML = orderHTML + "Handle : " + Session["handleIndex"].ToString() + "\n";
 
             OrderDetails odr = new OrderDetails();
             odr.Price = lblOrderPrice.Text;
@@ -778,7 +691,7 @@ namespace Elinic
     }
 }
 
-class Material
+class MaterialObject
 {
 
     public String ImagePath { get; set; }

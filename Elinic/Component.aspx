@@ -26,6 +26,7 @@
             overflow-y: scroll;
         }
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <div id="pageContent" runat="server">
@@ -34,11 +35,12 @@
             <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
-            <button id="btnHelp" class="btn  dark" runat="server" style="float: right; width: 110px;">
+            <a href="Help.aspx" target="_blank" class="btn dark" style="float: right; width: 110px;">
                 <i class="fa fa-info-circle"></i>&nbsp;Help
-            </button>
+            </a>
             <hr />
         </hgroup>
+        <h4 runat="server" ID="index" class="col-sm-offset-1 mb-3"></h4>
         <div class="col-xs-offset-1 col-xs-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
         </div>
@@ -84,25 +86,25 @@
         <div id="orderForm" class="col-xs-12 col-sm-8" runat="server">
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Width:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compWidth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Depth:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compDepth" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form">
                 <label class="col-xs-4 text-right">Height:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compHeight" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-xs-12 input-form" id="divDoors" runat="server">
                 <label class="col-xs-4 text-right">Door Hinge Side:</label>
-                <div class="col-xs-8" style="margin-top: 5px;">
+                <div class="col-xs-8 col-md-3 col-lg-2" style="margin-top: 5px;">
                     <asp:DropDownList ID="compDoors" runat="server" class="input-form" Style="width: 100%;"></asp:DropDownList>
                 </div>
             </div>
@@ -205,28 +207,6 @@
     </div>
 
 
-        <!-- ModalPopupExtender -->
-   <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID="btnHelp"
-                CancelControlID="btnCloseModal" BackgroundCssClass="modalBackground">
-            </cc1:ModalPopupExtender>
-            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
-                <div id="Div1" class="text-left">
-                    <h3>Help</h3>
-                        <hr />
-                    <p>
-                        <br />
-                        <asp:Label runat="server" ID="helpText"></asp:Label>
-                    </p>
-                </div>
-                <div>
-             <button id="btnCloseModal" class="btn  dark" onclick="$find(mp2).hide();">
-                <i class="fa fa-times"></i>&nbsp;Close
-            </button>
-                    </br>
-                </div>
-
-            </asp:Panel>
-    <!-- ModalPopupExtender -->
     <script>
         var WASTE_FACTOR = 1.2;
         var DESK_MOLDING_FOOT_PRICE = 1.5;
