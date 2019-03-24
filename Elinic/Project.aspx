@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-xs-12 row">
-            <div class=" col-lg-offset-1  col-sm-6 col-xs-12 ">
+            <div class=" col-sm-offset-1  col-sm-6 col-xs-12 ">
                 <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title p-3 col-xs-12">Layout Description.</asp:Label>
                  <div id="selectedLayout">
                      <ul runat="server" id="layout" >
