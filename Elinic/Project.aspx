@@ -48,7 +48,6 @@
         <h4 runat="server" ID="index" class="col-sm-offset-1 mb-3"></h4>
         <div class="col-sm-offset-1 col-sm-10">
             <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
-            <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title">Layout Description.</asp:Label>
         </div>
         <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
@@ -79,28 +78,23 @@
 
         </div>
 
-        <div class="col-xs-12">
-            <div class="col-xs-12 col-sm-12 col-lg-6 ">
-                &nbsp;&nbsp;
-             <div class="col-xs-12 row ">
-                 <div id="selectedLayout" class="col-sm-4 col-lg-4">
-                     <ul runat="server" id="layout">
+        <div class="col-xs-12 row">
+            <div class=" col-lg-offset-1  col-sm-6 col-xs-12 ">
+                <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title p-3 col-xs-12">Layout Description.</asp:Label>
+                 <div id="selectedLayout">
+                     <ul runat="server" id="layout" >
                      </ul>
                  </div>
-                 <div id="selectedMaterial" class="col-sm-8 col-lg-8" runat="server">
-                    
-                 </div>
              </div>
-            </div>
-            <div id="selectedComponent" class="col-xs-12  col-lg-6" runat="server">
+             <div id="selectedComponent" class="col-xs-12  col-sm-offset-1 col-sm-10  row" runat="server">
                 <div class="">
-                    <label class="customize-title col-xs-12 p-3">
-                        Configure and add components to your project. <br />
+                    <label class="customize-title p-3 col-xs-12 text-center">
+                        Configure and add components to your project. 
                         Click on the image(or a little gear button) to configure.</label>
                 </div>
-                <ul runat="server" id="comp_small" class="">
-                    <li class="h-auto">
-                        <div>
+                <ul runat="server" id="comp_small">
+                    <li class="h-auto" style="width:100%">
+                        <div class="col-xs-12">
                             <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
                             <div runat="server" ID="MaterialsContainer">
 
@@ -115,6 +109,8 @@
                         </div>
                 </ul>
             </div>
+
+
         </div>
     </div>
     <div id="notes" class="col-xs-12 input-form" runat="server">
@@ -140,53 +136,6 @@
         </div>
 
     </div>
-
-    <!-- ModalPopupExtender -->
-    <%--            <cc1:ModalPopupExtender ID="mp2" runat="server" PopupControlID="Panel2" TargetControlID=""
-                CancelControlID="btnCancelNext" BackgroundCssClass="modalBackground">
-            </cc1:ModalPopupExtender>
-            <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup" align="center" Style="display: none" >
-                <div id="Div1" class="">
-                        
-                    <p>
-                        <br />
-                        &nbsp;&nbsp;Configuration not complete.  Do you want to submit order as is or go back?<br />
-                        <br />
-                    </p>
-                </div>
-                <div>
-            <asp:Button ID="Button1" runat="server" Style=" background-color: green;" Text="Submit" OnClick="btnOrder_Click" />
-            <asp:Button ID="Button2" runat="server" Text="Go Back" />
-                </div>
-
-            </asp:Panel>--%>
-    <!-- ModalPopupExtender -->
-
-
-
-    <!-- ModalPopupExtender -->
-    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center" Style="display: none">
-        <h3>Order Summary</h3>
-        <div id="order_values" class="span4">
-            <label runat="server" id="orderValues"></label>
-            <br />
-            <h4><b>Total Price:</b>
-                <asp:Label ID="lblOrderPrice" runat="server" Style="display: inline-block">N/A</asp:Label><br />
-                <br />
-                <b>Notes:</b></h4>
-            <textarea name="Text1" id="orderNotes" runat="server" rows="4" style="width: 94%;"></textarea>
-            <br />
-            <br />
-        </div>
-        <div>
-        </div>
-        <div>
-            <asp:Button ID="btnNext" runat="server" Text="What Happens Next?" Style="width: 94%!important;" />
-        </div>
-        <asp:Button ID="btnClose" runat="server" Text="Cancel" />
-    </asp:Panel>
-    <!-- ModalPopupExtender -->
-
 
     <div class="col-xs-12">
         <div id="gallery-container">

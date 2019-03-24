@@ -59,34 +59,26 @@ header p
 {
     .customized-values
     {
-        margin-left: 1% !important;
-        margin-top: 2px !important;
         text-align: left;
-        font-size: 9px!important;
         color: #666666;
         margin: 0;
+        font-size:1.2em;
         font-weight: 200;
-        border: 1px solid #dedede;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        /*padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 5px;*/
+        height:100%;
+        vertical-align:middle;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        width: 98%;
     }
 
     .customize-title
     {
         margin-bottom: 2px!important;
         color: #666;
-        text-align: center;
-        font-size: 18px;
-        line-height: 18px;
+        text-align: left;
+        font-size: 20px;
+        line-height: 20px;
         font-weight: 200;
     }
 
@@ -156,25 +148,20 @@ header p
 
 @media all and (max-width: 899px)
 {
-    .customized-values
-    {
-        margin-left: 10px !important;
-        /*margin-top: 5px !important;*/
+    .customized-values {
+        
         text-align: left;
-        font-size: 7px!important;
         color: #666666;
         margin: 0;
+        font-size: 1em;
         font-weight: 200;
-        border: 1px solid #dedede;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        /*padding-left: 20px;*/
+        height: 100%;
+        vertical-align: middle;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-        width: 90%;
+        /*width: 98%;*/
     }
 
 
@@ -182,8 +169,8 @@ header p
     {
         margin-bottom: 2px!important;
         color: #666;
-        text-align: center;
-        font-size: 10px;
+        text-align: left;
+        font-size: 20px;
         line-height: 12px;
         font-weight: 200;
     }
