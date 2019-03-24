@@ -11,7 +11,7 @@
         }
 
         .modalPopup {
-            width:80%;
+            width: 80%;
             background-color: #FFFFFF;
             border-width: 3px;
             border-style: solid;
@@ -23,8 +23,9 @@
             overflow-y: auto;
             height: auto;
         }
+
         .card .btn {
-            color:#fff;
+            color: #fff;
         }
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
@@ -93,7 +94,7 @@
                         Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
-                    <li class="h-auto">
+                    <li class="h-auto" style="width:100%">
                         <div>
                             <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
                             <div runat="server" ID="MaterialsContainer">
@@ -107,7 +108,7 @@
                             </a>
                             </div>
                         </div>
-                        </li>
+                    </li>
                 </ul>
             </div>
 
