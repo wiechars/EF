@@ -15,17 +15,19 @@ namespace Elinic
         {
             LoadMaterials();
             LoadHandle();
-            String link = "Project.aspx?";
             if (Request.QueryString["LayoutID"] != null)
             {
-                link += "LayoutID=" + Request.QueryString["LayoutID"] + "&";
+                Session["projectLayout"] = Request.QueryString["LayoutID"];
             }
             if (Request.QueryString["Ideas"] != null)
             {
-                link += "Ideas=" + Request.QueryString["Ideas"] + "&";
+                Session["projectIdeas"] = Request.QueryString["Ideas"];
             }
-            projectLink.HRef = link;
-            MaterialSessionStore();
+            backToProject.HRef = getProjectLink();
+            if (Request.RequestType == "POST")
+            {
+                MaterialSessionStore();
+            } 
         }
         private void LoadMaterials()
         {
@@ -88,25 +90,7 @@ namespace Elinic
             }
 
         }
-
-        protected void MaterialChanged(object sender, EventArgs e)
-        {
-
-            MaterialSessionStore();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            MaterialObject material = new MaterialObject();
-            material = serializer.Deserialize<MaterialObject>(compMaterial.SelectedItem.Value);
-            var json = new JavaScriptSerializer().Serialize(material);
-
-            imgMaterial.Src = "../Images/" + material.ImagePath;
-            imgMaterial.Alt = material.ImagePath;
-
-            compStain.Enabled = compMaterial.SelectedValue.Contains("Melamine") ? false : true;
-            if (!compStain.Enabled)
-            {
-                compStain.SelectedIndex = 0;
-            }
-        }
+        
         private void LoadHandle()
         {
             if (compHandle.Items.Count < 1)
@@ -152,19 +136,27 @@ namespace Elinic
 
         }
 
-        protected void HandleChanged(object sender, EventArgs e)
+        protected String getProjectLink()
         {
-            imgHandle.Src = "../Images/" + compHandle.SelectedItem.Value;
-            imgHandle.Alt = compHandle.SelectedItem.Value;
-            MaterialSessionStore();
+            String link = "Project.aspx?";
+            if (Session["projectLayout"] != null)
+            {
+                link += "LayoutID=" + Session["projectLayout"].ToString() + "&";
+            }
+            if (Session["projectIdeas"] != null)
+            {
+                link += "Ideas=" + Session["projectIdeas"].ToString() + "&";
+            }
+            return link;
         }
-
         protected void MaterialSessionStore()
         {
+            String link = getProjectLink();
             Session["material"] = compMaterial.SelectedItem;
             Session["materialStain"] = compStain.SelectedValue;
             Session["materialFinish"] = compFinish.SelectedValue;
             Session["handleIndex"] = compHandle.SelectedItem;
+            Response.Redirect(link);
         }
 
 

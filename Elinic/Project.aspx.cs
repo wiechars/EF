@@ -91,10 +91,10 @@ namespace Elinic
         {
             if (Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null) return;
 
-            MaterialsContainer.InnerHtml = "<h4>Wood: " + Session["material"].ToString() + "</h4>" +
-                    "<h4>Stain: " + Session["materialStain"].ToString() + "</h4>" +
-                    "<h4>Finish: " + Session["materialFinish"].ToString() + "</h4>" +
-                    "<h4>Handle: " + Session["handleIndex"].ToString() + "</h4>"; 
+            MaterialsContainer.InnerHtml = "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
+                    "<h5 class='my-1'>Stain: <span class='text-muted'>" + Session["materialStain"].ToString() + "</span></h5>" +
+                    "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
+                    "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>"; 
         }
         private string GetHelpText()
         {
@@ -501,7 +501,7 @@ namespace Elinic
                             string buttonDiv = "";
                             string anchorLink = "";
                             HtmlGenericControl li = new HtmlGenericControl("li");
-                            comp_small.Controls.Add(li);
+                            comp_small.Controls.AddAt(0, li);
                             li.Attributes.Add("id", "liAddComponent" + counter);
                             li.Attributes.Add("style", "width:100%; height:auto!important;");
                             //Hide li Place Holders

@@ -13,6 +13,15 @@ namespace Elinic {
     public partial class Material {
         
         /// <summary>
+        /// backToProject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor backToProject;
+        
+        /// <summary>
         /// selectedMaterial control.
         /// </summary>
         /// <remarks>
@@ -74,14 +83,5 @@ namespace Elinic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList compHandle;
-        
-        /// <summary>
-        /// projectLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor projectLink;
     }
 }

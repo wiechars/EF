@@ -10,9 +10,11 @@
       </a>
       <hr />
    </hgroup>
+
    <div class="container">
-      <div class="rounded shadow p-5 bg-light d-flex justify-content-center align-content-center">
-         <div>
+      <div class="rounded shadow p-5 bg-light">
+          <a class="btn btn-primary text-white" runat="server" ID="backToProject"><i class="fa fa-arrow-left mr-3"></i>Back to Layout</a>
+         <div class="m-5">
             <div>
                <div id="selectedMaterial" class="" runat="server">
                   <div class="bg-white p-5 rounded">
@@ -25,8 +27,7 @@
                         <div class="col-md-6 col-12 mt-3">
                             <div class="ml-3 p-5 rounded bg-light">
                                <div class="text-center input-group align-top my-3">
-                                  <asp:DropDownList ID="compMaterial" runat="server" class="form-control"
-                                     AutoPostBack="true" OnSelectedIndexChanged="MaterialChanged">
+                                  <asp:DropDownList ID="compMaterial" runat="server" class="form-control">
                                   </asp:DropDownList>
                                </div>
                                <div class="text-center input-group my-3">
@@ -51,16 +52,32 @@
                   <div class="col-md-6 col-12">
                      <div class="text-center p-5 rounded bg-light ml-3 input-group align-top my-3">
                         <asp:DropDownList ID="compHandle" runat="server" class="form-control"
-                           AutoPostBack="true" OnSelectedIndexChanged="HandleChanged">
+                           >
                         </asp:DropDownList>
                      </div>
                   </div>
                </div>
             </div>
-          <a runat="server" ID="projectLink" class="btn btn-primary float-right mt-3">
-              Save Materials
-          </a>
+             <div class="text-center mt-3 text-white">
+          <button type="submit" class="btn btn-primary btn-lg" >
+              <i class="fa fa-save mr-3"></i> Save Materials
+          </button>
+             </div>
          </div>
       </div>
+           </form>
    </div>
+    <script>
+        $(window).ready(function ($) {
+            $("#MainContent_compMaterial").change(function () {
+                var materialImage = JSON.parse($(this).find("option:selected")[0].value).ImagePath;
+                $("#MainContent_imgMaterial").attr('src', '/Images/' + materialImage);
+                
+            })
+            $("#MainContent_compHandle").change(function () {
+                var handle  = $(this).find("option:selected")[0].value;
+                $("#MainContent_imgHandle").attr('src', '/Images/' + handle);
+            })
+        })
+    </script>
 </asp:Content>
