@@ -99,20 +99,21 @@
                         Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
-                    <li class="h-auto">
+                    <li>
                         <div>
-                            <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
+                            <h3 class="pb-2 mb-3 mt-2 border-bottom">Materials</h3>
                             <div runat="server" ID="MaterialsContainer">
 
                             </div>
                             <div class="mt-auto">
                                 
-                            <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-fluid py-3 text-light">
-                                <i class="fa fa-wrench fa-lg mr-3"></i>Customize Materials
-
+                            <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-fluid py-3 text-light mt-3">
+                                <i class="fa fa-wrench fa-lg mr-2"></i>
+                                <h4 class="m-0 d-inline-block align-middle">Select</h4>
                             </a>
                             </div>
                         </div>
+                        </li>
                 </ul>
             </div>
         </div>
