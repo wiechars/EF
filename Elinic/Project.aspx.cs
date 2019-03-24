@@ -501,7 +501,7 @@ namespace Elinic
                             string buttonDiv = "";
                             string anchorLink = "";
                             HtmlGenericControl li = new HtmlGenericControl("li");
-                            comp_small.Controls.AddAt(0, li);
+                            comp_small.Controls.Add(li); 
                             li.Attributes.Add("id", "liAddComponent" + counter);
                             li.Attributes.Add("style", "width:100%; height:auto!important;");
                             //Hide li Place Holders
