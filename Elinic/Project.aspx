@@ -94,7 +94,7 @@
                         Click on the image(or a little gear button) to configure.</label>
                 </div>
                 <ul runat="server" id="comp_small" class="">
-                    <li class="h-auto" style="width:100%">
+<%--                    <li class="h-auto" style="width:100%">
                         <div>
                             <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
                             <div runat="server" ID="MaterialsContainer">
@@ -108,7 +108,7 @@
                             </a>
                             </div>
                         </div>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
 
