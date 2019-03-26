@@ -92,24 +92,24 @@
                     <label class="customize-title p-3 col-xs-12 text-center">
                         Configure and add components to your project. 
                         Click on the image(or a little gear button) to configure.</label>
-                </div>
-                <ul runat="server" id="comp_small" class="">
-                    <li class="h-auto" style="width:100%">
-                        <div>
-                            <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
-                            <div runat="server" ID="MaterialsContainer">
+                </div><div class="h-auto d-block col-12 py-3 border rounded my-3">
+                    <div>
+                        <h3 class="pb-3 mb-3 border-bottom text-center mt-1">Materials</h3>
+                        <div runat="server" ID="MaterialsContainer" class="text-center">
 
-                            </div>
-                            <div class="mt-auto">
-                                
-                            <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-fluid py-3 text-light mt-3">
-                                <i class="fa fa-wrench fa-lg mr-2"></i>
-                                <h4 class="m-0 d-inline-block align-middle">Select</h4>
-                            </a>
-                            </div>
                         </div>
-                    </li>
+                        <div class="mt-auto">
+                                
+                        <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-block py-3 text-light mt-3">
+                            <i class="fa fa-cog fa-lg mr-2"></i>
+                            <h4 class="m-0 align-middle d-inline">Materials and Handles</h4>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <ul runat="server" id="comp_small" class="w-100">
                 </ul>
+                
             </div>
 
 

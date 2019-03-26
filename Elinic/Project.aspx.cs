@@ -149,6 +149,7 @@ namespace Elinic
             cardButton.Attributes.Add("href", link);
             cardTitle.InnerHtml = title;
             cardImg.Attributes.Add("src", imgSrc);
+            cardImg.Style["max-height"] = "300px";
             card.Controls.Add(cardImg);
             cardBody.Controls.Add(cardTitle);
             cardBody.Controls.Add(cardButton);
@@ -501,7 +502,7 @@ namespace Elinic
                             string buttonDiv = "";
                             string anchorLink = "";
                             HtmlGenericControl li = new HtmlGenericControl("li");
-                            comp_small.Controls.Add(li); 
+                            comp_small.Controls.AddAt(0,li); 
                             li.Attributes.Add("id", "liAddComponent" + counter);
                             li.Attributes.Add("style", "width:100%; height:auto!important;");
                             //Hide li Place Holders

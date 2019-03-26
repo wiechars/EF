@@ -139,15 +139,6 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl selectedComponent;
         
         /// <summary>
-        /// comp_small control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl comp_small;
-        
-        /// <summary>
         /// MaterialsContainer control.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,15 @@ namespace Elinic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor CustomizeMaterial;
+        
+        /// <summary>
+        /// comp_small control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl comp_small;
         
         /// <summary>
         /// notes control.
