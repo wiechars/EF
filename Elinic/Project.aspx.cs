@@ -569,11 +569,7 @@ namespace Elinic
                         }
                         i++;
                     }
-
-                    // Add Material Link to the bottom
-                    string materialLink = "<h3 class=\"pb-3 mb-3 border-bottom\">Materials</h3>" +
-                                                "<div style=\"text-align:left\">";
-
+                    
                     //Check if material configured
                     if (!(Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
                     {
