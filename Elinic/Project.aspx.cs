@@ -570,6 +570,19 @@ namespace Elinic
                         i++;
                     }
 
+                    // Add Material Link to the bottom
+                    string materialLink = "<h3 class=\"pb-3 mb-3 border-bottom\">Materials</h3>" +
+                                                "<div style=\"text-align:left\">";
+
+                    //Check if material configured
+                    if (!(Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
+                    {
+                        MaterialsContainer.InnerHtml = "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
+                                "<h5 class='my-1'>Stain: <span class='text-muted'>" + Session["materialStain"].ToString() + "</span></h5>" +
+                                "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
+                                "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>";
+                    }
+                    CustomizeMaterial.HRef = getMaterialsLink();
 
                     lblTotalPrice.Text = "$" + price.ToString();
                 }
