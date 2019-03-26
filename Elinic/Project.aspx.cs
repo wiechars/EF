@@ -570,35 +570,6 @@ namespace Elinic
                         i++;
                     }
 
-                    // Add Material Link to the bottom
-                    string materialLink = "<h3 class=\"pb-3 mb-3 border-bottom\">Materials</h3>" +
-                                                "<div style=\"text-align:left\">";
-
-                    //Check if material configured
-                    if (!(Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
-                    {
-                        materialLink = materialLink + "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Stain: <span class='text-muted'>" + Session["materialStain"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>";
-                    }
-
-                    materialLink =materialLink + "</div>" +
-                                                "<div class=\"mt-auto\">" +
-                                                    "<a href=\""+getMaterialsLink()+"\" class=\"btn btn-primary btn-fluid py-3 text-light mt-3\">" +
-                                                        "<i class=\"fa fa-wrench fa-lg mr-2\"></i>" +
-                                                        "<h4 class=\"m-0 d-inline-block align-middle\">Select</h4>" +
-                                                    "</a>" +
-                                                "</div>" +
-                                        "";
-                    HtmlGenericControl materialLi = new HtmlGenericControl("li");                   
-                    materialLi.Attributes.Add("style", "width:100%; height:auto!important;");
-                    materialLi.Attributes.Add("class", "h-auto");
-                    HtmlGenericControl materialDiv = new HtmlGenericControl("div");
-                    materialDiv.InnerHtml = materialLink;
-                    materialLi.Controls.Add(materialDiv);
-                    comp_small.Controls.Add(materialLi);
-
 
                     lblTotalPrice.Text = "$" + price.ToString();
                 }

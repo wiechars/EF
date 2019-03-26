@@ -37,7 +37,8 @@
     <div id="pageContent" runat="server">
         <hgroup class="title">
             <h1><%: Title %></h1>
-            <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click" style="float: right; width: 110px;">
+            <button id="btnHome2" class="btn btn-primary" runat="server" onserverclick="btnHome_Click"
+                style="float: right; width: 110px;">
                 <i class="fa fa-home"></i>&nbsp;Home
             </button>
             <a target="_blank" href="/Help.aspx" class="btn  dark" runat="server" style="float: right; width: 110px;">
@@ -48,11 +49,13 @@
         </hgroup>
         <h4 runat="server" ID="index" class="col-sm-offset-1 mb-3"></h4>
         <div class="col-sm-offset-1 col-sm-10">
-            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;"></asp:Label>
+            <asp:Label ID="lblDescription" runat="server" Text="" Style="display: block; text-align: justify;">
+            </asp:Label>
         </div>
         <div class="col-sm-offset-1 col-sm-10">
             <div class="col-xs-12 col-sm-offset-8 col-sm-3  col-md-offset-9 col-md-2">
-                <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false" OnClick="btnBackToProjects_click" />
+                <asp:Button ID="btnBackToProjects" runat="server" Text="Back To Projects" Visible="false"
+                    OnClick="btnBackToProjects_click" />
             </div>
         </div>
 
@@ -81,51 +84,38 @@
 
         <div class="col-xs-12 row">
             <div class=" col-sm-offset-1  col-sm-6 col-xs-12 ">
-                <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title p-3 col-xs-12">Layout Description.</asp:Label>
-                 <div id="selectedLayout">
-                     <ul runat="server" id="layout" >
-                     </ul>
-                 </div>
-             </div>
-             <div id="selectedComponent" class="col-xs-12  col-sm-offset-1 col-sm-10  row" runat="server">
+                <asp:Label ID="lblLayoutDescription" runat="server" Text="" class="customize-title p-3 col-xs-12">Layout
+                    Description.</asp:Label>
+                <div id="selectedLayout">
+                    <ul runat="server" id="layout">
+                    </ul>
+                </div>
+            </div>
+            <div id="selectedComponent" class="col-xs-12  col-sm-offset-1 col-sm-10  row" runat="server">
                 <div class="">
                     <label class="customize-title p-3 col-xs-12 text-center">
-                        Configure and add components to your project. 
+                        Configure and add components to your project.
                         Click on the image(or a little gear button) to configure.</label>
-<<<<<<< HEAD
-                </div><div class="h-auto d-block col-12 py-3 border rounded my-3">
+                </div>
+                <ul runat="server" id="comp_small" class="w-100">
+                </ul>
+                <div class="h-auto d-block col-12 py-3 border rounded my-3">
                     <div>
                         <h3 class="pb-3 mb-3 border-bottom text-center mt-1">Materials</h3>
                         <div runat="server" ID="MaterialsContainer" class="text-center">
 
                         </div>
                         <div class="mt-auto">
-=======
-                </div>
-                <ul runat="server" id="comp_small" class="">
-<%--                    <li class="h-auto" style="width:100%">
-                        <div>
-                            <h3 class="pb-3 mb-3 border-bottom">Materials</h3>
-                            <div runat="server" ID="MaterialsContainer">
 
-                            </div>
-                            <div class="mt-auto">
->>>>>>> 3f8ba61d3b6162f3b018ef09a02eb57dd9772ab4
-                                
-                        <a runat="server" ID="CustomizeMaterial" class="btn btn-primary btn-block py-3 text-light mt-3">
-                            <i class="fa fa-cog fa-lg mr-2"></i>
-                            <h4 class="m-0 align-middle d-inline">Materials and Handles</h4>
-                        </a>
+                            <a runat="server" ID="CustomizeMaterial"
+                                class="btn btn-primary btn-block py-3 text-light mt-3">
+                                <i class="fa fa-cog fa-lg mr-2"></i>
+                                <h4 class="m-0 align-middle d-inline">Materials and Handles</h4>
+                            </a>
                         </div>
-<<<<<<< HEAD
                     </div>
                 </div>
-                <ul runat="server" id="comp_small" class="w-100">
-=======
-                    </li>--%>
->>>>>>> 3f8ba61d3b6162f3b018ef09a02eb57dd9772ab4
-                </ul>
-                
+
             </div>
 
 
@@ -135,7 +125,7 @@
         <div class="col-xs-12 text-center ">
             <div>
                 Total Price :
-                        <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
+                <asp:Label ID="lblTotalPrice" runat="server" Style="display: inline-block;">N/A</asp:Label>
             </div>
         </div>
         <div class="col-xs-12  text-center">
@@ -345,8 +335,3 @@
         }
     </script>
 </asp:Content>
-
-
-
-
-
