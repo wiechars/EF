@@ -31,6 +31,15 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnHome2;
         
         /// <summary>
+        /// H1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
+        
+        /// <summary>
         /// index control.
         /// </summary>
         /// <remarks>
@@ -292,15 +301,6 @@ namespace Elinic {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnSelect;
         
         /// <summary>
-        /// btnConfig control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnConfig;
-        
-        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>
@@ -308,6 +308,15 @@ namespace Elinic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnBack;
+        
+        /// <summary>
+        /// btnConfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnConfig;
         
         /// <summary>
         /// lblMsg control.

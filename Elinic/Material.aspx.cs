@@ -61,8 +61,6 @@ namespace Elinic
 
                     }
                     //Stain
-                    compStain.Items.Insert(0, new ListItem("Not stained", "Not stained"));
-                    compStain.Items.Insert(1, new ListItem("Stained", "Stained"));
 
 
                     //Finish
@@ -71,7 +69,6 @@ namespace Elinic
                     compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
 
                     compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
-                    compStain.SelectedValue = Session["materialStain"] != null ? Convert.ToString(Session["materialStain"]) : "";
                     compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
                 }
 
@@ -153,7 +150,6 @@ namespace Elinic
         {
             String link = getProjectLink();
             Session["material"] = compMaterial.SelectedItem;
-            Session["materialStain"] = compStain.SelectedValue;
             Session["materialFinish"] = compFinish.SelectedValue;
             Session["handleIndex"] = compHandle.SelectedItem;
             Response.Redirect(link);

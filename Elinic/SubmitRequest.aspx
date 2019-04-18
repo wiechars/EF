@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Submit Request" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SubmitRequest.aspx.cs" Inherits="Elinic.SubmitRequest" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
+    <hgroup class="title col-xs-12">
         <h1>Submit Request</h1>
         <br />
         <h2>What happens Next?</h2>

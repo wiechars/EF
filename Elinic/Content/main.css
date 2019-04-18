@@ -51,10 +51,6 @@ header p
     font-weight: 200;
 }
 
-.configured {
-    background-color: lightgreen;
-}
-
 @media all and (min-width: 900px)
 {
     .customized-values

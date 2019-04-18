@@ -2,8 +2,10 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h1><%: Title %></h1>
-        <br />
+        <div class="container">
+            <h1><%: Title %></h1>
+            <br />
+        </div>
         <hr />
     </hgroup>
     <div class="" style="margin: 0 auto;">

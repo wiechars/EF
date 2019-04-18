@@ -131,7 +131,7 @@ namespace Elinic
             cardImg.Attributes["class"] = "card-img-top";
             cardBody.Attributes["class"] = "card-body d-flex flex-column";
             cardTitle.Attributes["class"] = "card-title font-weight-bold mt-auto border-top pt-3 text-center";
-            cardButton.Attributes["class"] = "btn btn-primary btn-lg btn-block mt-3";
+            cardButton.Attributes["class"] = "btn btn-primary btn-block mt-3";
 
 
             cardButton.InnerHtml = buttonText;
@@ -515,6 +515,7 @@ namespace Elinic
 
                             if (Session["Comp" + counter] != null)
                             {
+                                li.Attributes.Add("class", "configured-component");
                                 detailsDiv = "<div class=\"customized-values configured\"  id=\"Comp"
                                         + counter
                                         + "\"><b>Component Type:</b> "
@@ -527,7 +528,8 @@ namespace Elinic
                             else
                             {
                                     detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
-                                        + counter + "\">Nothing configured yet.</div>";
+                                        + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
+                                        " button.</div>";
                             }
                             HtmlGenericControl addParentDiv = new HtmlGenericControl("div");
                             if (Session["Comp" + counter] != null)
@@ -555,7 +557,7 @@ namespace Elinic
                             else
                             {
                                 buttonDiv  =
-                                    "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i>&nbsp;Config</Button>" +
+                                    "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i>&nbsp;Configure</Button>" +
                                     "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i> &nbsp;Add</Button>" +
                                      "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i>Clear</Button>";
                             }
@@ -571,10 +573,9 @@ namespace Elinic
                     }
                     
                     //Check if material configured
-                    if (!(Session["material"] == null || Session["materialStain"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
+                    if (!(Session["material"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
                     {
                         MaterialsContainer.InnerHtml = "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Stain: <span class='text-muted'>" + Session["materialStain"].ToString() + "</span></h5>" +
                                 "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
                                 "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>";
                     }
@@ -625,7 +626,6 @@ namespace Elinic
             {
                 orderHTML = orderHTML + "Material : " + Session["material"].ToString() + "\n";
                 orderHTML = orderHTML + "Lacquer Finish  : " + Session["materialFinish"].ToString() + "\n";
-                orderHTML = orderHTML + "Stain : " + Session["materialStain"].ToString() + "\n";
                 orderHTML = orderHTML + "Handle : " + Session["handleIndex"].ToString() + "\n";
             }
 

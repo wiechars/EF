@@ -58,15 +58,6 @@ namespace Elinic {
         protected global::System.Web.UI.WebControls.DropDownList compFinish;
         
         /// <summary>
-        /// compStain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList compStain;
-        
-        /// <summary>
         /// imgHandle control.
         /// </summary>
         /// <remarks>

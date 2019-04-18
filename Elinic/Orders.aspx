@@ -7,15 +7,14 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+       <hgroup class="title">
+      <h1><%: Title %></h1>
+      <a id="btnHome2" class="btn btn-primary" href="/" style="float: right; width: 110px; color:#fff !important">
+      <i class="fa fa-home"></i>&nbsp;Home
+      </a>
+      <hr />
+   </hgroup>
     <div id="pageContent" runat="server">
-        <div>
-            <hgroup class="title">
-                <h1><%: Title %></h1>
-                <asp:Button ID="btnHome" runat="server" Text="Home" OnClick="btnHome_Click" Style="float: right;" />
-
-                <hr />
-            </hgroup>
-        </div>
         <div class="row">
             <div class="col-xs-12">
 
