@@ -12,7 +12,6 @@
         <div class="col-xs-12 text-center">
             Thank you for submitting your design request, our designer will contact you shortly with some images and 
                 suggestions and price.
-            
             <br />
             <br />
             <button id="btnSubmit" class="btn btn-success light" runat="server" onserverclick="btnConfigure_Click">
