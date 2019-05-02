@@ -688,36 +688,43 @@ namespace Elinic
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static double UpdateOverallPrice()
         {
-            MaterialObject material = new MaterialObject();
-
-            List<MaterialObject> materials = material.GetMaterials();
-            for (int i = 1; i < 100; i++)
+            try
             {
-                if (HttpContext.Current.Session["Comp" + i + "Width"] != null)
+                MaterialObject material = new MaterialObject();
+
+                List<MaterialObject> materials = material.GetMaterials();
+                for (int i = 1; i < 100; i++)
                 {
-
-                    var w = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Width"].ToString());
-                    var h = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Height"].ToString());
-                    var d = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Depth"].ToString());
-                    var formula = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Formula"].ToString());
-                    var numDrawers = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumDrawers"].ToString());
-                    var numOfDoors = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfDoors"].ToString());
-                    var numOfHandles = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfHandles"].ToString());
-                    var numShelves = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfShelves"].ToString());
-                    var faceDoorCoverage = Double.Parse(HttpContext.Current.Session["Comp" + i + "FaceDoorCoverage"].ToString());
-
-                    //System.Diagnostics.Debug.WriteLine(HttpContext.Current.Session["Comp" + i]);
-                    String details = HttpContext.Current.Session["Comp" + i].ToString();
-                    var startIndex = details.IndexOf("$");
-                    String oldPrice = details.Substring(startIndex + 1);
-                    double newPrice = CalculatePrice(w, h, d, numDrawers, numOfHandles, numOfDoors, numShelves, faceDoorCoverage, formula);
-                    if (newPrice > 0)
+                    if (HttpContext.Current.Session["Comp" + i + "Width"] != null)
                     {
-                        HttpContext.Current.Session["Comp" + i + "Price"] = newPrice.ToString();
-                        details = details.Replace(oldPrice, newPrice.ToString());
-                        HttpContext.Current.Session["Comp" + i] = details;
+
+                        var w = HttpContext.Current.Session["Comp" + i + "Width"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Width"].ToString()): 0;
+                        var h = HttpContext.Current.Session["Comp" + i + "Height"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Height"].ToString()): 0;
+                        var d = HttpContext.Current.Session["Comp" + i + "Depth"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Depth"].ToString()): 0;
+                        var formula = HttpContext.Current.Session["Comp" + i + "Formula"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Formula"].ToString()): 0;
+                        var numDrawers = HttpContext.Current.Session["Comp" + i + "NumDrawers"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumDrawers"].ToString()): 0;
+                        var numOfDoors = HttpContext.Current.Session["Comp" + i + "NumOfDoors"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfDoors"].ToString()): 0;
+                        var numOfHandles = HttpContext.Current.Session["Comp" + i + "NumOfHandles"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfHandles"].ToString()): 0;
+                        var numShelves = HttpContext.Current.Session["Comp" + i + "NumOfShelves"].ToString() != "" ? Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfShelves"].ToString()) : 0;
+                        var faceDoorCoverage = HttpContext.Current.Session["Comp" + i + "FaceDoorCoverage"].ToString() != "" ? Double.Parse(HttpContext.Current.Session["Comp" + i + "FaceDoorCoverage"].ToString()) : 0;
+
+                        //System.Diagnostics.Debug.WriteLine(HttpContext.Current.Session["Comp" + i]);
+                        String details = HttpContext.Current.Session["Comp" + i].ToString();
+                        var startIndex = details.IndexOf("$");
+                        String oldPrice = details.Substring(startIndex + 1);
+                        double newPrice = CalculatePrice(w, h, d, numDrawers, numOfHandles, numOfDoors, numShelves, faceDoorCoverage, formula);
+                        if (newPrice > 0)
+                        {
+                            HttpContext.Current.Session["Comp" + i + "Price"] = newPrice.ToString();
+                            details = details.Replace(oldPrice, newPrice.ToString());
+                            HttpContext.Current.Session["Comp" + i] = details;
+                        }
                     }
                 }
+            }catch (Exception ex)
+            {
+                Elinic.Classes.Logger log = new Elinic.Classes.Logger();
+                log.LogErrorMessage("Error Calculating Price : " + ex.Message);
             }
             return 1;
         }
