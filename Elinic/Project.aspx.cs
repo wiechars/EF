@@ -48,8 +48,7 @@ namespace Elinic
                 btnBackToProjects.Visible = true;
                 LoadProjectLayouts(null, null);
                 index.InnerHtml = "<a href=\"/\" class=\"text-info\"> Home </a> > <a href=\"/Project.aspx\" class=\"text-info\">Projects</a> > " + Convert.ToString(Request.QueryString["Title"]);
-
-            }
+               }
             else if (Request.QueryString["LayoutID"] != null)
             {
 
@@ -302,7 +301,11 @@ namespace Elinic
         {
             try
             {
-                Response.Redirect("~/Project.aspx?Type=" + Session["Type"] + "&Title=" + Session["Title"]);
+                //Clear Config Variables
+                var type = Session["Type"];
+                var title = Session["Title"];
+                Session.Clear();
+                Response.Redirect("~/Project.aspx?Type=" + type + "&Title=" + title);
             }
             catch (Exception ex)
             {
