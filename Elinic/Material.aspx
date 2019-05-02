@@ -56,7 +56,7 @@
                </div>
             </div>
              <div class="mt-3 text-white clearfix mt-5">
-          <button type="submit" class="btn btn-primary btn-lg float-right" >
+          <button type="submit" class="btn btn-primary float-right px-5" >
               <i class="fa fa-save mr-3"></i> Save
           </button>
              </div>

@@ -143,16 +143,12 @@
                <button id="btnSelect" visible="false" class="btn btn-success" runat="server" onserverclick="btnSelect_Click">
                <i class="fa fa-edit"></i>&nbsp;Select
                </button>
-                <div class="col-xs-12 col-lg-6 pr-lg-1">
-                   <button id="btnBack" visible="false" class="btn-outline-primary float-right btn-lg btn-block mt-0 bg-white text-primary" runat="server" onserverclick="btnGoBack_Click">
+                   <button id="btnBack" visible="false" class="btn-outline-primary float-right  mt-0 bg-white text-primary" runat="server" onserverclick="btnGoBack_Click">
                    <i class="fa fa-undo"></i>&nbsp;Back To Set Layout
                     </button>
-                </div>
-                <div class="col-xs-12 col-lg-6 pl-lg-1">
-                   <button id="btnConfig" visible="false" class="btn btn-primary text-white btn-lg btn-block" runat="server" onserverclick="btnConfig_Click">
+                   <button id="btnConfig" visible="false" class="btn btn-primary text-white " runat="server" onserverclick="btnConfig_Click">
                    <i class="fa fa-edit"></i>&nbsp;Select
                    </button>
-                </div>
             </div>
          </div>
          <div class="col-xs-12" style="text-align: center;">

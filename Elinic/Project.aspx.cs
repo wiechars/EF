@@ -140,6 +140,7 @@ namespace Elinic
             cardTitle.InnerHtml = title;
             cardImg.Attributes.Add("src", imgSrc);
             cardImg.Style["max-height"] = "300px";
+            cardImg.Style["flex-shrink"] = "0";
             card.Controls.Add(cardImg);
             cardBody.Controls.Add(cardTitle);
             cardBody.Controls.Add(cardButton);
@@ -512,6 +513,7 @@ namespace Elinic
                             comp_small.Controls.AddAt(0, li);
                             li.Attributes.Add("id", "liAddComponent" + counter);
                             li.Attributes.Add("style", "width:100%; height:auto!important;");
+                            li.Attributes.Add("class", "h4");
                             //Hide li Place Holders
                             if (counter != 1 + (5 * (i - 1)) && Session["Comp" + counter] == null)
                             {
@@ -530,7 +532,7 @@ namespace Elinic
                             if (Session["Comp" + counter] != null)
                             {
                                 li.Attributes.Add("class", "configured-component");
-                                detailsDiv = "<div class=\"customized-values configured\"  id=\"Comp"
+                                detailsDiv = "<div class=\"configured\"  id=\"Comp"
                                         + counter
                                         + "\"><b>Component Type:</b> "
                                         + Convert.ToString(obj.rdr["CompTypeID"].ToString());
@@ -541,9 +543,9 @@ namespace Elinic
                             }
                             else
                             {
-                                detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
-                                    + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
-                                    " button.</div>";
+                                    detailsDiv = "<div class=\"\"  id=\"Comp"
+                                        + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
+                                        " button.</div>";
                             }
                             HtmlGenericControl addParentDiv = new HtmlGenericControl("div");
                             if (Session["Comp" + counter] != null)
@@ -578,7 +580,7 @@ namespace Elinic
 
 
 
-                            addParentDiv.InnerHtml = "<div class=\"col-xs-12\"><div class=\"col-lg-2 col-sm-3\">" + anchorLink + "</div><div class=\"col-sm-5 col-lg-6 customized-values \" style=\"height:auto\" >" + detailsDiv + "</div><div class=\"col-sm-4\"  >" + buttonDiv + "</div></div>";
+                            addParentDiv.InnerHtml = "<div class=\"col-xs-12\"><div class=\"col-lg-2 col-sm-3\">"+anchorLink+"</div><div class=\"col-sm-5 col-lg-6 \" style=\"height:auto\" >"+detailsDiv+"</div><div class=\"col-sm-4\"  >" + buttonDiv + "</div></div>";
                             li.Controls.Add(addParentDiv);
 
 
@@ -636,7 +638,7 @@ namespace Elinic
             }
 
             OrderDetails odr = new OrderDetails();
-            //odr.Price = lblOrderPrice.Text;
+            odr.Price = lblTotalPrice.Text;
             odr.Details = Regex.Replace(orderHTML, @"<[^>]+>|&nbsp;", "").Trim();
 
             Session["OrderDetails"] = null;
