@@ -211,23 +211,8 @@
       </div>
    </div>
    <script>
-      var WASTE_FACTOR = 1.2;
-      var DESK_MOLDING_FOOT_PRICE = 1.5;
-      var PANEL_PRICE_PER_SQ_INCH = 80 / 48 / 96;
-      var ONE_DRAWER_PRICE = 40;
-      var ONE_HANDLE_PRICE = 4;
-      var ONE_HINGE_PRICE = 5;
-      var FINISH_PRICE_PER_SQ_INCH = 20.0 / 2588;
-      var EDGE_PRICE_PER_SQ_INCH = 0.007
-      var GLUE_FASTENERS_SCREWS = 0.002
-      
+     
       $(window).on('load', function () {
-          //Hide Containers until everything is loaded.
-          //$('#main').hide();
-          //$('#main2').hide();
-          //$('#main3').hide();
-          //$('#main4').hide();
-          //$('#main5').hide();
       });
       
       $(window).load(function () {
@@ -241,74 +226,63 @@
           }
       
       });
-      
-      function CalculatePrice() {
-      
-          //** Get Formula Values **//
-          var w = parseInt($("#MainContent_compWidth option:selected").text().replace('"', ''));
-          $('#MainContent_compWidthVal').val(w);
-          var h = parseInt($("#MainContent_compHeight option:selected").text().replace('"', ''));
-          $('#MainContent_compHeightVal').val(h);
-          var d = parseInt($("#MainContent_compDepth option:selected").text().replace('"', ''));
-          $('#MainContent_compDepthVal').val(d);
-          $('#MainContent_compMaterialVal').val($("#MainContent_compMaterial option:selected").text());
-          var numShelves = isNaN(parseInt($("#MainContent_numShelves").text())) ? 0 : parseInt($("#MainContent_numShelves").text());
-          var numDoors = isNaN(parseInt($("#MainContent_numDoors").text())) ? 0 : parseInt($("#MainContent_numDoors").text());
-          var formula = isNaN(parseInt($("#MainContent_formula").text())) ? 0 : parseInt($("#MainContent_formula").text());
-          var numDrawers = isNaN(parseInt($("#MainContent_numDrawers").text())) ? 0 : parseInt($("#MainContent_numDrawers").text());
-          var numHandles = isNaN(parseInt($("#MainContent_numHandles").text())) ? 0 : parseInt($("#MainContent_numHandles").text());
-          var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text())) ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
-      
-          //** Common Formula **//
-          var drawerPrice = ONE_DRAWER_PRICE * numDrawers;
-          var handlePrice = ONE_HANDLE_PRICE * numHandles;
-          var hingePrice = ONE_HINGE_PRICE * numDoors;
-      
-      
-          //** Initialize area and price **//
-          var area = 0;
-          var price = 0;
-      
-      
-          if (formula == '1') {  //Components table has "Formula" column with a value of 1
-              var desktopMolding = DESK_MOLDING_FOOT_PRICE * (w + d + d);
-              area = (w * d) + (3 * d * h) + (20 * w);
-              var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
-              var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
-              var otherPrice = GLUE_FASTENERS_SCREWS * area;
-              price = ((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + desktopMolding + (drawerPrice * 1.1) + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
-      
-          } else {
-              area = w * d * (2 + parseInt(numShelves)) + 2 * h * d + w * h * (1 + parseFloat(faceDoorCoverage));
-              var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
-              var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
-              var otherPrice = GLUE_FASTENERS_SCREWS * area;
-              price = ((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + drawerPrice + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
-      
-          }
-      
-          $('#MainContent_price').text("$" + price.toFixed(2));
-          $('#MainContent_compPrice').val("$" + price.toFixed(2));
-          $('#MainContent_lblOrderPrice').text("$" + price.toFixed(2));
-          $('#MainContent_hdnOrderPrice').text("$" + price.toFixed(2));
-      
-          var compID = getUrlVars()["CompId"];
-          var doors = "N/A"
-          if (numDoors != 0) {
-              doors = $('#MainContent_compDoors').val();
-              $('#MainContent_compDoorsVal').val(doors)
-          }
-      
-          $('#MainContent_orderValues').html("<b>Component ID :</b>" + compID + "&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
-              " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
-              " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
-      
-          $('#MainContent_hdnOrderValues').text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidthVal').val() +
-              " <b>D:</b>" + $('#MainContent_compDepthVal').val() + " <b>H:</b>" + $('#MainContent_compHeightVal').val() +
-              " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
-      
-      }
-      
+
+       function CalculatePrice() {
+           //** Get Formula Values **//
+           var w = parseInt($("#MainContent_compWidth option:selected").text().replace('"', ''));
+           $('#MainContent_compWidthVal').val(w);
+           var h = parseInt($("#MainContent_compHeight option:selected").text().replace('"', ''));
+           $('#MainContent_compHeightVal').val(h);
+           var d = parseInt($("#MainContent_compDepth option:selected").text().replace('"', ''));
+           $('#MainContent_compDepthVal').val(d);
+           $('#MainContent_compMaterialVal').val($("#MainContent_compMaterial option:selected").text());
+           var numShelves = isNaN(parseInt($("#MainContent_numShelves").text())) ? 0 : parseInt($("#MainContent_numShelves").text());
+           var numDoors = isNaN(parseInt($("#MainContent_numDoors").text())) ? 0 : parseInt($("#MainContent_numDoors").text());
+           var formula = isNaN(parseInt($("#MainContent_formula").text())) ? 0 : parseInt($("#MainContent_formula").text());
+           var numDrawers = isNaN(parseInt($("#MainContent_numDrawers").text())) ? 0 : parseInt($("#MainContent_numDrawers").text());
+           var numHandles = isNaN(parseInt($("#MainContent_numHandles").text())) ? 0 : parseInt($("#MainContent_numHandles").text());
+           var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text())) ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
+
+           var obj = {
+                       'w': w, 'h': h, 'd': d, 'numDrawers': numDrawers,
+                       'numHandles': numHandles,
+                       'numDoors': numDoors,
+                       'numShelves': numShelves,
+                       'faceDoorCoverage': faceDoorCoverage,
+                       'formula': formula
+            }
+           var json = Sys.Serialization.JavaScriptSerializer.serialize(obj);
+           $.ajax({
+               type: "Post",
+               url: 'Project.aspx/GetComponentPrice',
+               data: json,
+               dataType: 'json',
+               contentType: 'application/json; charset=utf-8',
+               success: function (data) {
+                   price = data.d;
+                   $('#MainContent_price').text("$" + price.toFixed(2));
+                   $('#MainContent_compPrice').val("$" + price.toFixed(2));
+                   $('#MainContent_lblOrderPrice').text("$" + price.toFixed(2));
+                   $('#MainContent_hdnOrderPrice').text("$" + price.toFixed(2));
+
+                   var compID = getUrlVars()["CompId"];
+                   var doors = "N/A"
+                   if (numDoors != 0) {
+                       doors = $('#MainContent_compDoors').val();
+                       $('#MainContent_compDoorsVal').val(doors)
+                   }
+
+                   $('#MainContent_orderValues').html("<b>Component ID :</b>" + compID + "&nbsp; <b>W:</b>" + $('#MainContent_compWidth').val() +
+                       " <b>D:</b>" + $('#MainContent_compDepth').val() + " <b>H:</b>" + $('#MainContent_compHeight').val() +
+                       " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
+
+                   $('#MainContent_hdnOrderValues').text("<b>Component ID :</b>" + +" &nbsp; <b>W:</b>" + $('#MainContent_compWidthVal').val() +
+                       " <b>D:</b>" + $('#MainContent_compDepthVal').val() + " <b>H:</b>" + $('#MainContent_compHeightVal').val() +
+                       " <b>Doors:</b>" + doors + " <b>Material:</b>" + $('#MainContent_compMaterialVal').val() + "</div>");
+               }
+           });
+       }
+
       $('#gridIcon').click(function () {
           $('#MainContent_gallery_large').hide();
       });
@@ -332,10 +306,6 @@
       $('#MainContent_compDoors').change(function () {
           CalculatePrice();
       });
-      //$('#MainContent_btnCancelNext').click(function () {
-      //    var mpu = $find('mp2');
-      //    mpu.hide();
-      //});
    </script>
    <!-- Once the page is loaded, initalize the plug-in. -->
    <script type="text/javascript">

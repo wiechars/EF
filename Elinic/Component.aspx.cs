@@ -432,7 +432,23 @@ namespace Elinic
         {
             try
             {
+                var f = formula.Text.ToString() == "" ? "0" : formula.Text;
+                var door = numDoors.Text.ToString() == "" ? "0" : numDoors.Text;
+                var drawer = numDrawers.Text.ToString() == "" ? "0" : numDrawers.Text;
+                var handle = numHandles.Text.ToString() == "" ? "0" : numHandles.Text;
+                var shelve = numShelves.Text.ToString() == "" ? "0" : numShelves.Text;
+
+
                 string doors = String.IsNullOrEmpty(compDoorsVal.Value.ToString())?"N/A":compDoorsVal.Value.ToString();
+                Session[Request.QueryString["Comp"].ToString() + "Width"] = compWidthVal.Value.ToString();
+                Session[Request.QueryString["Comp"].ToString() + "Height"] = compHeightVal.Value.ToString();
+                Session[Request.QueryString["Comp"].ToString() + "Depth"] = compDepthVal.Value.ToString();
+                Session[Request.QueryString["Comp"].ToString() + "Formula"] = f;
+                Session[Request.QueryString["Comp"].ToString() + "NumDrawers"] = drawer;
+                Session[Request.QueryString["Comp"].ToString() + "NumOfDoors"] = door;
+                Session[Request.QueryString["Comp"].ToString() + "NumOfHandles"] = handle;
+                Session[Request.QueryString["Comp"].ToString() + "NumOfShelves"] = shelve;
+                Session[Request.QueryString["Comp"].ToString() + "FaceDoorCoverage"] = faceDoorCoverage.Text;
                 Session[Request.QueryString["Comp"].ToString() + "CompImagePath"] = componentImagePath;
                 Session[Request.QueryString["Comp"].ToString() + "CompSelectedId"] = Request.QueryString["CompId"].ToString();
                 Session[Request.QueryString["Comp"].ToString() + "Price"] = compPrice.Value.Substring(1, compPrice.Value.Length - 1);

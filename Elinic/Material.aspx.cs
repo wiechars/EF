@@ -5,6 +5,7 @@ using System.Web.UI.WebControls;
 using Elinic.Classes;
 using System.Drawing;
 using System.Web.Script.Serialization;
+using System.Collections.Generic;
 
 namespace Elinic
 {
@@ -29,65 +30,54 @@ namespace Elinic
                 MaterialSessionStore();
             } 
         }
-        private void LoadMaterials()
+
+        /// <summary>
+        /// Retrieve Materials and bind to controls.
+        /// </summary>
+        public void LoadMaterials()
         {
             if (compMaterial.Items.Count < 1)
             {
-                Database obj = new Database();
                 try
                 {
-                    obj.Connect();
-                    obj.Query("SELECT * FROM Materials");
+
+                    MaterialObject material = new MaterialObject();
+                    List<MaterialObject> materials = material.GetMaterials();
                     int index = 0;
-                    if (obj.rdr.HasRows == true)
+                    foreach (MaterialObject mat in materials)
                     {
-                        while (obj.rdr.Read())
+                        var json = new JavaScriptSerializer().Serialize(mat);
+                        Session["materials"] = null;
+                        Session["materials"] = json;
+                        compMaterial.Items.Insert(index, new ListItem(mat.Name, json));
+                        if (index == 0)
                         {
-                            MaterialObject material = new MaterialObject();
-
-                            material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
-                            material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
-                            material.Name = Convert.ToString(obj.rdr["MaterialName"]);
-                            var json = new JavaScriptSerializer().Serialize(material);
-
-                            compMaterial.Items.Insert(index, new ListItem(Convert.ToString(obj.rdr["MaterialName"]), json));
-                            if (index == 0)
-                            {
-                                imgMaterial.Src = "../Images/" + Convert.ToString(obj.rdr["MaterialImage"]);
-                                imgMaterial.Alt = Convert.ToString(obj.rdr["MaterialImage"]);
-                            }
-                            index++;
+                            imgMaterial.Src = "../Images/" + mat.ImagePath;
+                            imgMaterial.Alt = mat.ImagePath;
                         }
-
+                        index++;
                     }
-                    //Stain
-
-
+                    
                     //Finish
                     compFinish.Items.Insert(0, new ListItem("Gloss", "Gloss"));
                     compFinish.Items.Insert(1, new ListItem("Semi-Gloss", "Semi-Gloss"));
                     compFinish.Items.Insert(2, new ListItem("Satin(matted, flat)", "Satin(matted, flat)"));
-
                     compMaterial.SelectedValue = Session["materialIndex"] != null ? Convert.ToString(Session["materialIndex"]) : "";
                     compFinish.SelectedValue = Session["materialFinish"] != null ? Convert.ToString(Session["materialFinish"]) : "";
                 }
-
-
-
                 catch (Exception ex)
                 {
 
                     log.LogErrorMessage("Load Material Types : " + ex);
 
                 }
-                finally
-                {
-                    obj.Close();
-                }
             }
 
         }
         
+        /// <summary>
+        /// Retrieve Handles and bind to control
+        /// </summary>
         private void LoadHandle()
         {
             if (compHandle.Items.Count < 1)
@@ -146,6 +136,9 @@ namespace Elinic
             }
             return link;
         }
+        /// <summary>
+        /// Stores selected components in session store to be retrieved on Project scren.
+        /// </summary>
         protected void MaterialSessionStore()
         {
             String link = getProjectLink();

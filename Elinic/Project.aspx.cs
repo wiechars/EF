@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Web.Services;
 using Elinic.Classes;
+
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Web.Script.Serialization;
@@ -52,7 +53,7 @@ namespace Elinic
             else if (Request.QueryString["LayoutID"] != null)
             {
 
-              //  orderValues.InnerHtml = "";
+                //  orderValues.InnerHtml = "";
                 int? ideas = null;
 
                 if (Request.QueryString["Ideas"] != null)
@@ -228,7 +229,7 @@ namespace Elinic
                 {
                     while (obj.rdr.Read())
                     {
-                      
+
                         if (hasDescription)
                         {
                             lblDescription.Text = Convert.ToString(obj.rdr["Description"].ToString());
@@ -236,7 +237,7 @@ namespace Elinic
                         }
                         else
                         {
-  lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
+                            lblLayoutDescription.Text = Convert.ToString(obj.rdr["Description2"].ToString());
 
                         }
                         if (layoutID != null && ideas == null)
@@ -403,7 +404,7 @@ namespace Elinic
                         gallery.Controls.Add(li);
                         gallery_large.Controls.Add(liLarge);
                         HtmlGenericControl anchor = new HtmlGenericControl("a");
-                        HtmlGenericControl anchorLarge = new HtmlGenericControl("a");           
+                        HtmlGenericControl anchorLarge = new HtmlGenericControl("a");
                         anchor.InnerHtml = "<img src=\"../Images/LayoutRenders/" + Convert.ToString(obj.rdr["Image"].ToString()) + "\">";
                         anchorLarge.InnerHtml = anchor.InnerHtml;
                         li.Controls.Add(anchor);
@@ -472,6 +473,16 @@ namespace Elinic
         {
             double price = 0;
             int i = 1;
+
+            //Check Material First for Pricing Changes...
+            //Check if material configured
+            if (!(Session["material"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
+            {
+                UpdateOverallPrice();
+                MaterialsContainer.InnerHtml = "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
+                        "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
+                        "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>";
+            }
             Database obj = new Database();
             try
             {
@@ -493,9 +504,9 @@ namespace Elinic
                             string detailsDiv = "";
                             string buttonDiv = "";
                             string anchorLink = "";
-                           
+
                             HtmlGenericControl li = new HtmlGenericControl("li");
-                            comp_small.Controls.AddAt(0,li); 
+                            comp_small.Controls.AddAt(0, li);
                             li.Attributes.Add("id", "liAddComponent" + counter);
                             li.Attributes.Add("style", "width:100%; height:auto!important;");
                             //Hide li Place Holders
@@ -527,15 +538,15 @@ namespace Elinic
                             }
                             else
                             {
-                                    detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
-                                        + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
-                                        " button.</div>";
+                                detailsDiv = "<div class=\"customized-values\"  id=\"Comp"
+                                    + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
+                                    " button.</div>";
                             }
                             HtmlGenericControl addParentDiv = new HtmlGenericControl("div");
                             if (Session["Comp" + counter] != null)
                             {
                                 var compId = Session["Comp" + counter + "CompSelectedId"] != null ? Session["Comp" + counter + "CompSelectedId"].ToString() : "";
-                                anchorLink = "<a href=\""+link+"\"><p style=\"padding-top:2px;\">" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + " - " + compId + "</p><img src=\"" + Session["Comp" + counter + "CompImagePath"].ToString() + "\"></a>";
+                                anchorLink = "<a href=\"" + link + "\"><p style=\"padding-top:2px;\">" + Convert.ToString(obj.rdr["CompTypeName"].ToString()) + " - " + compId + "</p><img src=\"" + Session["Comp" + counter + "CompImagePath"].ToString() + "\"></a>";
                                 Session["ComponentImagePath"] = "";
                             }
                             else
@@ -556,31 +567,23 @@ namespace Elinic
                             }
                             else
                             {
-                                buttonDiv  =
+                                buttonDiv =
                                     "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i>&nbsp;Configure</Button>" +
                                     "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i> &nbsp;Add</Button>" +
                                      "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i>Clear</Button>";
                             }
-                       
 
 
-                            addParentDiv.InnerHtml = "<div class=\"col-xs-12\"><div class=\"col-lg-2 col-sm-3\">"+anchorLink+"</div><div class=\"col-sm-5 col-lg-6 customized-values \" style=\"height:auto\" >"+detailsDiv+"</div><div class=\"col-sm-4\"  >" + buttonDiv + "</div></div>";
+
+                            addParentDiv.InnerHtml = "<div class=\"col-xs-12\"><div class=\"col-lg-2 col-sm-3\">" + anchorLink + "</div><div class=\"col-sm-5 col-lg-6 customized-values \" style=\"height:auto\" >" + detailsDiv + "</div><div class=\"col-sm-4\"  >" + buttonDiv + "</div></div>";
                             li.Controls.Add(addParentDiv);
-                       
+
 
                         }
                         i++;
                     }
-                    
-                    //Check if material configured
-                    if (!(Session["material"] == null || Session["materialFinish"] == null || Session["handleIndex"] == null))
-                    {
-                        MaterialsContainer.InnerHtml = "<h5 class='my-1'>Wood: <span class='text-muted'>" + Session["material"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Finish: <span class='text-muted'>" + Session["materialFinish"].ToString() + "</span></h5>" +
-                                "<h5 class='my-1'>Handle: <span class='text-muted'>" + Session["handleIndex"].ToString() + "</span></h5>";
-                    }
-                    CustomizeMaterial.HRef = getMaterialsLink();
 
+                    CustomizeMaterial.HRef = getMaterialsLink();                    
                     lblTotalPrice.Text = "$" + price.ToString();
                 }
             }
@@ -661,11 +664,141 @@ namespace Elinic
             HttpContext.Current.Session.Remove("Comp" + id);
         }
 
+        //using System.Web.Services;
+        /// <summary>
+        /// Gets the price for an individual Component
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static Double GetComponentPrice(int w, int h, int d, int numDrawers, int numHandles, int numDoors, int numShelves, double faceDoorCoverage, int formula)
+        {
+            return CalculatePrice(w, h, d, numDrawers, numHandles, numDoors, numShelves, faceDoorCoverage, formula);
+        }
+
+
+        /// <summary>
+        /// Updates the overall price when something such as Material Changes.
+        /// </summary>
+        /// <returns></returns>
+        [System.Web.Services.WebMethod(EnableSession = true)]
+        public static double UpdateOverallPrice()
+        {
+            MaterialObject material = new MaterialObject();
+
+            List<MaterialObject> materials = material.GetMaterials();
+            for (int i = 1; i < 100; i++)
+            {
+                if (HttpContext.Current.Session["Comp" + i + "Width"] != null)
+                {
+
+                    var w = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Width"].ToString());
+                    var h = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Height"].ToString());
+                    var d = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Depth"].ToString());
+                    var formula = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "Formula"].ToString());
+                    var numDrawers = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumDrawers"].ToString());
+                    var numOfDoors = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfDoors"].ToString());
+                    var numOfHandles = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfHandles"].ToString());
+                    var numShelves = Convert.ToInt32(HttpContext.Current.Session["Comp" + i + "NumOfShelves"].ToString());
+                    var faceDoorCoverage = Double.Parse(HttpContext.Current.Session["Comp" + i + "FaceDoorCoverage"].ToString());
+
+                    //System.Diagnostics.Debug.WriteLine(HttpContext.Current.Session["Comp" + i]);
+                    String details = HttpContext.Current.Session["Comp" + i].ToString();
+                    var startIndex = details.IndexOf("$");
+                    String oldPrice = details.Substring(startIndex + 1);
+                    double newPrice = CalculatePrice(w, h, d, numDrawers, numOfHandles, numOfDoors, numShelves, faceDoorCoverage, formula);
+                    if (newPrice > 0)
+                    {
+                        HttpContext.Current.Session["Comp" + i + "Price"] = newPrice.ToString();
+                        details = details.Replace(oldPrice, newPrice.ToString());
+                        HttpContext.Current.Session["Comp" + i] = details;
+                    }
+                }
+            }
+            return 1;
+        }
+
+        /// <summary>
+        /// Prices out invdividual Component formula pricing
+        /// </summary>
+        /// <returns></returns>
+        private static Double CalculatePrice(int w, int h, int d, int numDrawers, int numHandles, int numDoors, int numShelves, double faceDoorCoverage, int formula)
+        {
+            double materialPrice = 0;
+            MaterialObject material = new MaterialObject();
+            List<MaterialObject> materials = material.GetMaterials();
+            if (HttpContext.Current.Session["material"] == null)
+            {
+                //Default to first entry
+                materialPrice = materials[0].Price;
+            }
+            else
+            {
+                foreach (MaterialObject mat in materials)
+                {
+                    if (mat.Name == HttpContext.Current.Session["material"].ToString())
+                    {
+                        materialPrice = mat.Price;
+                    }
+                }
+            }
+
+
+            double WASTE_FACTOR = 1.2;
+            double DESK_MOLDING_FOOT_PRICE = 1.5;
+            double PANEL_PRICE_PER_SQ_INCH = materialPrice * 0.0208333333333333 * 0.0104166666666667; //80 / 48 / 96
+            double ONE_DRAWER_PRICE = 40;
+            double ONE_HANDLE_PRICE = 4;
+            double ONE_HINGE_PRICE = 5;
+            double FINISH_PRICE_PER_SQ_INCH = (20.0 / 2588);
+            double EDGE_PRICE_PER_SQ_INCH = 0.007;
+            double GLUE_FASTENERS_SCREWS = 0.002;
+
+            //** Common Formula **//
+            double drawerPrice = ONE_DRAWER_PRICE * numDrawers;
+            double handlePrice = ONE_HANDLE_PRICE * numHandles;
+            double hingePrice = ONE_HINGE_PRICE * numDoors;
+
+
+            //** Initialize area and price **//
+            double area = 0;
+            float price = 0;
+
+            if (formula == 1)
+            {
+                var desktopMolding = DESK_MOLDING_FOOT_PRICE * (w + d + d);
+                area = (w * d) + (3 * d * h) + (20 * w);
+                var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
+                var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
+                var otherPrice = GLUE_FASTENERS_SCREWS * area;
+                price = (float)((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + desktopMolding + (drawerPrice * 1.1) + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
+
+            }
+            else
+            {
+                area = w * d * (2 + numShelves) + 2 * h * d + w * h * (1 + faceDoorCoverage);
+                var edgePrice = EDGE_PRICE_PER_SQ_INCH * area;
+                var finishPrice = FINISH_PRICE_PER_SQ_INCH * area;
+                var otherPrice = GLUE_FASTENERS_SCREWS * area;
+                price = (float)((area * WASTE_FACTOR * PANEL_PRICE_PER_SQ_INCH) + drawerPrice + handlePrice + edgePrice + hingePrice + finishPrice + otherPrice) * 2;
+
+            }
+
+            return Double.Parse((String.Format("{0:0.00}", price)));
+        }
 
         //using System.Web.Services;
         [System.Web.Services.WebMethod(EnableSession = true)]
         public static string CloneSession(int srcId, int destId)
         {
+            HttpContext.Current.Session["Comp" + destId + "Width"] = HttpContext.Current.Session["Comp" + srcId + "Width"];
+            HttpContext.Current.Session["Comp" + destId + "Height"] = HttpContext.Current.Session["Comp" + srcId + "Height"];
+            HttpContext.Current.Session["Comp" + destId + "Depth"] = HttpContext.Current.Session["Comp" + srcId + "Depth"];
+            HttpContext.Current.Session["Comp" + destId + "Formula"] = HttpContext.Current.Session["Comp" + srcId + "Formula"];
+            HttpContext.Current.Session["Comp" + destId + "NumDrawers"] = HttpContext.Current.Session["Comp" + srcId + "NumDrawers"];
+            HttpContext.Current.Session["Comp" + destId + "NumOfDoors"] = HttpContext.Current.Session["Comp" + srcId + "NumOfDoors"];
+            HttpContext.Current.Session["Comp" + destId + "NumOfHandles"] = HttpContext.Current.Session["Comp" + srcId+ "NumOfHandles"];
+            HttpContext.Current.Session["Comp" + destId + "NumOfShelves"] = HttpContext.Current.Session["Comp" + srcId + "NumOfShelves"];
+            HttpContext.Current.Session["Comp" + destId + "FaceDoorCoverage"] = HttpContext.Current.Session["Comp" + srcId + "FaceDoorCoverage"];
             HttpContext.Current.Session["Comp" + destId] = HttpContext.Current.Session["Comp" + srcId];
             HttpContext.Current.Session["Comp" + destId + "Price"] = HttpContext.Current.Session["Comp" + srcId + "Price"];
             HttpContext.Current.Session["Comp" + destId + "CompSelectedId"] = HttpContext.Current.Session["Comp" + srcId + "CompSelectedId"];
@@ -676,10 +809,49 @@ namespace Elinic
     }
 }
 
-class MaterialObject
+/// <summary>
+/// Object to handle material details.
+/// </summary>
+public class MaterialObject
 {
+    private List<MaterialObject> _materials;
+    public List<MaterialObject> GetMaterials()
+    {
+        if (_materials != null)
+        {
+            return _materials;
+        }
+        else
+        {
+            Database obj = new Database();
+            try
+            {
+                obj.Connect();
+                obj.Query("SELECT * FROM Materials");
+                if (obj.rdr.HasRows == true)
+                {
+                    _materials = new List<MaterialObject>();
+                    while (obj.rdr.Read())
+                    {
+                        MaterialObject material = new MaterialObject();
+                        material.Price = Convert.ToInt32(Convert.ToString(obj.rdr["MaterialPrice"]));
+                        material.ImagePath = Convert.ToString(obj.rdr["MaterialImage"]);
+                        material.Name = Convert.ToString(obj.rdr["MaterialName"]);
+                        _materials.Add(material);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //TODO
+            }
+        }
 
+        return _materials;
+    }
     public String ImagePath { get; set; }
     public float Price { get; set; }
     public String Name { get; set; }
+
+
 }
