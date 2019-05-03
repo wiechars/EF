@@ -237,9 +237,9 @@
            var formula = isNaN(parseInt($("#MainContent_formula").text())) ? 0 : parseInt($("#MainContent_formula").text());
            var numDrawers = isNaN(parseInt($("#MainContent_numDrawers").text())) ? 0 : parseInt($("#MainContent_numDrawers").text());
            var numHandles = isNaN(parseInt($("#MainContent_numHandles").text())) ? 0 : parseInt($("#MainContent_numHandles").text());
-           var faceDoorCoverage = isNaN(parseInt($("#MainContent_faceDoorCoverage").text())) ? 0 : parseInt($("#MainContent_faceDoorCoverage").text());
+           var faceDoorCoverage = isNaN(parseFloat($("#MainContent_faceDoorCoverage").text())) ? 0 : parseFloat($("#MainContent_faceDoorCoverage").text());
 
-           var obj = {
+            var obj = {
                        'w': w, 'h': h, 'd': d, 'numDrawers': numDrawers,
                        'numHandles': numHandles,
                        'numDoors': numDoors,
