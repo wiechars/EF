@@ -852,10 +852,15 @@ public class MaterialObject
                         _materials.Add(material);
                     }
                 }
+               //obj
             }
             catch (Exception ex)
             {
                 //TODO
+            }
+            finally
+            {
+                obj.Close();
             }
         }
 
