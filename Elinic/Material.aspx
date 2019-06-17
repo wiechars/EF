@@ -4,16 +4,17 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
    <hgroup class="title">
+       <div class="container">
       <h1><%: Title %></h1>
       <a id="btnHome2" class="btn btn-primary text-white" href="/" style="float: right; width: 110px;">
       <i class="fa fa-home"></i>&nbsp;Home
-      </a>
+      </a></div>
       <hr />
    </hgroup>
 
    <div class="container">
       <div class="rounded shadow p-5 bg-light">
-          <a class="btn btn-primary text-white ml-5 mb-3" runat="server" ID="backToProject"><i class="fa fa-arrow-left mr-3"></i>Back to Layout</a>
+          <a class="btn btn-primary text-white ml-5 mb-3" runat="server" ID="backToProject">Back to Layout</a>
          <div class="mx-5 mt-2">
             <div>
                <div id="selectedMaterial" class="" runat="server">
@@ -57,7 +58,7 @@
             </div>
              <div class="mt-3 text-white clearfix mt-5">
           <button type="submit" class="btn btn-primary float-right px-5" >
-              <i class="fa fa-save mr-3"></i> Save
+              Save
           </button>
              </div>
          </div>

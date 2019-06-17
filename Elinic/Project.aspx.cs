@@ -267,7 +267,8 @@ namespace Elinic
                         else
                         {
                             layoutsDiv.Visible = true;
-                            String title = Convert.ToString(obj.rdr["LayoutID"].ToString()),
+                            String LayoutName = Convert.ToString(obj.rdr["LayoutName"].ToString());
+                            String title = (LayoutName != null ?  LayoutName + " " : "") + Convert.ToString(obj.rdr["LayoutID"].ToString()),
                                     link = "Project.aspx?LayoutID=" + Convert.ToString(obj.rdr["LayoutID"].ToString()),
                                     imageSrc = "../Images/LayoutThumbs/" + Convert.ToString(obj.rdr["LayoutThumbImage"].ToString());
 
@@ -543,8 +544,8 @@ namespace Elinic
                             }
                             else
                             {
-                                    detailsDiv = "<div class=\"\"  id=\"Comp"
-                                        + counter + "\">If you would like this component in your project, add it by clicking the <div class='d-inline-block'><i class='fa fa-cog mr-2'></i>Configure</div>" +
+                                    detailsDiv = "<div class=\"d-flex justify-content-center align-items-center h4\"  id=\"Comp"
+                                        + counter + "\">If you would like this component in your project, click the Configure" +
                                         " button.</div>";
                             }
                             HtmlGenericControl addParentDiv = new HtmlGenericControl("div");
@@ -565,17 +566,17 @@ namespace Elinic
 
 
                                 buttonDiv =
-                                              "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i>&nbsp;Config</Button>" +
-                                                "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i> &nbsp;Add</Button>" +
-                                                "<Button class=\"btn btn-danger\" style=\"width:100%\" id =RemoveComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-times\"></i>&nbsp;Remove</Button>" +
-                                                "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i>&nbsp;Clear</Button>";
+                                              "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \">Config</Button>" +
+                                                "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\">Add</Button>" +
+                                                "<Button class=\"btn btn-danger\" style=\"width:100%\" id =RemoveComponent" + counter + " onclick=\"return false;\">Remove</Button>" +
+                                                "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\">Clear</Button>";
                             }
                             else
                             {
-                                buttonDiv =
-                                    "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \"><i class=\"fa fa-gear\"></i>&nbsp;Configure</Button>" +
-                                    "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-plus\"></i> &nbsp;Add</Button>" +
-                                     "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\"><i class=\"fa fa-refresh\"></i>Clear</Button>";
+                                buttonDiv  =
+                                    "<Button class=\"btn btn-primary\" style=\"width:100%\" id =configure" + counter + "  onclick=\"window.location.href = '" + link + "';return false \">&nbsp;Configure</Button>" +
+                                    "<Button class=\"btn btn-warning\" style=\"width:100%\" id =AddComponent" + counter + " onclick=\"return false;\">Add</Button>" +
+                                     "<Button class=\"btn btn-info\" style=\"width:100%\" id =RedoComponent" + counter + " onclick=\"return false;\">Clear</Button>";
                             }
 
 
